@@ -36,6 +36,7 @@ SHA1SUM := sha1sum
 ELF2DOL := tools/elf2dol$(EXE)
 ELF2REL := tools/elf2rel$(EXE)
 LZSS    := tools/lzss$(EXE)
+AR      := ar
 
 # Game include directories
 INCLUDE_DIRS := src data
@@ -509,7 +510,7 @@ ALL_RELS += mkbe.option.rel
 .SUFFIXES:
 MAKEFLAGS += -r
 
-all: $(DOL) $(ALL_RELS)
+all: $(DOL) $(ALL_RELS) libmkb.a
 	$(QUIET) $(SHA1SUM) -c supermonkeyball.sha1
 
 # static module (.dol file)
@@ -575,10 +576,22 @@ src/unk_anim_data.c.o: src/unk_anim_data.c
 	$(OBJDUMP) -Drz $< > $@
 
 clean:
-	$(RM) $(DOL) $(ELF) $(MAP) $(ALL_RELS) $(ELF2DOL) $(ELF2REL)
+	$(RM) $(DOL) $(ELF) $(MAP) $(ALL_RELS) libmkb.a $(ELF2DOL) $(ELF2REL)
 	find . -name '*.o' -exec rm {} +
 	find . -name '*.dep' -exec rm {} +
 	find . -name '*.dump' -exec rm {} +
+
+LIBMKB_SRCS := src/lib/stage_loader.c src/lib/ball_sim.c src/lib/camera_sim.c
+LIBMKB_OBJS := $(LIBMKB_SRCS:.c=.lib.o)
+
+libmkb.a: $(LIBMKB_OBJS)
+	$(AR) rcs $@ $^
+
+%.lib.o: %.c
+	$(HOSTCC) $(HOSTCFLAGS) -Isrc -Iinclude -c $< -o $@
+
+.PHONY: libmkb
+libmkb: libmkb.a
 
 #-------------------------------------------------------------------------------
 # Test Recipes
