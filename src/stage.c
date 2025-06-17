@@ -667,7 +667,7 @@ void load_stage_files(int stageId)
         DVDChangeDir(stageDir);
         oldHeap = OSSetCurrentHeap(stageHeap);
 
-        // Load stagedef (.lz) file
+        // Load stagedef file
         load_stage_collision(stageId);
 
         // Load GMA/TPL files
