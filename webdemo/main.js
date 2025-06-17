@@ -3,6 +3,33 @@
 
 let Module = Module || {};
 
+// Keep track of WASD key state for simple tilt control
+const keys = { w: false, a: false, s: false, d: false };
+function handleKey(e, down) {
+  switch (e.key.toLowerCase()) {
+    case 'w': keys.w = down; break;
+    case 'a': keys.a = down; break;
+    case 's': keys.s = down; break;
+    case 'd': keys.d = down; break;
+  }
+}
+window.addEventListener('keydown', e => handleKey(e, true));
+window.addEventListener('keyup', e => handleKey(e, false));
+
+// Write the current key state to controllerInfo so libmkb can read it
+function updateController() {
+  if (!lib || lib._controllerInfo === undefined) return;
+  const base = lib._controllerInfo; // controllerInfo[0]
+  let stickX = 0;
+  let stickY = 0;
+  if (keys.a) stickX -= 60;
+  if (keys.d) stickX += 60;
+  if (keys.w) stickY += 60;
+  if (keys.s) stickY -= 60;
+  lib.HEAP8[base + 2] = stickX; // held.stickX
+  lib.HEAP8[base + 3] = stickY; // held.stickY
+}
+
 let scene, camera, renderer, ballMesh;
 let lib, ballPtr, cameraPtr;
 const BALL_SIZE = 0x1A4;   // sizeof(struct Ball)
@@ -31,6 +58,7 @@ function animate() {
   requestAnimationFrame(animate);
 
   if (lib) {
+    updateController();
     lib._world_sim_step();
     lib._stobj_sim_step();
     lib._item_sim_step();
@@ -47,12 +75,16 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-Module.onRuntimeInitialized = () => {
+Module.onRuntimeInitialized = async () => {
   lib = Module;
   ballPtr = lib._malloc(BALL_SIZE);
   cameraPtr = lib._malloc(CAMERA_SIZE);
 
-  lib._load_stage_collision(1);
+  const resp = await fetch('STAGE002.lz');
+  const buf = new Uint8Array(await resp.arrayBuffer());
+  lib.FS_createDataFile('/', 'STAGE002.lz', buf, true, true);
+
+  lib._load_stage_collision(2);
   lib._world_sim_init();
   lib._stobj_sim_init();
   lib._item_sim_init();
