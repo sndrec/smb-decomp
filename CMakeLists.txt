@@ -31,7 +31,8 @@ set(LIBMKB_SOURCES
     src/sound.c
     src/lib/host_load.c
     src/lib/host_os.c
-    src/lib/globals.c
+    src/lib/global_state.c
+    src/lib/input_host.c
 )
 
 add_library(libmkb STATIC ${LIBMKB_SOURCES})

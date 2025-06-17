@@ -5,6 +5,7 @@
 #include "ball.h"
 #include "camera.h"
 #include "world.h"
+#include <dolphin/pad.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -35,6 +36,12 @@ void item_sim_destroy(void);
 void stage_anim_init(void);
 void stage_anim_step(void);
 void stage_anim_destroy(void);
+// Library-wide initialization
+void mkb_init(void);
+
+// Update controller input state
+void mkb_set_controller_state(int port, const PADStatus *pad);
+
 
 #ifdef __cplusplus
 }

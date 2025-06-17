@@ -1,4 +1,4 @@
-var Module = (() => {
+var createMKBModule = (() => {
   var _scriptName = typeof document != 'undefined' ? document.currentScript?.src : undefined;
   return (
 async function(moduleArg = {}) {
@@ -237,9 +237,6 @@ function assert(condition, text) {
 
 // We used to include malloc/free by default in the past. Show a helpful error in
 // builds with assertions.
-function _malloc() {
-  abort('malloc() called but not included in the build - add `_malloc` to EXPORTED_FUNCTIONS');
-}
 function _free() {
   // Show a helpful error since we used to include free by default in the past.
   abort('free() called but not included in the build - add `_free` to EXPORTED_FUNCTIONS');
@@ -449,16 +446,16 @@ var runtimeInitialized = false;
 
 function updateMemoryViews() {
   var b = wasmMemory.buffer;
-  Module['HEAP8'] = HEAP8 = new Int8Array(b);
-  Module['HEAP16'] = HEAP16 = new Int16Array(b);
-  Module['HEAPU8'] = HEAPU8 = new Uint8Array(b);
-  Module['HEAPU16'] = HEAPU16 = new Uint16Array(b);
-  Module['HEAP32'] = HEAP32 = new Int32Array(b);
-  Module['HEAPU32'] = HEAPU32 = new Uint32Array(b);
-  Module['HEAPF32'] = HEAPF32 = new Float32Array(b);
-  Module['HEAPF64'] = HEAPF64 = new Float64Array(b);
-  Module['HEAP64'] = HEAP64 = new BigInt64Array(b);
-  Module['HEAPU64'] = HEAPU64 = new BigUint64Array(b);
+  HEAP8 = new Int8Array(b);
+  HEAP16 = new Int16Array(b);
+  HEAPU8 = new Uint8Array(b);
+  HEAPU16 = new Uint16Array(b);
+  HEAP32 = new Int32Array(b);
+  HEAPU32 = new Uint32Array(b);
+  HEAPF32 = new Float32Array(b);
+  HEAPF64 = new Float64Array(b);
+  HEAP64 = new BigInt64Array(b);
+  HEAPU64 = new BigUint64Array(b);
 }
 
 // include: memoryprofiler.js
@@ -486,11 +483,16 @@ function initRuntime() {
 
   checkStackCookie();
 
-  // No ATINITS hooks
+  // Begin ATINITS hooks
+  if (!Module['noFSInit'] && !FS.initialized) FS.init();
+TTY.init();
+  // End ATINITS hooks
 
   wasmExports['__wasm_call_ctors']();
 
-  // No ATPOSTCTORS hooks
+  // Begin ATPOSTCTORS hooks
+  FS.ignorePermissions = false;
+  // End ATPOSTCTORS hooks
 }
 
 function postRun() {
@@ -613,24 +615,6 @@ function abort(what) {
   // to be thrown when abort is called.
   throw e;
 }
-
-// show errors on likely calls to FS when it was not included
-var FS = {
-  error() {
-    abort('Filesystem support (FS) was not included. The problem is that you are using files from JS, but files were not used from C/C++, so filesystem support was not auto-included. You can force-include filesystem support with -sFORCE_FILESYSTEM');
-  },
-  init() { FS.error() },
-  createDataFile() { FS.error() },
-  createPreloadedFile() { FS.error() },
-  createLazyFile() { FS.error() },
-  open() { FS.error() },
-  mkdev() { FS.error() },
-  registerDevice() { FS.error() },
-  analyzePath() { FS.error() },
-
-  ErrnoError() { FS.error() },
-};
-
 
 function createExportWrapper(name, nargs) {
   return (...args) => {
@@ -880,6 +864,3897 @@ async function createWasm() {
         err(text);
       }
     };
+
+  /** @type {function(...*):?} */
+  function _C_MTXPerspective(
+  ) {
+  abort('missing function: C_MTXPerspective');
+  }
+  _C_MTXPerspective.stub = true;
+
+  /** @type {function(...*):?} */
+  function _GXSetProjection(
+  ) {
+  abort('missing function: GXSetProjection');
+  }
+  _GXSetProjection.stub = true;
+
+  /** @type {function(...*):?} */
+  function _GXSetScissor(
+  ) {
+  abort('missing function: GXSetScissor');
+  }
+  _GXSetScissor.stub = true;
+
+  /** @type {function(...*):?} */
+  function _GXSetViewport(
+  ) {
+  abort('missing function: GXSetViewport');
+  }
+  _GXSetViewport.stub = true;
+
+  /** @suppress {duplicate } */
+  var syscallGetVarargI = () => {
+      assert(SYSCALLS.varargs != undefined);
+      // the `+` prepended here is necessary to convince the JSCompiler that varargs is indeed a number.
+      var ret = HEAP32[((+SYSCALLS.varargs)>>2)];
+      SYSCALLS.varargs += 4;
+      return ret;
+    };
+  var syscallGetVarargP = syscallGetVarargI;
+  
+  
+  var PATH = {
+  isAbs:(path) => path.charAt(0) === '/',
+  splitPath:(filename) => {
+        var splitPathRe = /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
+        return splitPathRe.exec(filename).slice(1);
+      },
+  normalizeArray:(parts, allowAboveRoot) => {
+        // if the path tries to go above the root, `up` ends up > 0
+        var up = 0;
+        for (var i = parts.length - 1; i >= 0; i--) {
+          var last = parts[i];
+          if (last === '.') {
+            parts.splice(i, 1);
+          } else if (last === '..') {
+            parts.splice(i, 1);
+            up++;
+          } else if (up) {
+            parts.splice(i, 1);
+            up--;
+          }
+        }
+        // if the path is allowed to go above the root, restore leading ..s
+        if (allowAboveRoot) {
+          for (; up; up--) {
+            parts.unshift('..');
+          }
+        }
+        return parts;
+      },
+  normalize:(path) => {
+        var isAbsolute = PATH.isAbs(path),
+            trailingSlash = path.slice(-1) === '/';
+        // Normalize the path
+        path = PATH.normalizeArray(path.split('/').filter((p) => !!p), !isAbsolute).join('/');
+        if (!path && !isAbsolute) {
+          path = '.';
+        }
+        if (path && trailingSlash) {
+          path += '/';
+        }
+        return (isAbsolute ? '/' : '') + path;
+      },
+  dirname:(path) => {
+        var result = PATH.splitPath(path),
+            root = result[0],
+            dir = result[1];
+        if (!root && !dir) {
+          // No dirname whatsoever
+          return '.';
+        }
+        if (dir) {
+          // It has a dirname, strip trailing slash
+          dir = dir.slice(0, -1);
+        }
+        return root + dir;
+      },
+  basename:(path) => path && path.match(/([^\/]+|\/)\/*$/)[1],
+  join:(...paths) => PATH.normalize(paths.join('/')),
+  join2:(l, r) => PATH.normalize(l + '/' + r),
+  };
+  
+  var initRandomFill = () => {
+      // This block is not needed on v19+ since crypto.getRandomValues is builtin
+      if (ENVIRONMENT_IS_NODE) {
+        var nodeCrypto = require('crypto');
+        return (view) => nodeCrypto.randomFillSync(view);
+      }
+  
+      return (view) => crypto.getRandomValues(view);
+    };
+  var randomFill = (view) => {
+      // Lazily init on the first invocation.
+      (randomFill = initRandomFill())(view);
+    };
+  
+  
+  
+  var PATH_FS = {
+  resolve:(...args) => {
+        var resolvedPath = '',
+          resolvedAbsolute = false;
+        for (var i = args.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+          var path = (i >= 0) ? args[i] : FS.cwd();
+          // Skip empty and invalid entries
+          if (typeof path != 'string') {
+            throw new TypeError('Arguments to path.resolve must be strings');
+          } else if (!path) {
+            return ''; // an invalid portion invalidates the whole thing
+          }
+          resolvedPath = path + '/' + resolvedPath;
+          resolvedAbsolute = PATH.isAbs(path);
+        }
+        // At this point the path should be resolved to a full absolute path, but
+        // handle relative paths to be safe (might happen when process.cwd() fails)
+        resolvedPath = PATH.normalizeArray(resolvedPath.split('/').filter((p) => !!p), !resolvedAbsolute).join('/');
+        return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
+      },
+  relative:(from, to) => {
+        from = PATH_FS.resolve(from).slice(1);
+        to = PATH_FS.resolve(to).slice(1);
+        function trim(arr) {
+          var start = 0;
+          for (; start < arr.length; start++) {
+            if (arr[start] !== '') break;
+          }
+          var end = arr.length - 1;
+          for (; end >= 0; end--) {
+            if (arr[end] !== '') break;
+          }
+          if (start > end) return [];
+          return arr.slice(start, end - start + 1);
+        }
+        var fromParts = trim(from.split('/'));
+        var toParts = trim(to.split('/'));
+        var length = Math.min(fromParts.length, toParts.length);
+        var samePartsLength = length;
+        for (var i = 0; i < length; i++) {
+          if (fromParts[i] !== toParts[i]) {
+            samePartsLength = i;
+            break;
+          }
+        }
+        var outputParts = [];
+        for (var i = samePartsLength; i < fromParts.length; i++) {
+          outputParts.push('..');
+        }
+        outputParts = outputParts.concat(toParts.slice(samePartsLength));
+        return outputParts.join('/');
+      },
+  };
+  
+  
+  var UTF8Decoder = typeof TextDecoder != 'undefined' ? new TextDecoder() : undefined;
+  
+    /**
+     * Given a pointer 'idx' to a null-terminated UTF8-encoded string in the given
+     * array that contains uint8 values, returns a copy of that string as a
+     * Javascript String object.
+     * heapOrArray is either a regular array, or a JavaScript typed array view.
+     * @param {number=} idx
+     * @param {number=} maxBytesToRead
+     * @return {string}
+     */
+  var UTF8ArrayToString = (heapOrArray, idx = 0, maxBytesToRead = NaN) => {
+      var endIdx = idx + maxBytesToRead;
+      var endPtr = idx;
+      // TextDecoder needs to know the byte length in advance, it doesn't stop on
+      // null terminator by itself.  Also, use the length info to avoid running tiny
+      // strings through TextDecoder, since .subarray() allocates garbage.
+      // (As a tiny code save trick, compare endPtr against endIdx using a negation,
+      // so that undefined/NaN means Infinity)
+      while (heapOrArray[endPtr] && !(endPtr >= endIdx)) ++endPtr;
+  
+      // When using conditional TextDecoder, skip it for short strings as the overhead of the native call is not worth it.
+      if (endPtr - idx > 16 && heapOrArray.buffer && UTF8Decoder) {
+        return UTF8Decoder.decode(heapOrArray.subarray(idx, endPtr));
+      }
+      var str = '';
+      // If building with TextDecoder, we have already computed the string length
+      // above, so test loop end condition against that
+      while (idx < endPtr) {
+        // For UTF8 byte structure, see:
+        // http://en.wikipedia.org/wiki/UTF-8#Description
+        // https://www.ietf.org/rfc/rfc2279.txt
+        // https://tools.ietf.org/html/rfc3629
+        var u0 = heapOrArray[idx++];
+        if (!(u0 & 0x80)) { str += String.fromCharCode(u0); continue; }
+        var u1 = heapOrArray[idx++] & 63;
+        if ((u0 & 0xE0) == 0xC0) { str += String.fromCharCode(((u0 & 31) << 6) | u1); continue; }
+        var u2 = heapOrArray[idx++] & 63;
+        if ((u0 & 0xF0) == 0xE0) {
+          u0 = ((u0 & 15) << 12) | (u1 << 6) | u2;
+        } else {
+          if ((u0 & 0xF8) != 0xF0) warnOnce('Invalid UTF-8 leading byte ' + ptrToString(u0) + ' encountered when deserializing a UTF-8 string in wasm memory to a JS string!');
+          u0 = ((u0 & 7) << 18) | (u1 << 12) | (u2 << 6) | (heapOrArray[idx++] & 63);
+        }
+  
+        if (u0 < 0x10000) {
+          str += String.fromCharCode(u0);
+        } else {
+          var ch = u0 - 0x10000;
+          str += String.fromCharCode(0xD800 | (ch >> 10), 0xDC00 | (ch & 0x3FF));
+        }
+      }
+      return str;
+    };
+  
+  var FS_stdin_getChar_buffer = [];
+  
+  var lengthBytesUTF8 = (str) => {
+      var len = 0;
+      for (var i = 0; i < str.length; ++i) {
+        // Gotcha: charCodeAt returns a 16-bit word that is a UTF-16 encoded code
+        // unit, not a Unicode code point of the character! So decode
+        // UTF16->UTF32->UTF8.
+        // See http://unicode.org/faq/utf_bom.html#utf16-3
+        var c = str.charCodeAt(i); // possibly a lead surrogate
+        if (c <= 0x7F) {
+          len++;
+        } else if (c <= 0x7FF) {
+          len += 2;
+        } else if (c >= 0xD800 && c <= 0xDFFF) {
+          len += 4; ++i;
+        } else {
+          len += 3;
+        }
+      }
+      return len;
+    };
+  
+  var stringToUTF8Array = (str, heap, outIdx, maxBytesToWrite) => {
+      assert(typeof str === 'string', `stringToUTF8Array expects a string (got ${typeof str})`);
+      // Parameter maxBytesToWrite is not optional. Negative values, 0, null,
+      // undefined and false each don't write out any bytes.
+      if (!(maxBytesToWrite > 0))
+        return 0;
+  
+      var startIdx = outIdx;
+      var endIdx = outIdx + maxBytesToWrite - 1; // -1 for string null terminator.
+      for (var i = 0; i < str.length; ++i) {
+        // For UTF8 byte structure, see http://en.wikipedia.org/wiki/UTF-8#Description
+        // and https://www.ietf.org/rfc/rfc2279.txt
+        // and https://tools.ietf.org/html/rfc3629
+        var u = str.codePointAt(i);
+        if (u <= 0x7F) {
+          if (outIdx >= endIdx) break;
+          heap[outIdx++] = u;
+        } else if (u <= 0x7FF) {
+          if (outIdx + 1 >= endIdx) break;
+          heap[outIdx++] = 0xC0 | (u >> 6);
+          heap[outIdx++] = 0x80 | (u & 63);
+        } else if (u <= 0xFFFF) {
+          if (outIdx + 2 >= endIdx) break;
+          heap[outIdx++] = 0xE0 | (u >> 12);
+          heap[outIdx++] = 0x80 | ((u >> 6) & 63);
+          heap[outIdx++] = 0x80 | (u & 63);
+        } else {
+          if (outIdx + 3 >= endIdx) break;
+          if (u > 0x10FFFF) warnOnce('Invalid Unicode code point ' + ptrToString(u) + ' encountered when serializing a JS string to a UTF-8 string in wasm memory! (Valid unicode code points should be in range 0-0x10FFFF).');
+          heap[outIdx++] = 0xF0 | (u >> 18);
+          heap[outIdx++] = 0x80 | ((u >> 12) & 63);
+          heap[outIdx++] = 0x80 | ((u >> 6) & 63);
+          heap[outIdx++] = 0x80 | (u & 63);
+          // Gotcha: if codePoint is over 0xFFFF, it is represented as a surrogate pair in UTF-16.
+          // We need to manually skip over the second code unit for correct iteration.
+          i++;
+        }
+      }
+      // Null-terminate the pointer to the buffer.
+      heap[outIdx] = 0;
+      return outIdx - startIdx;
+    };
+  /** @type {function(string, boolean=, number=)} */
+  var intArrayFromString = (stringy, dontAddNull, length) => {
+      var len = length > 0 ? length : lengthBytesUTF8(stringy)+1;
+      var u8array = new Array(len);
+      var numBytesWritten = stringToUTF8Array(stringy, u8array, 0, u8array.length);
+      if (dontAddNull) u8array.length = numBytesWritten;
+      return u8array;
+    };
+  var FS_stdin_getChar = () => {
+      if (!FS_stdin_getChar_buffer.length) {
+        var result = null;
+        if (ENVIRONMENT_IS_NODE) {
+          // we will read data by chunks of BUFSIZE
+          var BUFSIZE = 256;
+          var buf = Buffer.alloc(BUFSIZE);
+          var bytesRead = 0;
+  
+          // For some reason we must suppress a closure warning here, even though
+          // fd definitely exists on process.stdin, and is even the proper way to
+          // get the fd of stdin,
+          // https://github.com/nodejs/help/issues/2136#issuecomment-523649904
+          // This started to happen after moving this logic out of library_tty.js,
+          // so it is related to the surrounding code in some unclear manner.
+          /** @suppress {missingProperties} */
+          var fd = process.stdin.fd;
+  
+          try {
+            bytesRead = fs.readSync(fd, buf, 0, BUFSIZE);
+          } catch(e) {
+            // Cross-platform differences: on Windows, reading EOF throws an
+            // exception, but on other OSes, reading EOF returns 0. Uniformize
+            // behavior by treating the EOF exception to return 0.
+            if (e.toString().includes('EOF')) bytesRead = 0;
+            else throw e;
+          }
+  
+          if (bytesRead > 0) {
+            result = buf.slice(0, bytesRead).toString('utf-8');
+          }
+        } else
+        if (typeof window != 'undefined' &&
+          typeof window.prompt == 'function') {
+          // Browser.
+          result = window.prompt('Input: ');  // returns null on cancel
+          if (result !== null) {
+            result += '\n';
+          }
+        } else
+        {}
+        if (!result) {
+          return null;
+        }
+        FS_stdin_getChar_buffer = intArrayFromString(result, true);
+      }
+      return FS_stdin_getChar_buffer.shift();
+    };
+  var TTY = {
+  ttys:[],
+  init() {
+        // https://github.com/emscripten-core/emscripten/pull/1555
+        // if (ENVIRONMENT_IS_NODE) {
+        //   // currently, FS.init does not distinguish if process.stdin is a file or TTY
+        //   // device, it always assumes it's a TTY device. because of this, we're forcing
+        //   // process.stdin to UTF8 encoding to at least make stdin reading compatible
+        //   // with text files until FS.init can be refactored.
+        //   process.stdin.setEncoding('utf8');
+        // }
+      },
+  shutdown() {
+        // https://github.com/emscripten-core/emscripten/pull/1555
+        // if (ENVIRONMENT_IS_NODE) {
+        //   // inolen: any idea as to why node -e 'process.stdin.read()' wouldn't exit immediately (with process.stdin being a tty)?
+        //   // isaacs: because now it's reading from the stream, you've expressed interest in it, so that read() kicks off a _read() which creates a ReadReq operation
+        //   // inolen: I thought read() in that case was a synchronous operation that just grabbed some amount of buffered data if it exists?
+        //   // isaacs: it is. but it also triggers a _read() call, which calls readStart() on the handle
+        //   // isaacs: do process.stdin.pause() and i'd think it'd probably close the pending call
+        //   process.stdin.pause();
+        // }
+      },
+  register(dev, ops) {
+        TTY.ttys[dev] = { input: [], output: [], ops: ops };
+        FS.registerDevice(dev, TTY.stream_ops);
+      },
+  stream_ops:{
+  open(stream) {
+          var tty = TTY.ttys[stream.node.rdev];
+          if (!tty) {
+            throw new FS.ErrnoError(43);
+          }
+          stream.tty = tty;
+          stream.seekable = false;
+        },
+  close(stream) {
+          // flush any pending line data
+          stream.tty.ops.fsync(stream.tty);
+        },
+  fsync(stream) {
+          stream.tty.ops.fsync(stream.tty);
+        },
+  read(stream, buffer, offset, length, pos /* ignored */) {
+          if (!stream.tty || !stream.tty.ops.get_char) {
+            throw new FS.ErrnoError(60);
+          }
+          var bytesRead = 0;
+          for (var i = 0; i < length; i++) {
+            var result;
+            try {
+              result = stream.tty.ops.get_char(stream.tty);
+            } catch (e) {
+              throw new FS.ErrnoError(29);
+            }
+            if (result === undefined && bytesRead === 0) {
+              throw new FS.ErrnoError(6);
+            }
+            if (result === null || result === undefined) break;
+            bytesRead++;
+            buffer[offset+i] = result;
+          }
+          if (bytesRead) {
+            stream.node.atime = Date.now();
+          }
+          return bytesRead;
+        },
+  write(stream, buffer, offset, length, pos) {
+          if (!stream.tty || !stream.tty.ops.put_char) {
+            throw new FS.ErrnoError(60);
+          }
+          try {
+            for (var i = 0; i < length; i++) {
+              stream.tty.ops.put_char(stream.tty, buffer[offset+i]);
+            }
+          } catch (e) {
+            throw new FS.ErrnoError(29);
+          }
+          if (length) {
+            stream.node.mtime = stream.node.ctime = Date.now();
+          }
+          return i;
+        },
+  },
+  default_tty_ops:{
+  get_char(tty) {
+          return FS_stdin_getChar();
+        },
+  put_char(tty, val) {
+          if (val === null || val === 10) {
+            out(UTF8ArrayToString(tty.output));
+            tty.output = [];
+          } else {
+            if (val != 0) tty.output.push(val); // val == 0 would cut text output off in the middle.
+          }
+        },
+  fsync(tty) {
+          if (tty.output?.length > 0) {
+            out(UTF8ArrayToString(tty.output));
+            tty.output = [];
+          }
+        },
+  ioctl_tcgets(tty) {
+          // typical setting
+          return {
+            c_iflag: 25856,
+            c_oflag: 5,
+            c_cflag: 191,
+            c_lflag: 35387,
+            c_cc: [
+              0x03, 0x1c, 0x7f, 0x15, 0x04, 0x00, 0x01, 0x00, 0x11, 0x13, 0x1a, 0x00,
+              0x12, 0x0f, 0x17, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+              0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+            ]
+          };
+        },
+  ioctl_tcsets(tty, optional_actions, data) {
+          // currently just ignore
+          return 0;
+        },
+  ioctl_tiocgwinsz(tty) {
+          return [24, 80];
+        },
+  },
+  default_tty1_ops:{
+  put_char(tty, val) {
+          if (val === null || val === 10) {
+            err(UTF8ArrayToString(tty.output));
+            tty.output = [];
+          } else {
+            if (val != 0) tty.output.push(val);
+          }
+        },
+  fsync(tty) {
+          if (tty.output?.length > 0) {
+            err(UTF8ArrayToString(tty.output));
+            tty.output = [];
+          }
+        },
+  },
+  };
+  
+  
+  var mmapAlloc = (size) => {
+      abort('internal error: mmapAlloc called but `emscripten_builtin_memalign` native symbol not exported');
+    };
+  var MEMFS = {
+  ops_table:null,
+  mount(mount) {
+        return MEMFS.createNode(null, '/', 16895, 0);
+      },
+  createNode(parent, name, mode, dev) {
+        if (FS.isBlkdev(mode) || FS.isFIFO(mode)) {
+          // no supported
+          throw new FS.ErrnoError(63);
+        }
+        MEMFS.ops_table ||= {
+          dir: {
+            node: {
+              getattr: MEMFS.node_ops.getattr,
+              setattr: MEMFS.node_ops.setattr,
+              lookup: MEMFS.node_ops.lookup,
+              mknod: MEMFS.node_ops.mknod,
+              rename: MEMFS.node_ops.rename,
+              unlink: MEMFS.node_ops.unlink,
+              rmdir: MEMFS.node_ops.rmdir,
+              readdir: MEMFS.node_ops.readdir,
+              symlink: MEMFS.node_ops.symlink
+            },
+            stream: {
+              llseek: MEMFS.stream_ops.llseek
+            }
+          },
+          file: {
+            node: {
+              getattr: MEMFS.node_ops.getattr,
+              setattr: MEMFS.node_ops.setattr
+            },
+            stream: {
+              llseek: MEMFS.stream_ops.llseek,
+              read: MEMFS.stream_ops.read,
+              write: MEMFS.stream_ops.write,
+              mmap: MEMFS.stream_ops.mmap,
+              msync: MEMFS.stream_ops.msync
+            }
+          },
+          link: {
+            node: {
+              getattr: MEMFS.node_ops.getattr,
+              setattr: MEMFS.node_ops.setattr,
+              readlink: MEMFS.node_ops.readlink
+            },
+            stream: {}
+          },
+          chrdev: {
+            node: {
+              getattr: MEMFS.node_ops.getattr,
+              setattr: MEMFS.node_ops.setattr
+            },
+            stream: FS.chrdev_stream_ops
+          }
+        };
+        var node = FS.createNode(parent, name, mode, dev);
+        if (FS.isDir(node.mode)) {
+          node.node_ops = MEMFS.ops_table.dir.node;
+          node.stream_ops = MEMFS.ops_table.dir.stream;
+          node.contents = {};
+        } else if (FS.isFile(node.mode)) {
+          node.node_ops = MEMFS.ops_table.file.node;
+          node.stream_ops = MEMFS.ops_table.file.stream;
+          node.usedBytes = 0; // The actual number of bytes used in the typed array, as opposed to contents.length which gives the whole capacity.
+          // When the byte data of the file is populated, this will point to either a typed array, or a normal JS array. Typed arrays are preferred
+          // for performance, and used by default. However, typed arrays are not resizable like normal JS arrays are, so there is a small disk size
+          // penalty involved for appending file writes that continuously grow a file similar to std::vector capacity vs used -scheme.
+          node.contents = null; 
+        } else if (FS.isLink(node.mode)) {
+          node.node_ops = MEMFS.ops_table.link.node;
+          node.stream_ops = MEMFS.ops_table.link.stream;
+        } else if (FS.isChrdev(node.mode)) {
+          node.node_ops = MEMFS.ops_table.chrdev.node;
+          node.stream_ops = MEMFS.ops_table.chrdev.stream;
+        }
+        node.atime = node.mtime = node.ctime = Date.now();
+        // add the new node to the parent
+        if (parent) {
+          parent.contents[name] = node;
+          parent.atime = parent.mtime = parent.ctime = node.atime;
+        }
+        return node;
+      },
+  getFileDataAsTypedArray(node) {
+        if (!node.contents) return new Uint8Array(0);
+        if (node.contents.subarray) return node.contents.subarray(0, node.usedBytes); // Make sure to not return excess unused bytes.
+        return new Uint8Array(node.contents);
+      },
+  expandFileStorage(node, newCapacity) {
+        var prevCapacity = node.contents ? node.contents.length : 0;
+        if (prevCapacity >= newCapacity) return; // No need to expand, the storage was already large enough.
+        // Don't expand strictly to the given requested limit if it's only a very small increase, but instead geometrically grow capacity.
+        // For small filesizes (<1MB), perform size*2 geometric increase, but for large sizes, do a much more conservative size*1.125 increase to
+        // avoid overshooting the allocation cap by a very large margin.
+        var CAPACITY_DOUBLING_MAX = 1024 * 1024;
+        newCapacity = Math.max(newCapacity, (prevCapacity * (prevCapacity < CAPACITY_DOUBLING_MAX ? 2.0 : 1.125)) >>> 0);
+        if (prevCapacity != 0) newCapacity = Math.max(newCapacity, 256); // At minimum allocate 256b for each file when expanding.
+        var oldContents = node.contents;
+        node.contents = new Uint8Array(newCapacity); // Allocate new storage.
+        if (node.usedBytes > 0) node.contents.set(oldContents.subarray(0, node.usedBytes), 0); // Copy old data over to the new storage.
+      },
+  resizeFileStorage(node, newSize) {
+        if (node.usedBytes == newSize) return;
+        if (newSize == 0) {
+          node.contents = null; // Fully decommit when requesting a resize to zero.
+          node.usedBytes = 0;
+        } else {
+          var oldContents = node.contents;
+          node.contents = new Uint8Array(newSize); // Allocate new storage.
+          if (oldContents) {
+            node.contents.set(oldContents.subarray(0, Math.min(newSize, node.usedBytes))); // Copy old data over to the new storage.
+          }
+          node.usedBytes = newSize;
+        }
+      },
+  node_ops:{
+  getattr(node) {
+          var attr = {};
+          // device numbers reuse inode numbers.
+          attr.dev = FS.isChrdev(node.mode) ? node.id : 1;
+          attr.ino = node.id;
+          attr.mode = node.mode;
+          attr.nlink = 1;
+          attr.uid = 0;
+          attr.gid = 0;
+          attr.rdev = node.rdev;
+          if (FS.isDir(node.mode)) {
+            attr.size = 4096;
+          } else if (FS.isFile(node.mode)) {
+            attr.size = node.usedBytes;
+          } else if (FS.isLink(node.mode)) {
+            attr.size = node.link.length;
+          } else {
+            attr.size = 0;
+          }
+          attr.atime = new Date(node.atime);
+          attr.mtime = new Date(node.mtime);
+          attr.ctime = new Date(node.ctime);
+          // NOTE: In our implementation, st_blocks = Math.ceil(st_size/st_blksize),
+          //       but this is not required by the standard.
+          attr.blksize = 4096;
+          attr.blocks = Math.ceil(attr.size / attr.blksize);
+          return attr;
+        },
+  setattr(node, attr) {
+          for (const key of ["mode", "atime", "mtime", "ctime"]) {
+            if (attr[key] != null) {
+              node[key] = attr[key];
+            }
+          }
+          if (attr.size !== undefined) {
+            MEMFS.resizeFileStorage(node, attr.size);
+          }
+        },
+  lookup(parent, name) {
+          throw new FS.ErrnoError(44);
+        },
+  mknod(parent, name, mode, dev) {
+          return MEMFS.createNode(parent, name, mode, dev);
+        },
+  rename(old_node, new_dir, new_name) {
+          var new_node;
+          try {
+            new_node = FS.lookupNode(new_dir, new_name);
+          } catch (e) {}
+          if (new_node) {
+            if (FS.isDir(old_node.mode)) {
+              // if we're overwriting a directory at new_name, make sure it's empty.
+              for (var i in new_node.contents) {
+                throw new FS.ErrnoError(55);
+              }
+            }
+            FS.hashRemoveNode(new_node);
+          }
+          // do the internal rewiring
+          delete old_node.parent.contents[old_node.name];
+          new_dir.contents[new_name] = old_node;
+          old_node.name = new_name;
+          new_dir.ctime = new_dir.mtime = old_node.parent.ctime = old_node.parent.mtime = Date.now();
+        },
+  unlink(parent, name) {
+          delete parent.contents[name];
+          parent.ctime = parent.mtime = Date.now();
+        },
+  rmdir(parent, name) {
+          var node = FS.lookupNode(parent, name);
+          for (var i in node.contents) {
+            throw new FS.ErrnoError(55);
+          }
+          delete parent.contents[name];
+          parent.ctime = parent.mtime = Date.now();
+        },
+  readdir(node) {
+          return ['.', '..', ...Object.keys(node.contents)];
+        },
+  symlink(parent, newname, oldpath) {
+          var node = MEMFS.createNode(parent, newname, 0o777 | 40960, 0);
+          node.link = oldpath;
+          return node;
+        },
+  readlink(node) {
+          if (!FS.isLink(node.mode)) {
+            throw new FS.ErrnoError(28);
+          }
+          return node.link;
+        },
+  },
+  stream_ops:{
+  read(stream, buffer, offset, length, position) {
+          var contents = stream.node.contents;
+          if (position >= stream.node.usedBytes) return 0;
+          var size = Math.min(stream.node.usedBytes - position, length);
+          assert(size >= 0);
+          if (size > 8 && contents.subarray) { // non-trivial, and typed array
+            buffer.set(contents.subarray(position, position + size), offset);
+          } else {
+            for (var i = 0; i < size; i++) buffer[offset + i] = contents[position + i];
+          }
+          return size;
+        },
+  write(stream, buffer, offset, length, position, canOwn) {
+          // The data buffer should be a typed array view
+          assert(!(buffer instanceof ArrayBuffer));
+  
+          if (!length) return 0;
+          var node = stream.node;
+          node.mtime = node.ctime = Date.now();
+  
+          if (buffer.subarray && (!node.contents || node.contents.subarray)) { // This write is from a typed array to a typed array?
+            if (canOwn) {
+              assert(position === 0, 'canOwn must imply no weird position inside the file');
+              node.contents = buffer.subarray(offset, offset + length);
+              node.usedBytes = length;
+              return length;
+            } else if (node.usedBytes === 0 && position === 0) { // If this is a simple first write to an empty file, do a fast set since we don't need to care about old data.
+              node.contents = buffer.slice(offset, offset + length);
+              node.usedBytes = length;
+              return length;
+            } else if (position + length <= node.usedBytes) { // Writing to an already allocated and used subrange of the file?
+              node.contents.set(buffer.subarray(offset, offset + length), position);
+              return length;
+            }
+          }
+  
+          // Appending to an existing file and we need to reallocate, or source data did not come as a typed array.
+          MEMFS.expandFileStorage(node, position+length);
+          if (node.contents.subarray && buffer.subarray) {
+            // Use typed array write which is available.
+            node.contents.set(buffer.subarray(offset, offset + length), position);
+          } else {
+            for (var i = 0; i < length; i++) {
+             node.contents[position + i] = buffer[offset + i]; // Or fall back to manual write if not.
+            }
+          }
+          node.usedBytes = Math.max(node.usedBytes, position + length);
+          return length;
+        },
+  llseek(stream, offset, whence) {
+          var position = offset;
+          if (whence === 1) {
+            position += stream.position;
+          } else if (whence === 2) {
+            if (FS.isFile(stream.node.mode)) {
+              position += stream.node.usedBytes;
+            }
+          }
+          if (position < 0) {
+            throw new FS.ErrnoError(28);
+          }
+          return position;
+        },
+  mmap(stream, length, position, prot, flags) {
+          if (!FS.isFile(stream.node.mode)) {
+            throw new FS.ErrnoError(43);
+          }
+          var ptr;
+          var allocated;
+          var contents = stream.node.contents;
+          // Only make a new copy when MAP_PRIVATE is specified.
+          if (!(flags & 2) && contents && contents.buffer === HEAP8.buffer) {
+            // We can't emulate MAP_SHARED when the file is not backed by the
+            // buffer we're mapping to (e.g. the HEAP buffer).
+            allocated = false;
+            ptr = contents.byteOffset;
+          } else {
+            allocated = true;
+            ptr = mmapAlloc(length);
+            if (!ptr) {
+              throw new FS.ErrnoError(48);
+            }
+            if (contents) {
+              // Try to avoid unnecessary slices.
+              if (position > 0 || position + length < contents.length) {
+                if (contents.subarray) {
+                  contents = contents.subarray(position, position + length);
+                } else {
+                  contents = Array.prototype.slice.call(contents, position, position + length);
+                }
+              }
+              HEAP8.set(contents, ptr);
+            }
+          }
+          return { ptr, allocated };
+        },
+  msync(stream, buffer, offset, length, mmapFlags) {
+          MEMFS.stream_ops.write(stream, buffer, 0, length, offset, false);
+          // should we check if bytesWritten and length are the same?
+          return 0;
+        },
+  },
+  };
+  
+  var asyncLoad = async (url) => {
+      var arrayBuffer = await readAsync(url);
+      assert(arrayBuffer, `Loading data file "${url}" failed (no arrayBuffer).`);
+      return new Uint8Array(arrayBuffer);
+    };
+  
+  
+  var FS_createDataFile = (...args) => FS.createDataFile(...args);
+  
+  var getUniqueRunDependency = (id) => {
+      var orig = id;
+      while (1) {
+        if (!runDependencyTracking[id]) return id;
+        id = orig + Math.random();
+      }
+    };
+  
+  var preloadPlugins = [];
+  var FS_handledByPreloadPlugin = (byteArray, fullname, finish, onerror) => {
+      // Ensure plugins are ready.
+      if (typeof Browser != 'undefined') Browser.init();
+  
+      var handled = false;
+      preloadPlugins.forEach((plugin) => {
+        if (handled) return;
+        if (plugin['canHandle'](fullname)) {
+          plugin['handle'](byteArray, fullname, finish, onerror);
+          handled = true;
+        }
+      });
+      return handled;
+    };
+  var FS_createPreloadedFile = (parent, name, url, canRead, canWrite, onload, onerror, dontCreateFile, canOwn, preFinish) => {
+      // TODO we should allow people to just pass in a complete filename instead
+      // of parent and name being that we just join them anyways
+      var fullname = name ? PATH_FS.resolve(PATH.join2(parent, name)) : parent;
+      var dep = getUniqueRunDependency(`cp ${fullname}`); // might have several active requests for the same fullname
+      function processData(byteArray) {
+        function finish(byteArray) {
+          preFinish?.();
+          if (!dontCreateFile) {
+            FS_createDataFile(parent, name, byteArray, canRead, canWrite, canOwn);
+          }
+          onload?.();
+          removeRunDependency(dep);
+        }
+        if (FS_handledByPreloadPlugin(byteArray, fullname, finish, () => {
+          onerror?.();
+          removeRunDependency(dep);
+        })) {
+          return;
+        }
+        finish(byteArray);
+      }
+      addRunDependency(dep);
+      if (typeof url == 'string') {
+        asyncLoad(url).then(processData, onerror);
+      } else {
+        processData(url);
+      }
+    };
+  
+  var FS_modeStringToFlags = (str) => {
+      var flagModes = {
+        'r': 0,
+        'r+': 2,
+        'w': 512 | 64 | 1,
+        'w+': 512 | 64 | 2,
+        'a': 1024 | 64 | 1,
+        'a+': 1024 | 64 | 2,
+      };
+      var flags = flagModes[str];
+      if (typeof flags == 'undefined') {
+        throw new Error(`Unknown file open mode: ${str}`);
+      }
+      return flags;
+    };
+  
+  var FS_getMode = (canRead, canWrite) => {
+      var mode = 0;
+      if (canRead) mode |= 292 | 73;
+      if (canWrite) mode |= 146;
+      return mode;
+    };
+  
+  
+  
+  
+    /**
+     * Given a pointer 'ptr' to a null-terminated UTF8-encoded string in the
+     * emscripten HEAP, returns a copy of that string as a Javascript String object.
+     *
+     * @param {number} ptr
+     * @param {number=} maxBytesToRead - An optional length that specifies the
+     *   maximum number of bytes to read. You can omit this parameter to scan the
+     *   string until the first 0 byte. If maxBytesToRead is passed, and the string
+     *   at [ptr, ptr+maxBytesToReadr[ contains a null byte in the middle, then the
+     *   string will cut short at that byte index (i.e. maxBytesToRead will not
+     *   produce a string of exact length [ptr, ptr+maxBytesToRead[) N.B. mixing
+     *   frequent uses of UTF8ToString() with and without maxBytesToRead may throw
+     *   JS JIT optimizations off, so it is worth to consider consistently using one
+     * @return {string}
+     */
+  var UTF8ToString = (ptr, maxBytesToRead) => {
+      assert(typeof ptr == 'number', `UTF8ToString expects a number (got ${typeof ptr})`);
+      return ptr ? UTF8ArrayToString(HEAPU8, ptr, maxBytesToRead) : '';
+    };
+  
+  var strError = (errno) => UTF8ToString(_strerror(errno));
+  
+  var ERRNO_CODES = {
+      'EPERM': 63,
+      'ENOENT': 44,
+      'ESRCH': 71,
+      'EINTR': 27,
+      'EIO': 29,
+      'ENXIO': 60,
+      'E2BIG': 1,
+      'ENOEXEC': 45,
+      'EBADF': 8,
+      'ECHILD': 12,
+      'EAGAIN': 6,
+      'EWOULDBLOCK': 6,
+      'ENOMEM': 48,
+      'EACCES': 2,
+      'EFAULT': 21,
+      'ENOTBLK': 105,
+      'EBUSY': 10,
+      'EEXIST': 20,
+      'EXDEV': 75,
+      'ENODEV': 43,
+      'ENOTDIR': 54,
+      'EISDIR': 31,
+      'EINVAL': 28,
+      'ENFILE': 41,
+      'EMFILE': 33,
+      'ENOTTY': 59,
+      'ETXTBSY': 74,
+      'EFBIG': 22,
+      'ENOSPC': 51,
+      'ESPIPE': 70,
+      'EROFS': 69,
+      'EMLINK': 34,
+      'EPIPE': 64,
+      'EDOM': 18,
+      'ERANGE': 68,
+      'ENOMSG': 49,
+      'EIDRM': 24,
+      'ECHRNG': 106,
+      'EL2NSYNC': 156,
+      'EL3HLT': 107,
+      'EL3RST': 108,
+      'ELNRNG': 109,
+      'EUNATCH': 110,
+      'ENOCSI': 111,
+      'EL2HLT': 112,
+      'EDEADLK': 16,
+      'ENOLCK': 46,
+      'EBADE': 113,
+      'EBADR': 114,
+      'EXFULL': 115,
+      'ENOANO': 104,
+      'EBADRQC': 103,
+      'EBADSLT': 102,
+      'EDEADLOCK': 16,
+      'EBFONT': 101,
+      'ENOSTR': 100,
+      'ENODATA': 116,
+      'ETIME': 117,
+      'ENOSR': 118,
+      'ENONET': 119,
+      'ENOPKG': 120,
+      'EREMOTE': 121,
+      'ENOLINK': 47,
+      'EADV': 122,
+      'ESRMNT': 123,
+      'ECOMM': 124,
+      'EPROTO': 65,
+      'EMULTIHOP': 36,
+      'EDOTDOT': 125,
+      'EBADMSG': 9,
+      'ENOTUNIQ': 126,
+      'EBADFD': 127,
+      'EREMCHG': 128,
+      'ELIBACC': 129,
+      'ELIBBAD': 130,
+      'ELIBSCN': 131,
+      'ELIBMAX': 132,
+      'ELIBEXEC': 133,
+      'ENOSYS': 52,
+      'ENOTEMPTY': 55,
+      'ENAMETOOLONG': 37,
+      'ELOOP': 32,
+      'EOPNOTSUPP': 138,
+      'EPFNOSUPPORT': 139,
+      'ECONNRESET': 15,
+      'ENOBUFS': 42,
+      'EAFNOSUPPORT': 5,
+      'EPROTOTYPE': 67,
+      'ENOTSOCK': 57,
+      'ENOPROTOOPT': 50,
+      'ESHUTDOWN': 140,
+      'ECONNREFUSED': 14,
+      'EADDRINUSE': 3,
+      'ECONNABORTED': 13,
+      'ENETUNREACH': 40,
+      'ENETDOWN': 38,
+      'ETIMEDOUT': 73,
+      'EHOSTDOWN': 142,
+      'EHOSTUNREACH': 23,
+      'EINPROGRESS': 26,
+      'EALREADY': 7,
+      'EDESTADDRREQ': 17,
+      'EMSGSIZE': 35,
+      'EPROTONOSUPPORT': 66,
+      'ESOCKTNOSUPPORT': 137,
+      'EADDRNOTAVAIL': 4,
+      'ENETRESET': 39,
+      'EISCONN': 30,
+      'ENOTCONN': 53,
+      'ETOOMANYREFS': 141,
+      'EUSERS': 136,
+      'EDQUOT': 19,
+      'ESTALE': 72,
+      'ENOTSUP': 138,
+      'ENOMEDIUM': 148,
+      'EILSEQ': 25,
+      'EOVERFLOW': 61,
+      'ECANCELED': 11,
+      'ENOTRECOVERABLE': 56,
+      'EOWNERDEAD': 62,
+      'ESTRPIPE': 135,
+    };
+  var FS = {
+  root:null,
+  mounts:[],
+  devices:{
+  },
+  streams:[],
+  nextInode:1,
+  nameTable:null,
+  currentPath:"/",
+  initialized:false,
+  ignorePermissions:true,
+  filesystems:null,
+  syncFSRequests:0,
+  readFiles:{
+  },
+  ErrnoError:class extends Error {
+        name = 'ErrnoError';
+        // We set the `name` property to be able to identify `FS.ErrnoError`
+        // - the `name` is a standard ECMA-262 property of error objects. Kind of good to have it anyway.
+        // - when using PROXYFS, an error can come from an underlying FS
+        // as different FS objects have their own FS.ErrnoError each,
+        // the test `err instanceof FS.ErrnoError` won't detect an error coming from another filesystem, causing bugs.
+        // we'll use the reliable test `err.name == "ErrnoError"` instead
+        constructor(errno) {
+          super(runtimeInitialized ? strError(errno) : '');
+          this.errno = errno;
+          for (var key in ERRNO_CODES) {
+            if (ERRNO_CODES[key] === errno) {
+              this.code = key;
+              break;
+            }
+          }
+        }
+      },
+  FSStream:class {
+        shared = {};
+        get object() {
+          return this.node;
+        }
+        set object(val) {
+          this.node = val;
+        }
+        get isRead() {
+          return (this.flags & 2097155) !== 1;
+        }
+        get isWrite() {
+          return (this.flags & 2097155) !== 0;
+        }
+        get isAppend() {
+          return (this.flags & 1024);
+        }
+        get flags() {
+          return this.shared.flags;
+        }
+        set flags(val) {
+          this.shared.flags = val;
+        }
+        get position() {
+          return this.shared.position;
+        }
+        set position(val) {
+          this.shared.position = val;
+        }
+      },
+  FSNode:class {
+        node_ops = {};
+        stream_ops = {};
+        readMode = 292 | 73;
+        writeMode = 146;
+        mounted = null;
+        constructor(parent, name, mode, rdev) {
+          if (!parent) {
+            parent = this;  // root node sets parent to itself
+          }
+          this.parent = parent;
+          this.mount = parent.mount;
+          this.id = FS.nextInode++;
+          this.name = name;
+          this.mode = mode;
+          this.rdev = rdev;
+          this.atime = this.mtime = this.ctime = Date.now();
+        }
+        get read() {
+          return (this.mode & this.readMode) === this.readMode;
+        }
+        set read(val) {
+          val ? this.mode |= this.readMode : this.mode &= ~this.readMode;
+        }
+        get write() {
+          return (this.mode & this.writeMode) === this.writeMode;
+        }
+        set write(val) {
+          val ? this.mode |= this.writeMode : this.mode &= ~this.writeMode;
+        }
+        get isFolder() {
+          return FS.isDir(this.mode);
+        }
+        get isDevice() {
+          return FS.isChrdev(this.mode);
+        }
+      },
+  lookupPath(path, opts = {}) {
+        if (!path) {
+          throw new FS.ErrnoError(44);
+        }
+        opts.follow_mount ??= true
+  
+        if (!PATH.isAbs(path)) {
+          path = FS.cwd() + '/' + path;
+        }
+  
+        // limit max consecutive symlinks to 40 (SYMLOOP_MAX).
+        linkloop: for (var nlinks = 0; nlinks < 40; nlinks++) {
+          // split the absolute path
+          var parts = path.split('/').filter((p) => !!p);
+  
+          // start at the root
+          var current = FS.root;
+          var current_path = '/';
+  
+          for (var i = 0; i < parts.length; i++) {
+            var islast = (i === parts.length-1);
+            if (islast && opts.parent) {
+              // stop resolving
+              break;
+            }
+  
+            if (parts[i] === '.') {
+              continue;
+            }
+  
+            if (parts[i] === '..') {
+              current_path = PATH.dirname(current_path);
+              if (FS.isRoot(current)) {
+                path = current_path + '/' + parts.slice(i + 1).join('/');
+                continue linkloop;
+              } else {
+                current = current.parent;
+              }
+              continue;
+            }
+  
+            current_path = PATH.join2(current_path, parts[i]);
+            try {
+              current = FS.lookupNode(current, parts[i]);
+            } catch (e) {
+              // if noent_okay is true, suppress a ENOENT in the last component
+              // and return an object with an undefined node. This is needed for
+              // resolving symlinks in the path when creating a file.
+              if ((e?.errno === 44) && islast && opts.noent_okay) {
+                return { path: current_path };
+              }
+              throw e;
+            }
+  
+            // jump to the mount's root node if this is a mountpoint
+            if (FS.isMountpoint(current) && (!islast || opts.follow_mount)) {
+              current = current.mounted.root;
+            }
+  
+            // by default, lookupPath will not follow a symlink if it is the final path component.
+            // setting opts.follow = true will override this behavior.
+            if (FS.isLink(current.mode) && (!islast || opts.follow)) {
+              if (!current.node_ops.readlink) {
+                throw new FS.ErrnoError(52);
+              }
+              var link = current.node_ops.readlink(current);
+              if (!PATH.isAbs(link)) {
+                link = PATH.dirname(current_path) + '/' + link;
+              }
+              path = link + '/' + parts.slice(i + 1).join('/');
+              continue linkloop;
+            }
+          }
+          return { path: current_path, node: current };
+        }
+        throw new FS.ErrnoError(32);
+      },
+  getPath(node) {
+        var path;
+        while (true) {
+          if (FS.isRoot(node)) {
+            var mount = node.mount.mountpoint;
+            if (!path) return mount;
+            return mount[mount.length-1] !== '/' ? `${mount}/${path}` : mount + path;
+          }
+          path = path ? `${node.name}/${path}` : node.name;
+          node = node.parent;
+        }
+      },
+  hashName(parentid, name) {
+        var hash = 0;
+  
+        for (var i = 0; i < name.length; i++) {
+          hash = ((hash << 5) - hash + name.charCodeAt(i)) | 0;
+        }
+        return ((parentid + hash) >>> 0) % FS.nameTable.length;
+      },
+  hashAddNode(node) {
+        var hash = FS.hashName(node.parent.id, node.name);
+        node.name_next = FS.nameTable[hash];
+        FS.nameTable[hash] = node;
+      },
+  hashRemoveNode(node) {
+        var hash = FS.hashName(node.parent.id, node.name);
+        if (FS.nameTable[hash] === node) {
+          FS.nameTable[hash] = node.name_next;
+        } else {
+          var current = FS.nameTable[hash];
+          while (current) {
+            if (current.name_next === node) {
+              current.name_next = node.name_next;
+              break;
+            }
+            current = current.name_next;
+          }
+        }
+      },
+  lookupNode(parent, name) {
+        var errCode = FS.mayLookup(parent);
+        if (errCode) {
+          throw new FS.ErrnoError(errCode);
+        }
+        var hash = FS.hashName(parent.id, name);
+        for (var node = FS.nameTable[hash]; node; node = node.name_next) {
+          var nodeName = node.name;
+          if (node.parent.id === parent.id && nodeName === name) {
+            return node;
+          }
+        }
+        // if we failed to find it in the cache, call into the VFS
+        return FS.lookup(parent, name);
+      },
+  createNode(parent, name, mode, rdev) {
+        assert(typeof parent == 'object')
+        var node = new FS.FSNode(parent, name, mode, rdev);
+  
+        FS.hashAddNode(node);
+  
+        return node;
+      },
+  destroyNode(node) {
+        FS.hashRemoveNode(node);
+      },
+  isRoot(node) {
+        return node === node.parent;
+      },
+  isMountpoint(node) {
+        return !!node.mounted;
+      },
+  isFile(mode) {
+        return (mode & 61440) === 32768;
+      },
+  isDir(mode) {
+        return (mode & 61440) === 16384;
+      },
+  isLink(mode) {
+        return (mode & 61440) === 40960;
+      },
+  isChrdev(mode) {
+        return (mode & 61440) === 8192;
+      },
+  isBlkdev(mode) {
+        return (mode & 61440) === 24576;
+      },
+  isFIFO(mode) {
+        return (mode & 61440) === 4096;
+      },
+  isSocket(mode) {
+        return (mode & 49152) === 49152;
+      },
+  flagsToPermissionString(flag) {
+        var perms = ['r', 'w', 'rw'][flag & 3];
+        if ((flag & 512)) {
+          perms += 'w';
+        }
+        return perms;
+      },
+  nodePermissions(node, perms) {
+        if (FS.ignorePermissions) {
+          return 0;
+        }
+        // return 0 if any user, group or owner bits are set.
+        if (perms.includes('r') && !(node.mode & 292)) {
+          return 2;
+        } else if (perms.includes('w') && !(node.mode & 146)) {
+          return 2;
+        } else if (perms.includes('x') && !(node.mode & 73)) {
+          return 2;
+        }
+        return 0;
+      },
+  mayLookup(dir) {
+        if (!FS.isDir(dir.mode)) return 54;
+        var errCode = FS.nodePermissions(dir, 'x');
+        if (errCode) return errCode;
+        if (!dir.node_ops.lookup) return 2;
+        return 0;
+      },
+  mayCreate(dir, name) {
+        if (!FS.isDir(dir.mode)) {
+          return 54;
+        }
+        try {
+          var node = FS.lookupNode(dir, name);
+          return 20;
+        } catch (e) {
+        }
+        return FS.nodePermissions(dir, 'wx');
+      },
+  mayDelete(dir, name, isdir) {
+        var node;
+        try {
+          node = FS.lookupNode(dir, name);
+        } catch (e) {
+          return e.errno;
+        }
+        var errCode = FS.nodePermissions(dir, 'wx');
+        if (errCode) {
+          return errCode;
+        }
+        if (isdir) {
+          if (!FS.isDir(node.mode)) {
+            return 54;
+          }
+          if (FS.isRoot(node) || FS.getPath(node) === FS.cwd()) {
+            return 10;
+          }
+        } else {
+          if (FS.isDir(node.mode)) {
+            return 31;
+          }
+        }
+        return 0;
+      },
+  mayOpen(node, flags) {
+        if (!node) {
+          return 44;
+        }
+        if (FS.isLink(node.mode)) {
+          return 32;
+        } else if (FS.isDir(node.mode)) {
+          if (FS.flagsToPermissionString(flags) !== 'r' // opening for write
+              || (flags & (512 | 64))) { // TODO: check for O_SEARCH? (== search for dir only)
+            return 31;
+          }
+        }
+        return FS.nodePermissions(node, FS.flagsToPermissionString(flags));
+      },
+  checkOpExists(op, err) {
+        if (!op) {
+          throw new FS.ErrnoError(err);
+        }
+        return op;
+      },
+  MAX_OPEN_FDS:4096,
+  nextfd() {
+        for (var fd = 0; fd <= FS.MAX_OPEN_FDS; fd++) {
+          if (!FS.streams[fd]) {
+            return fd;
+          }
+        }
+        throw new FS.ErrnoError(33);
+      },
+  getStreamChecked(fd) {
+        var stream = FS.getStream(fd);
+        if (!stream) {
+          throw new FS.ErrnoError(8);
+        }
+        return stream;
+      },
+  getStream:(fd) => FS.streams[fd],
+  createStream(stream, fd = -1) {
+        assert(fd >= -1);
+  
+        // clone it, so we can return an instance of FSStream
+        stream = Object.assign(new FS.FSStream(), stream);
+        if (fd == -1) {
+          fd = FS.nextfd();
+        }
+        stream.fd = fd;
+        FS.streams[fd] = stream;
+        return stream;
+      },
+  closeStream(fd) {
+        FS.streams[fd] = null;
+      },
+  dupStream(origStream, fd = -1) {
+        var stream = FS.createStream(origStream, fd);
+        stream.stream_ops?.dup?.(stream);
+        return stream;
+      },
+  doSetAttr(stream, node, attr) {
+        var setattr = stream?.stream_ops.setattr;
+        var arg = setattr ? stream : node;
+        setattr ??= node.node_ops.setattr;
+        FS.checkOpExists(setattr, 63)
+        setattr(arg, attr);
+      },
+  chrdev_stream_ops:{
+  open(stream) {
+          var device = FS.getDevice(stream.node.rdev);
+          // override node's stream ops with the device's
+          stream.stream_ops = device.stream_ops;
+          // forward the open call
+          stream.stream_ops.open?.(stream);
+        },
+  llseek() {
+          throw new FS.ErrnoError(70);
+        },
+  },
+  major:(dev) => ((dev) >> 8),
+  minor:(dev) => ((dev) & 0xff),
+  makedev:(ma, mi) => ((ma) << 8 | (mi)),
+  registerDevice(dev, ops) {
+        FS.devices[dev] = { stream_ops: ops };
+      },
+  getDevice:(dev) => FS.devices[dev],
+  getMounts(mount) {
+        var mounts = [];
+        var check = [mount];
+  
+        while (check.length) {
+          var m = check.pop();
+  
+          mounts.push(m);
+  
+          check.push(...m.mounts);
+        }
+  
+        return mounts;
+      },
+  syncfs(populate, callback) {
+        if (typeof populate == 'function') {
+          callback = populate;
+          populate = false;
+        }
+  
+        FS.syncFSRequests++;
+  
+        if (FS.syncFSRequests > 1) {
+          err(`warning: ${FS.syncFSRequests} FS.syncfs operations in flight at once, probably just doing extra work`);
+        }
+  
+        var mounts = FS.getMounts(FS.root.mount);
+        var completed = 0;
+  
+        function doCallback(errCode) {
+          assert(FS.syncFSRequests > 0);
+          FS.syncFSRequests--;
+          return callback(errCode);
+        }
+  
+        function done(errCode) {
+          if (errCode) {
+            if (!done.errored) {
+              done.errored = true;
+              return doCallback(errCode);
+            }
+            return;
+          }
+          if (++completed >= mounts.length) {
+            doCallback(null);
+          }
+        };
+  
+        // sync all mounts
+        mounts.forEach((mount) => {
+          if (!mount.type.syncfs) {
+            return done(null);
+          }
+          mount.type.syncfs(mount, populate, done);
+        });
+      },
+  mount(type, opts, mountpoint) {
+        if (typeof type == 'string') {
+          // The filesystem was not included, and instead we have an error
+          // message stored in the variable.
+          throw type;
+        }
+        var root = mountpoint === '/';
+        var pseudo = !mountpoint;
+        var node;
+  
+        if (root && FS.root) {
+          throw new FS.ErrnoError(10);
+        } else if (!root && !pseudo) {
+          var lookup = FS.lookupPath(mountpoint, { follow_mount: false });
+  
+          mountpoint = lookup.path;  // use the absolute path
+          node = lookup.node;
+  
+          if (FS.isMountpoint(node)) {
+            throw new FS.ErrnoError(10);
+          }
+  
+          if (!FS.isDir(node.mode)) {
+            throw new FS.ErrnoError(54);
+          }
+        }
+  
+        var mount = {
+          type,
+          opts,
+          mountpoint,
+          mounts: []
+        };
+  
+        // create a root node for the fs
+        var mountRoot = type.mount(mount);
+        mountRoot.mount = mount;
+        mount.root = mountRoot;
+  
+        if (root) {
+          FS.root = mountRoot;
+        } else if (node) {
+          // set as a mountpoint
+          node.mounted = mount;
+  
+          // add the new mount to the current mount's children
+          if (node.mount) {
+            node.mount.mounts.push(mount);
+          }
+        }
+  
+        return mountRoot;
+      },
+  unmount(mountpoint) {
+        var lookup = FS.lookupPath(mountpoint, { follow_mount: false });
+  
+        if (!FS.isMountpoint(lookup.node)) {
+          throw new FS.ErrnoError(28);
+        }
+  
+        // destroy the nodes for this mount, and all its child mounts
+        var node = lookup.node;
+        var mount = node.mounted;
+        var mounts = FS.getMounts(mount);
+  
+        Object.keys(FS.nameTable).forEach((hash) => {
+          var current = FS.nameTable[hash];
+  
+          while (current) {
+            var next = current.name_next;
+  
+            if (mounts.includes(current.mount)) {
+              FS.destroyNode(current);
+            }
+  
+            current = next;
+          }
+        });
+  
+        // no longer a mountpoint
+        node.mounted = null;
+  
+        // remove this mount from the child mounts
+        var idx = node.mount.mounts.indexOf(mount);
+        assert(idx !== -1);
+        node.mount.mounts.splice(idx, 1);
+      },
+  lookup(parent, name) {
+        return parent.node_ops.lookup(parent, name);
+      },
+  mknod(path, mode, dev) {
+        var lookup = FS.lookupPath(path, { parent: true });
+        var parent = lookup.node;
+        var name = PATH.basename(path);
+        if (!name) {
+          throw new FS.ErrnoError(28);
+        }
+        if (name === '.' || name === '..') {
+          throw new FS.ErrnoError(20);
+        }
+        var errCode = FS.mayCreate(parent, name);
+        if (errCode) {
+          throw new FS.ErrnoError(errCode);
+        }
+        if (!parent.node_ops.mknod) {
+          throw new FS.ErrnoError(63);
+        }
+        return parent.node_ops.mknod(parent, name, mode, dev);
+      },
+  statfs(path) {
+        return FS.statfsNode(FS.lookupPath(path, {follow: true}).node);
+      },
+  statfsStream(stream) {
+        // We keep a separate statfsStream function because noderawfs overrides
+        // it. In noderawfs, stream.node is sometimes null. Instead, we need to
+        // look at stream.path.
+        return FS.statfsNode(stream.node);
+      },
+  statfsNode(node) {
+        // NOTE: None of the defaults here are true. We're just returning safe and
+        //       sane values. Currently nodefs and rawfs replace these defaults,
+        //       other file systems leave them alone.
+        var rtn = {
+          bsize: 4096,
+          frsize: 4096,
+          blocks: 1e6,
+          bfree: 5e5,
+          bavail: 5e5,
+          files: FS.nextInode,
+          ffree: FS.nextInode - 1,
+          fsid: 42,
+          flags: 2,
+          namelen: 255,
+        };
+  
+        if (node.node_ops.statfs) {
+          Object.assign(rtn, node.node_ops.statfs(node.mount.opts.root));
+        }
+        return rtn;
+      },
+  create(path, mode = 0o666) {
+        mode &= 4095;
+        mode |= 32768;
+        return FS.mknod(path, mode, 0);
+      },
+  mkdir(path, mode = 0o777) {
+        mode &= 511 | 512;
+        mode |= 16384;
+        return FS.mknod(path, mode, 0);
+      },
+  mkdirTree(path, mode) {
+        var dirs = path.split('/');
+        var d = '';
+        for (var dir of dirs) {
+          if (!dir) continue;
+          if (d || PATH.isAbs(path)) d += '/';
+          d += dir;
+          try {
+            FS.mkdir(d, mode);
+          } catch(e) {
+            if (e.errno != 20) throw e;
+          }
+        }
+      },
+  mkdev(path, mode, dev) {
+        if (typeof dev == 'undefined') {
+          dev = mode;
+          mode = 0o666;
+        }
+        mode |= 8192;
+        return FS.mknod(path, mode, dev);
+      },
+  symlink(oldpath, newpath) {
+        if (!PATH_FS.resolve(oldpath)) {
+          throw new FS.ErrnoError(44);
+        }
+        var lookup = FS.lookupPath(newpath, { parent: true });
+        var parent = lookup.node;
+        if (!parent) {
+          throw new FS.ErrnoError(44);
+        }
+        var newname = PATH.basename(newpath);
+        var errCode = FS.mayCreate(parent, newname);
+        if (errCode) {
+          throw new FS.ErrnoError(errCode);
+        }
+        if (!parent.node_ops.symlink) {
+          throw new FS.ErrnoError(63);
+        }
+        return parent.node_ops.symlink(parent, newname, oldpath);
+      },
+  rename(old_path, new_path) {
+        var old_dirname = PATH.dirname(old_path);
+        var new_dirname = PATH.dirname(new_path);
+        var old_name = PATH.basename(old_path);
+        var new_name = PATH.basename(new_path);
+        // parents must exist
+        var lookup, old_dir, new_dir;
+  
+        // let the errors from non existent directories percolate up
+        lookup = FS.lookupPath(old_path, { parent: true });
+        old_dir = lookup.node;
+        lookup = FS.lookupPath(new_path, { parent: true });
+        new_dir = lookup.node;
+  
+        if (!old_dir || !new_dir) throw new FS.ErrnoError(44);
+        // need to be part of the same mount
+        if (old_dir.mount !== new_dir.mount) {
+          throw new FS.ErrnoError(75);
+        }
+        // source must exist
+        var old_node = FS.lookupNode(old_dir, old_name);
+        // old path should not be an ancestor of the new path
+        var relative = PATH_FS.relative(old_path, new_dirname);
+        if (relative.charAt(0) !== '.') {
+          throw new FS.ErrnoError(28);
+        }
+        // new path should not be an ancestor of the old path
+        relative = PATH_FS.relative(new_path, old_dirname);
+        if (relative.charAt(0) !== '.') {
+          throw new FS.ErrnoError(55);
+        }
+        // see if the new path already exists
+        var new_node;
+        try {
+          new_node = FS.lookupNode(new_dir, new_name);
+        } catch (e) {
+          // not fatal
+        }
+        // early out if nothing needs to change
+        if (old_node === new_node) {
+          return;
+        }
+        // we'll need to delete the old entry
+        var isdir = FS.isDir(old_node.mode);
+        var errCode = FS.mayDelete(old_dir, old_name, isdir);
+        if (errCode) {
+          throw new FS.ErrnoError(errCode);
+        }
+        // need delete permissions if we'll be overwriting.
+        // need create permissions if new doesn't already exist.
+        errCode = new_node ?
+          FS.mayDelete(new_dir, new_name, isdir) :
+          FS.mayCreate(new_dir, new_name);
+        if (errCode) {
+          throw new FS.ErrnoError(errCode);
+        }
+        if (!old_dir.node_ops.rename) {
+          throw new FS.ErrnoError(63);
+        }
+        if (FS.isMountpoint(old_node) || (new_node && FS.isMountpoint(new_node))) {
+          throw new FS.ErrnoError(10);
+        }
+        // if we are going to change the parent, check write permissions
+        if (new_dir !== old_dir) {
+          errCode = FS.nodePermissions(old_dir, 'w');
+          if (errCode) {
+            throw new FS.ErrnoError(errCode);
+          }
+        }
+        // remove the node from the lookup hash
+        FS.hashRemoveNode(old_node);
+        // do the underlying fs rename
+        try {
+          old_dir.node_ops.rename(old_node, new_dir, new_name);
+          // update old node (we do this here to avoid each backend
+          // needing to)
+          old_node.parent = new_dir;
+        } catch (e) {
+          throw e;
+        } finally {
+          // add the node back to the hash (in case node_ops.rename
+          // changed its name)
+          FS.hashAddNode(old_node);
+        }
+      },
+  rmdir(path) {
+        var lookup = FS.lookupPath(path, { parent: true });
+        var parent = lookup.node;
+        var name = PATH.basename(path);
+        var node = FS.lookupNode(parent, name);
+        var errCode = FS.mayDelete(parent, name, true);
+        if (errCode) {
+          throw new FS.ErrnoError(errCode);
+        }
+        if (!parent.node_ops.rmdir) {
+          throw new FS.ErrnoError(63);
+        }
+        if (FS.isMountpoint(node)) {
+          throw new FS.ErrnoError(10);
+        }
+        parent.node_ops.rmdir(parent, name);
+        FS.destroyNode(node);
+      },
+  readdir(path) {
+        var lookup = FS.lookupPath(path, { follow: true });
+        var node = lookup.node;
+        var readdir = FS.checkOpExists(node.node_ops.readdir, 54);
+        return readdir(node);
+      },
+  unlink(path) {
+        var lookup = FS.lookupPath(path, { parent: true });
+        var parent = lookup.node;
+        if (!parent) {
+          throw new FS.ErrnoError(44);
+        }
+        var name = PATH.basename(path);
+        var node = FS.lookupNode(parent, name);
+        var errCode = FS.mayDelete(parent, name, false);
+        if (errCode) {
+          // According to POSIX, we should map EISDIR to EPERM, but
+          // we instead do what Linux does (and we must, as we use
+          // the musl linux libc).
+          throw new FS.ErrnoError(errCode);
+        }
+        if (!parent.node_ops.unlink) {
+          throw new FS.ErrnoError(63);
+        }
+        if (FS.isMountpoint(node)) {
+          throw new FS.ErrnoError(10);
+        }
+        parent.node_ops.unlink(parent, name);
+        FS.destroyNode(node);
+      },
+  readlink(path) {
+        var lookup = FS.lookupPath(path);
+        var link = lookup.node;
+        if (!link) {
+          throw new FS.ErrnoError(44);
+        }
+        if (!link.node_ops.readlink) {
+          throw new FS.ErrnoError(28);
+        }
+        return link.node_ops.readlink(link);
+      },
+  stat(path, dontFollow) {
+        var lookup = FS.lookupPath(path, { follow: !dontFollow });
+        var node = lookup.node;
+        var getattr = FS.checkOpExists(node.node_ops.getattr, 63);
+        return getattr(node);
+      },
+  fstat(fd) {
+        var stream = FS.getStreamChecked(fd);
+        var node = stream.node;
+        var getattr = stream.stream_ops.getattr;
+        var arg = getattr ? stream : node;
+        getattr ??= node.node_ops.getattr;
+        FS.checkOpExists(getattr, 63)
+        return getattr(arg);
+      },
+  lstat(path) {
+        return FS.stat(path, true);
+      },
+  doChmod(stream, node, mode, dontFollow) {
+        FS.doSetAttr(stream, node, {
+          mode: (mode & 4095) | (node.mode & ~4095),
+          ctime: Date.now(),
+          dontFollow
+        });
+      },
+  chmod(path, mode, dontFollow) {
+        var node;
+        if (typeof path == 'string') {
+          var lookup = FS.lookupPath(path, { follow: !dontFollow });
+          node = lookup.node;
+        } else {
+          node = path;
+        }
+        FS.doChmod(null, node, mode, dontFollow);
+      },
+  lchmod(path, mode) {
+        FS.chmod(path, mode, true);
+      },
+  fchmod(fd, mode) {
+        var stream = FS.getStreamChecked(fd);
+        FS.doChmod(stream, stream.node, mode, false);
+      },
+  doChown(stream, node, dontFollow) {
+        FS.doSetAttr(stream, node, {
+          timestamp: Date.now(),
+          dontFollow
+          // we ignore the uid / gid for now
+        });
+      },
+  chown(path, uid, gid, dontFollow) {
+        var node;
+        if (typeof path == 'string') {
+          var lookup = FS.lookupPath(path, { follow: !dontFollow });
+          node = lookup.node;
+        } else {
+          node = path;
+        }
+        FS.doChown(null, node, dontFollow);
+      },
+  lchown(path, uid, gid) {
+        FS.chown(path, uid, gid, true);
+      },
+  fchown(fd, uid, gid) {
+        var stream = FS.getStreamChecked(fd);
+        FS.doChown(stream, stream.node, false);
+      },
+  doTruncate(stream, node, len) {
+        if (FS.isDir(node.mode)) {
+          throw new FS.ErrnoError(31);
+        }
+        if (!FS.isFile(node.mode)) {
+          throw new FS.ErrnoError(28);
+        }
+        var errCode = FS.nodePermissions(node, 'w');
+        if (errCode) {
+          throw new FS.ErrnoError(errCode);
+        }
+        FS.doSetAttr(stream, node, {
+          size: len,
+          timestamp: Date.now()
+        });
+      },
+  truncate(path, len) {
+        if (len < 0) {
+          throw new FS.ErrnoError(28);
+        }
+        var node;
+        if (typeof path == 'string') {
+          var lookup = FS.lookupPath(path, { follow: true });
+          node = lookup.node;
+        } else {
+          node = path;
+        }
+        FS.doTruncate(null, node, len);
+      },
+  ftruncate(fd, len) {
+        var stream = FS.getStreamChecked(fd);
+        if (len < 0 || (stream.flags & 2097155) === 0) {
+          throw new FS.ErrnoError(28);
+        }
+        FS.doTruncate(stream, stream.node, len);
+      },
+  utime(path, atime, mtime) {
+        var lookup = FS.lookupPath(path, { follow: true });
+        var node = lookup.node;
+        var setattr = FS.checkOpExists(node.node_ops.setattr, 63);
+        setattr(node, {
+          atime: atime,
+          mtime: mtime
+        });
+      },
+  open(path, flags, mode = 0o666) {
+        if (path === "") {
+          throw new FS.ErrnoError(44);
+        }
+        flags = typeof flags == 'string' ? FS_modeStringToFlags(flags) : flags;
+        if ((flags & 64)) {
+          mode = (mode & 4095) | 32768;
+        } else {
+          mode = 0;
+        }
+        var node;
+        var isDirPath;
+        if (typeof path == 'object') {
+          node = path;
+        } else {
+          isDirPath = path.endsWith("/");
+          // noent_okay makes it so that if the final component of the path
+          // doesn't exist, lookupPath returns `node: undefined`. `path` will be
+          // updated to point to the target of all symlinks.
+          var lookup = FS.lookupPath(path, {
+            follow: !(flags & 131072),
+            noent_okay: true
+          });
+          node = lookup.node;
+          path = lookup.path;
+        }
+        // perhaps we need to create the node
+        var created = false;
+        if ((flags & 64)) {
+          if (node) {
+            // if O_CREAT and O_EXCL are set, error out if the node already exists
+            if ((flags & 128)) {
+              throw new FS.ErrnoError(20);
+            }
+          } else if (isDirPath) {
+            throw new FS.ErrnoError(31);
+          } else {
+            // node doesn't exist, try to create it
+            // Ignore the permission bits here to ensure we can `open` this new
+            // file below. We use chmod below the apply the permissions once the
+            // file is open.
+            node = FS.mknod(path, mode | 0o777, 0);
+            created = true;
+          }
+        }
+        if (!node) {
+          throw new FS.ErrnoError(44);
+        }
+        // can't truncate a device
+        if (FS.isChrdev(node.mode)) {
+          flags &= ~512;
+        }
+        // if asked only for a directory, then this must be one
+        if ((flags & 65536) && !FS.isDir(node.mode)) {
+          throw new FS.ErrnoError(54);
+        }
+        // check permissions, if this is not a file we just created now (it is ok to
+        // create and write to a file with read-only permissions; it is read-only
+        // for later use)
+        if (!created) {
+          var errCode = FS.mayOpen(node, flags);
+          if (errCode) {
+            throw new FS.ErrnoError(errCode);
+          }
+        }
+        // do truncation if necessary
+        if ((flags & 512) && !created) {
+          FS.truncate(node, 0);
+        }
+        // we've already handled these, don't pass down to the underlying vfs
+        flags &= ~(128 | 512 | 131072);
+  
+        // register the stream with the filesystem
+        var stream = FS.createStream({
+          node,
+          path: FS.getPath(node),  // we want the absolute path to the node
+          flags,
+          seekable: true,
+          position: 0,
+          stream_ops: node.stream_ops,
+          // used by the file family libc calls (fopen, fwrite, ferror, etc.)
+          ungotten: [],
+          error: false
+        });
+        // call the new stream's open function
+        if (stream.stream_ops.open) {
+          stream.stream_ops.open(stream);
+        }
+        if (created) {
+          FS.chmod(node, mode & 0o777);
+        }
+        if (Module['logReadFiles'] && !(flags & 1)) {
+          if (!(path in FS.readFiles)) {
+            FS.readFiles[path] = 1;
+          }
+        }
+        return stream;
+      },
+  close(stream) {
+        if (FS.isClosed(stream)) {
+          throw new FS.ErrnoError(8);
+        }
+        if (stream.getdents) stream.getdents = null; // free readdir state
+        try {
+          if (stream.stream_ops.close) {
+            stream.stream_ops.close(stream);
+          }
+        } catch (e) {
+          throw e;
+        } finally {
+          FS.closeStream(stream.fd);
+        }
+        stream.fd = null;
+      },
+  isClosed(stream) {
+        return stream.fd === null;
+      },
+  llseek(stream, offset, whence) {
+        if (FS.isClosed(stream)) {
+          throw new FS.ErrnoError(8);
+        }
+        if (!stream.seekable || !stream.stream_ops.llseek) {
+          throw new FS.ErrnoError(70);
+        }
+        if (whence != 0 && whence != 1 && whence != 2) {
+          throw new FS.ErrnoError(28);
+        }
+        stream.position = stream.stream_ops.llseek(stream, offset, whence);
+        stream.ungotten = [];
+        return stream.position;
+      },
+  read(stream, buffer, offset, length, position) {
+        assert(offset >= 0);
+        if (length < 0 || position < 0) {
+          throw new FS.ErrnoError(28);
+        }
+        if (FS.isClosed(stream)) {
+          throw new FS.ErrnoError(8);
+        }
+        if ((stream.flags & 2097155) === 1) {
+          throw new FS.ErrnoError(8);
+        }
+        if (FS.isDir(stream.node.mode)) {
+          throw new FS.ErrnoError(31);
+        }
+        if (!stream.stream_ops.read) {
+          throw new FS.ErrnoError(28);
+        }
+        var seeking = typeof position != 'undefined';
+        if (!seeking) {
+          position = stream.position;
+        } else if (!stream.seekable) {
+          throw new FS.ErrnoError(70);
+        }
+        var bytesRead = stream.stream_ops.read(stream, buffer, offset, length, position);
+        if (!seeking) stream.position += bytesRead;
+        return bytesRead;
+      },
+  write(stream, buffer, offset, length, position, canOwn) {
+        assert(offset >= 0);
+        if (length < 0 || position < 0) {
+          throw new FS.ErrnoError(28);
+        }
+        if (FS.isClosed(stream)) {
+          throw new FS.ErrnoError(8);
+        }
+        if ((stream.flags & 2097155) === 0) {
+          throw new FS.ErrnoError(8);
+        }
+        if (FS.isDir(stream.node.mode)) {
+          throw new FS.ErrnoError(31);
+        }
+        if (!stream.stream_ops.write) {
+          throw new FS.ErrnoError(28);
+        }
+        if (stream.seekable && stream.flags & 1024) {
+          // seek to the end before writing in append mode
+          FS.llseek(stream, 0, 2);
+        }
+        var seeking = typeof position != 'undefined';
+        if (!seeking) {
+          position = stream.position;
+        } else if (!stream.seekable) {
+          throw new FS.ErrnoError(70);
+        }
+        var bytesWritten = stream.stream_ops.write(stream, buffer, offset, length, position, canOwn);
+        if (!seeking) stream.position += bytesWritten;
+        return bytesWritten;
+      },
+  mmap(stream, length, position, prot, flags) {
+        // User requests writing to file (prot & PROT_WRITE != 0).
+        // Checking if we have permissions to write to the file unless
+        // MAP_PRIVATE flag is set. According to POSIX spec it is possible
+        // to write to file opened in read-only mode with MAP_PRIVATE flag,
+        // as all modifications will be visible only in the memory of
+        // the current process.
+        if ((prot & 2) !== 0
+            && (flags & 2) === 0
+            && (stream.flags & 2097155) !== 2) {
+          throw new FS.ErrnoError(2);
+        }
+        if ((stream.flags & 2097155) === 1) {
+          throw new FS.ErrnoError(2);
+        }
+        if (!stream.stream_ops.mmap) {
+          throw new FS.ErrnoError(43);
+        }
+        if (!length) {
+          throw new FS.ErrnoError(28);
+        }
+        return stream.stream_ops.mmap(stream, length, position, prot, flags);
+      },
+  msync(stream, buffer, offset, length, mmapFlags) {
+        assert(offset >= 0);
+        if (!stream.stream_ops.msync) {
+          return 0;
+        }
+        return stream.stream_ops.msync(stream, buffer, offset, length, mmapFlags);
+      },
+  ioctl(stream, cmd, arg) {
+        if (!stream.stream_ops.ioctl) {
+          throw new FS.ErrnoError(59);
+        }
+        return stream.stream_ops.ioctl(stream, cmd, arg);
+      },
+  readFile(path, opts = {}) {
+        opts.flags = opts.flags || 0;
+        opts.encoding = opts.encoding || 'binary';
+        if (opts.encoding !== 'utf8' && opts.encoding !== 'binary') {
+          throw new Error(`Invalid encoding type "${opts.encoding}"`);
+        }
+        var stream = FS.open(path, opts.flags);
+        var stat = FS.stat(path);
+        var length = stat.size;
+        var buf = new Uint8Array(length);
+        FS.read(stream, buf, 0, length, 0);
+        if (opts.encoding === 'utf8') {
+          buf = UTF8ArrayToString(buf);
+        }
+        FS.close(stream);
+        return buf;
+      },
+  writeFile(path, data, opts = {}) {
+        opts.flags = opts.flags || 577;
+        var stream = FS.open(path, opts.flags, opts.mode);
+        if (typeof data == 'string') {
+          data = new Uint8Array(intArrayFromString(data, true));
+        }
+        if (ArrayBuffer.isView(data)) {
+          FS.write(stream, data, 0, data.byteLength, undefined, opts.canOwn);
+        } else {
+          throw new Error('Unsupported data type');
+        }
+        FS.close(stream);
+      },
+  cwd:() => FS.currentPath,
+  chdir(path) {
+        var lookup = FS.lookupPath(path, { follow: true });
+        if (lookup.node === null) {
+          throw new FS.ErrnoError(44);
+        }
+        if (!FS.isDir(lookup.node.mode)) {
+          throw new FS.ErrnoError(54);
+        }
+        var errCode = FS.nodePermissions(lookup.node, 'x');
+        if (errCode) {
+          throw new FS.ErrnoError(errCode);
+        }
+        FS.currentPath = lookup.path;
+      },
+  createDefaultDirectories() {
+        FS.mkdir('/tmp');
+        FS.mkdir('/home');
+        FS.mkdir('/home/web_user');
+      },
+  createDefaultDevices() {
+        // create /dev
+        FS.mkdir('/dev');
+        // setup /dev/null
+        FS.registerDevice(FS.makedev(1, 3), {
+          read: () => 0,
+          write: (stream, buffer, offset, length, pos) => length,
+          llseek: () => 0,
+        });
+        FS.mkdev('/dev/null', FS.makedev(1, 3));
+        // setup /dev/tty and /dev/tty1
+        // stderr needs to print output using err() rather than out()
+        // so we register a second tty just for it.
+        TTY.register(FS.makedev(5, 0), TTY.default_tty_ops);
+        TTY.register(FS.makedev(6, 0), TTY.default_tty1_ops);
+        FS.mkdev('/dev/tty', FS.makedev(5, 0));
+        FS.mkdev('/dev/tty1', FS.makedev(6, 0));
+        // setup /dev/[u]random
+        // use a buffer to avoid overhead of individual crypto calls per byte
+        var randomBuffer = new Uint8Array(1024), randomLeft = 0;
+        var randomByte = () => {
+          if (randomLeft === 0) {
+            randomFill(randomBuffer);
+            randomLeft = randomBuffer.byteLength;
+          }
+          return randomBuffer[--randomLeft];
+        };
+        FS.createDevice('/dev', 'random', randomByte);
+        FS.createDevice('/dev', 'urandom', randomByte);
+        // we're not going to emulate the actual shm device,
+        // just create the tmp dirs that reside in it commonly
+        FS.mkdir('/dev/shm');
+        FS.mkdir('/dev/shm/tmp');
+      },
+  createSpecialDirectories() {
+        // create /proc/self/fd which allows /proc/self/fd/6 => readlink gives the
+        // name of the stream for fd 6 (see test_unistd_ttyname)
+        FS.mkdir('/proc');
+        var proc_self = FS.mkdir('/proc/self');
+        FS.mkdir('/proc/self/fd');
+        FS.mount({
+          mount() {
+            var node = FS.createNode(proc_self, 'fd', 16895, 73);
+            node.stream_ops = {
+              llseek: MEMFS.stream_ops.llseek,
+            };
+            node.node_ops = {
+              lookup(parent, name) {
+                var fd = +name;
+                var stream = FS.getStreamChecked(fd);
+                var ret = {
+                  parent: null,
+                  mount: { mountpoint: 'fake' },
+                  node_ops: { readlink: () => stream.path },
+                  id: fd + 1,
+                };
+                ret.parent = ret; // make it look like a simple root node
+                return ret;
+              },
+              readdir() {
+                return Array.from(FS.streams.entries())
+                  .filter(([k, v]) => v)
+                  .map(([k, v]) => k.toString());
+              }
+            };
+            return node;
+          }
+        }, {}, '/proc/self/fd');
+      },
+  createStandardStreams(input, output, error) {
+        // TODO deprecate the old functionality of a single
+        // input / output callback and that utilizes FS.createDevice
+        // and instead require a unique set of stream ops
+  
+        // by default, we symlink the standard streams to the
+        // default tty devices. however, if the standard streams
+        // have been overwritten we create a unique device for
+        // them instead.
+        if (input) {
+          FS.createDevice('/dev', 'stdin', input);
+        } else {
+          FS.symlink('/dev/tty', '/dev/stdin');
+        }
+        if (output) {
+          FS.createDevice('/dev', 'stdout', null, output);
+        } else {
+          FS.symlink('/dev/tty', '/dev/stdout');
+        }
+        if (error) {
+          FS.createDevice('/dev', 'stderr', null, error);
+        } else {
+          FS.symlink('/dev/tty1', '/dev/stderr');
+        }
+  
+        // open default streams for the stdin, stdout and stderr devices
+        var stdin = FS.open('/dev/stdin', 0);
+        var stdout = FS.open('/dev/stdout', 1);
+        var stderr = FS.open('/dev/stderr', 1);
+        assert(stdin.fd === 0, `invalid handle for stdin (${stdin.fd})`);
+        assert(stdout.fd === 1, `invalid handle for stdout (${stdout.fd})`);
+        assert(stderr.fd === 2, `invalid handle for stderr (${stderr.fd})`);
+      },
+  staticInit() {
+        FS.nameTable = new Array(4096);
+  
+        FS.mount(MEMFS, {}, '/');
+  
+        FS.createDefaultDirectories();
+        FS.createDefaultDevices();
+        FS.createSpecialDirectories();
+  
+        FS.filesystems = {
+          'MEMFS': MEMFS,
+        };
+      },
+  init(input, output, error) {
+        assert(!FS.initialized, 'FS.init was previously called. If you want to initialize later with custom parameters, remove any earlier calls (note that one is automatically added to the generated code)');
+        FS.initialized = true;
+  
+        // Allow Module.stdin etc. to provide defaults, if none explicitly passed to us here
+        input ??= Module['stdin'];
+        output ??= Module['stdout'];
+        error ??= Module['stderr'];
+  
+        FS.createStandardStreams(input, output, error);
+      },
+  quit() {
+        FS.initialized = false;
+        // force-flush all streams, so we get musl std streams printed out
+        _fflush(0);
+        // close all of our streams
+        for (var stream of FS.streams) {
+          if (stream) {
+            FS.close(stream);
+          }
+        }
+      },
+  findObject(path, dontResolveLastLink) {
+        var ret = FS.analyzePath(path, dontResolveLastLink);
+        if (!ret.exists) {
+          return null;
+        }
+        return ret.object;
+      },
+  analyzePath(path, dontResolveLastLink) {
+        // operate from within the context of the symlink's target
+        try {
+          var lookup = FS.lookupPath(path, { follow: !dontResolveLastLink });
+          path = lookup.path;
+        } catch (e) {
+        }
+        var ret = {
+          isRoot: false, exists: false, error: 0, name: null, path: null, object: null,
+          parentExists: false, parentPath: null, parentObject: null
+        };
+        try {
+          var lookup = FS.lookupPath(path, { parent: true });
+          ret.parentExists = true;
+          ret.parentPath = lookup.path;
+          ret.parentObject = lookup.node;
+          ret.name = PATH.basename(path);
+          lookup = FS.lookupPath(path, { follow: !dontResolveLastLink });
+          ret.exists = true;
+          ret.path = lookup.path;
+          ret.object = lookup.node;
+          ret.name = lookup.node.name;
+          ret.isRoot = lookup.path === '/';
+        } catch (e) {
+          ret.error = e.errno;
+        };
+        return ret;
+      },
+  createPath(parent, path, canRead, canWrite) {
+        parent = typeof parent == 'string' ? parent : FS.getPath(parent);
+        var parts = path.split('/').reverse();
+        while (parts.length) {
+          var part = parts.pop();
+          if (!part) continue;
+          var current = PATH.join2(parent, part);
+          try {
+            FS.mkdir(current);
+          } catch (e) {
+            if (e.errno != 20) throw e;
+          }
+          parent = current;
+        }
+        return current;
+      },
+  createFile(parent, name, properties, canRead, canWrite) {
+        var path = PATH.join2(typeof parent == 'string' ? parent : FS.getPath(parent), name);
+        var mode = FS_getMode(canRead, canWrite);
+        return FS.create(path, mode);
+      },
+  createDataFile(parent, name, data, canRead, canWrite, canOwn) {
+        var path = name;
+        if (parent) {
+          parent = typeof parent == 'string' ? parent : FS.getPath(parent);
+          path = name ? PATH.join2(parent, name) : parent;
+        }
+        var mode = FS_getMode(canRead, canWrite);
+        var node = FS.create(path, mode);
+        if (data) {
+          if (typeof data == 'string') {
+            var arr = new Array(data.length);
+            for (var i = 0, len = data.length; i < len; ++i) arr[i] = data.charCodeAt(i);
+            data = arr;
+          }
+          // make sure we can write to the file
+          FS.chmod(node, mode | 146);
+          var stream = FS.open(node, 577);
+          FS.write(stream, data, 0, data.length, 0, canOwn);
+          FS.close(stream);
+          FS.chmod(node, mode);
+        }
+      },
+  createDevice(parent, name, input, output) {
+        var path = PATH.join2(typeof parent == 'string' ? parent : FS.getPath(parent), name);
+        var mode = FS_getMode(!!input, !!output);
+        FS.createDevice.major ??= 64;
+        var dev = FS.makedev(FS.createDevice.major++, 0);
+        // Create a fake device that a set of stream ops to emulate
+        // the old behavior.
+        FS.registerDevice(dev, {
+          open(stream) {
+            stream.seekable = false;
+          },
+          close(stream) {
+            // flush any pending line data
+            if (output?.buffer?.length) {
+              output(10);
+            }
+          },
+          read(stream, buffer, offset, length, pos /* ignored */) {
+            var bytesRead = 0;
+            for (var i = 0; i < length; i++) {
+              var result;
+              try {
+                result = input();
+              } catch (e) {
+                throw new FS.ErrnoError(29);
+              }
+              if (result === undefined && bytesRead === 0) {
+                throw new FS.ErrnoError(6);
+              }
+              if (result === null || result === undefined) break;
+              bytesRead++;
+              buffer[offset+i] = result;
+            }
+            if (bytesRead) {
+              stream.node.atime = Date.now();
+            }
+            return bytesRead;
+          },
+          write(stream, buffer, offset, length, pos) {
+            for (var i = 0; i < length; i++) {
+              try {
+                output(buffer[offset+i]);
+              } catch (e) {
+                throw new FS.ErrnoError(29);
+              }
+            }
+            if (length) {
+              stream.node.mtime = stream.node.ctime = Date.now();
+            }
+            return i;
+          }
+        });
+        return FS.mkdev(path, mode, dev);
+      },
+  forceLoadFile(obj) {
+        if (obj.isDevice || obj.isFolder || obj.link || obj.contents) return true;
+        if (typeof XMLHttpRequest != 'undefined') {
+          throw new Error("Lazy loading should have been performed (contents set) in createLazyFile, but it was not. Lazy loading only works in web workers. Use --embed-file or --preload-file in emcc on the main thread.");
+        } else { // Command-line.
+          try {
+            obj.contents = readBinary(obj.url);
+            obj.usedBytes = obj.contents.length;
+          } catch (e) {
+            throw new FS.ErrnoError(29);
+          }
+        }
+      },
+  createLazyFile(parent, name, url, canRead, canWrite) {
+        // Lazy chunked Uint8Array (implements get and length from Uint8Array).
+        // Actual getting is abstracted away for eventual reuse.
+        class LazyUint8Array {
+          lengthKnown = false;
+          chunks = []; // Loaded chunks. Index is the chunk number
+          get(idx) {
+            if (idx > this.length-1 || idx < 0) {
+              return undefined;
+            }
+            var chunkOffset = idx % this.chunkSize;
+            var chunkNum = (idx / this.chunkSize)|0;
+            return this.getter(chunkNum)[chunkOffset];
+          }
+          setDataGetter(getter) {
+            this.getter = getter;
+          }
+          cacheLength() {
+            // Find length
+            var xhr = new XMLHttpRequest();
+            xhr.open('HEAD', url, false);
+            xhr.send(null);
+            if (!(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304)) throw new Error("Couldn't load " + url + ". Status: " + xhr.status);
+            var datalength = Number(xhr.getResponseHeader("Content-length"));
+            var header;
+            var hasByteServing = (header = xhr.getResponseHeader("Accept-Ranges")) && header === "bytes";
+            var usesGzip = (header = xhr.getResponseHeader("Content-Encoding")) && header === "gzip";
+  
+            var chunkSize = 1024*1024; // Chunk size in bytes
+  
+            if (!hasByteServing) chunkSize = datalength;
+  
+            // Function to get a range from the remote URL.
+            var doXHR = (from, to) => {
+              if (from > to) throw new Error("invalid range (" + from + ", " + to + ") or no bytes requested!");
+              if (to > datalength-1) throw new Error("only " + datalength + " bytes available! programmer error!");
+  
+              // TODO: Use mozResponseArrayBuffer, responseStream, etc. if available.
+              var xhr = new XMLHttpRequest();
+              xhr.open('GET', url, false);
+              if (datalength !== chunkSize) xhr.setRequestHeader("Range", "bytes=" + from + "-" + to);
+  
+              // Some hints to the browser that we want binary data.
+              xhr.responseType = 'arraybuffer';
+              if (xhr.overrideMimeType) {
+                xhr.overrideMimeType('text/plain; charset=x-user-defined');
+              }
+  
+              xhr.send(null);
+              if (!(xhr.status >= 200 && xhr.status < 300 || xhr.status === 304)) throw new Error("Couldn't load " + url + ". Status: " + xhr.status);
+              if (xhr.response !== undefined) {
+                return new Uint8Array(/** @type{Array<number>} */(xhr.response || []));
+              }
+              return intArrayFromString(xhr.responseText || '', true);
+            };
+            var lazyArray = this;
+            lazyArray.setDataGetter((chunkNum) => {
+              var start = chunkNum * chunkSize;
+              var end = (chunkNum+1) * chunkSize - 1; // including this byte
+              end = Math.min(end, datalength-1); // if datalength-1 is selected, this is the last block
+              if (typeof lazyArray.chunks[chunkNum] == 'undefined') {
+                lazyArray.chunks[chunkNum] = doXHR(start, end);
+              }
+              if (typeof lazyArray.chunks[chunkNum] == 'undefined') throw new Error('doXHR failed!');
+              return lazyArray.chunks[chunkNum];
+            });
+  
+            if (usesGzip || !datalength) {
+              // if the server uses gzip or doesn't supply the length, we have to download the whole file to get the (uncompressed) length
+              chunkSize = datalength = 1; // this will force getter(0)/doXHR do download the whole file
+              datalength = this.getter(0).length;
+              chunkSize = datalength;
+              out("LazyFiles on gzip forces download of the whole file when length is accessed");
+            }
+  
+            this._length = datalength;
+            this._chunkSize = chunkSize;
+            this.lengthKnown = true;
+          }
+          get length() {
+            if (!this.lengthKnown) {
+              this.cacheLength();
+            }
+            return this._length;
+          }
+          get chunkSize() {
+            if (!this.lengthKnown) {
+              this.cacheLength();
+            }
+            return this._chunkSize;
+          }
+        }
+  
+        if (typeof XMLHttpRequest != 'undefined') {
+          if (!ENVIRONMENT_IS_WORKER) throw 'Cannot do synchronous binary XHRs outside webworkers in modern browsers. Use --embed-file or --preload-file in emcc';
+          var lazyArray = new LazyUint8Array();
+          var properties = { isDevice: false, contents: lazyArray };
+        } else {
+          var properties = { isDevice: false, url: url };
+        }
+  
+        var node = FS.createFile(parent, name, properties, canRead, canWrite);
+        // This is a total hack, but I want to get this lazy file code out of the
+        // core of MEMFS. If we want to keep this lazy file concept I feel it should
+        // be its own thin LAZYFS proxying calls to MEMFS.
+        if (properties.contents) {
+          node.contents = properties.contents;
+        } else if (properties.url) {
+          node.contents = null;
+          node.url = properties.url;
+        }
+        // Add a function that defers querying the file size until it is asked the first time.
+        Object.defineProperties(node, {
+          usedBytes: {
+            get: function() { return this.contents.length; }
+          }
+        });
+        // override each stream op with one that tries to force load the lazy file first
+        var stream_ops = {};
+        var keys = Object.keys(node.stream_ops);
+        keys.forEach((key) => {
+          var fn = node.stream_ops[key];
+          stream_ops[key] = (...args) => {
+            FS.forceLoadFile(node);
+            return fn(...args);
+          };
+        });
+        function writeChunks(stream, buffer, offset, length, position) {
+          var contents = stream.node.contents;
+          if (position >= contents.length)
+            return 0;
+          var size = Math.min(contents.length - position, length);
+          assert(size >= 0);
+          if (contents.slice) { // normal array
+            for (var i = 0; i < size; i++) {
+              buffer[offset + i] = contents[position + i];
+            }
+          } else {
+            for (var i = 0; i < size; i++) { // LazyUint8Array from sync binary XHR
+              buffer[offset + i] = contents.get(position + i);
+            }
+          }
+          return size;
+        }
+        // use a custom read function
+        stream_ops.read = (stream, buffer, offset, length, position) => {
+          FS.forceLoadFile(node);
+          return writeChunks(stream, buffer, offset, length, position)
+        };
+        // use a custom mmap function
+        stream_ops.mmap = (stream, length, position, prot, flags) => {
+          FS.forceLoadFile(node);
+          var ptr = mmapAlloc(length);
+          if (!ptr) {
+            throw new FS.ErrnoError(48);
+          }
+          writeChunks(stream, HEAP8, ptr, length, position);
+          return { ptr, allocated: true };
+        };
+        node.stream_ops = stream_ops;
+        return node;
+      },
+  absolutePath() {
+        abort('FS.absolutePath has been removed; use PATH_FS.resolve instead');
+      },
+  createFolder() {
+        abort('FS.createFolder has been removed; use FS.mkdir instead');
+      },
+  createLink() {
+        abort('FS.createLink has been removed; use FS.symlink instead');
+      },
+  joinPath() {
+        abort('FS.joinPath has been removed; use PATH.join instead');
+      },
+  mmapAlloc() {
+        abort('FS.mmapAlloc has been replaced by the top level function mmapAlloc');
+      },
+  standardizePath() {
+        abort('FS.standardizePath has been removed; use PATH.normalize instead');
+      },
+  };
+  
+  var SYSCALLS = {
+  DEFAULT_POLLMASK:5,
+  calculateAt(dirfd, path, allowEmpty) {
+        if (PATH.isAbs(path)) {
+          return path;
+        }
+        // relative path
+        var dir;
+        if (dirfd === -100) {
+          dir = FS.cwd();
+        } else {
+          var dirstream = SYSCALLS.getStreamFromFD(dirfd);
+          dir = dirstream.path;
+        }
+        if (path.length == 0) {
+          if (!allowEmpty) {
+            throw new FS.ErrnoError(44);;
+          }
+          return dir;
+        }
+        return dir + '/' + path;
+      },
+  writeStat(buf, stat) {
+        HEAP32[((buf)>>2)] = stat.dev;
+        HEAP32[(((buf)+(4))>>2)] = stat.mode;
+        HEAPU32[(((buf)+(8))>>2)] = stat.nlink;
+        HEAP32[(((buf)+(12))>>2)] = stat.uid;
+        HEAP32[(((buf)+(16))>>2)] = stat.gid;
+        HEAP32[(((buf)+(20))>>2)] = stat.rdev;
+        HEAP64[(((buf)+(24))>>3)] = BigInt(stat.size);
+        HEAP32[(((buf)+(32))>>2)] = 4096;
+        HEAP32[(((buf)+(36))>>2)] = stat.blocks;
+        var atime = stat.atime.getTime();
+        var mtime = stat.mtime.getTime();
+        var ctime = stat.ctime.getTime();
+        HEAP64[(((buf)+(40))>>3)] = BigInt(Math.floor(atime / 1000));
+        HEAPU32[(((buf)+(48))>>2)] = (atime % 1000) * 1000 * 1000;
+        HEAP64[(((buf)+(56))>>3)] = BigInt(Math.floor(mtime / 1000));
+        HEAPU32[(((buf)+(64))>>2)] = (mtime % 1000) * 1000 * 1000;
+        HEAP64[(((buf)+(72))>>3)] = BigInt(Math.floor(ctime / 1000));
+        HEAPU32[(((buf)+(80))>>2)] = (ctime % 1000) * 1000 * 1000;
+        HEAP64[(((buf)+(88))>>3)] = BigInt(stat.ino);
+        return 0;
+      },
+  writeStatFs(buf, stats) {
+        HEAP32[(((buf)+(4))>>2)] = stats.bsize;
+        HEAP32[(((buf)+(40))>>2)] = stats.bsize;
+        HEAP32[(((buf)+(8))>>2)] = stats.blocks;
+        HEAP32[(((buf)+(12))>>2)] = stats.bfree;
+        HEAP32[(((buf)+(16))>>2)] = stats.bavail;
+        HEAP32[(((buf)+(20))>>2)] = stats.files;
+        HEAP32[(((buf)+(24))>>2)] = stats.ffree;
+        HEAP32[(((buf)+(28))>>2)] = stats.fsid;
+        HEAP32[(((buf)+(44))>>2)] = stats.flags;  // ST_NOSUID
+        HEAP32[(((buf)+(36))>>2)] = stats.namelen;
+      },
+  doMsync(addr, stream, len, flags, offset) {
+        if (!FS.isFile(stream.node.mode)) {
+          throw new FS.ErrnoError(43);
+        }
+        if (flags & 2) {
+          // MAP_PRIVATE calls need not to be synced back to underlying fs
+          return 0;
+        }
+        var buffer = HEAPU8.slice(addr, addr + len);
+        FS.msync(stream, buffer, offset, len, flags);
+      },
+  getStreamFromFD(fd) {
+        var stream = FS.getStreamChecked(fd);
+        return stream;
+      },
+  varargs:undefined,
+  getStr(ptr) {
+        var ret = UTF8ToString(ptr);
+        return ret;
+      },
+  };
+  function ___syscall_fcntl64(fd, cmd, varargs) {
+  SYSCALLS.varargs = varargs;
+  try {
+  
+      var stream = SYSCALLS.getStreamFromFD(fd);
+      switch (cmd) {
+        case 0: {
+          var arg = syscallGetVarargI();
+          if (arg < 0) {
+            return -28;
+          }
+          while (FS.streams[arg]) {
+            arg++;
+          }
+          var newStream;
+          newStream = FS.dupStream(stream, arg);
+          return newStream.fd;
+        }
+        case 1:
+        case 2:
+          return 0;  // FD_CLOEXEC makes no sense for a single process.
+        case 3:
+          return stream.flags;
+        case 4: {
+          var arg = syscallGetVarargI();
+          stream.flags |= arg;
+          return 0;
+        }
+        case 12: {
+          var arg = syscallGetVarargP();
+          var offset = 0;
+          // We're always unlocked.
+          HEAP16[(((arg)+(offset))>>1)] = 2;
+          return 0;
+        }
+        case 13:
+        case 14:
+          // Pretend that the locking is successful. These are process-level locks,
+          // and Emscripten programs are a single process. If we supported linking a
+          // filesystem between programs, we'd need to do more here.
+          // See https://github.com/emscripten-core/emscripten/issues/23697
+          return 0;
+      }
+      return -28;
+    } catch (e) {
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
+    return -e.errno;
+  }
+  }
+
+  
+  function ___syscall_ioctl(fd, op, varargs) {
+  SYSCALLS.varargs = varargs;
+  try {
+  
+      var stream = SYSCALLS.getStreamFromFD(fd);
+      switch (op) {
+        case 21509: {
+          if (!stream.tty) return -59;
+          return 0;
+        }
+        case 21505: {
+          if (!stream.tty) return -59;
+          if (stream.tty.ops.ioctl_tcgets) {
+            var termios = stream.tty.ops.ioctl_tcgets(stream);
+            var argp = syscallGetVarargP();
+            HEAP32[((argp)>>2)] = termios.c_iflag || 0;
+            HEAP32[(((argp)+(4))>>2)] = termios.c_oflag || 0;
+            HEAP32[(((argp)+(8))>>2)] = termios.c_cflag || 0;
+            HEAP32[(((argp)+(12))>>2)] = termios.c_lflag || 0;
+            for (var i = 0; i < 32; i++) {
+              HEAP8[(argp + i)+(17)] = termios.c_cc[i] || 0;
+            }
+            return 0;
+          }
+          return 0;
+        }
+        case 21510:
+        case 21511:
+        case 21512: {
+          if (!stream.tty) return -59;
+          return 0; // no-op, not actually adjusting terminal settings
+        }
+        case 21506:
+        case 21507:
+        case 21508: {
+          if (!stream.tty) return -59;
+          if (stream.tty.ops.ioctl_tcsets) {
+            var argp = syscallGetVarargP();
+            var c_iflag = HEAP32[((argp)>>2)];
+            var c_oflag = HEAP32[(((argp)+(4))>>2)];
+            var c_cflag = HEAP32[(((argp)+(8))>>2)];
+            var c_lflag = HEAP32[(((argp)+(12))>>2)];
+            var c_cc = []
+            for (var i = 0; i < 32; i++) {
+              c_cc.push(HEAP8[(argp + i)+(17)]);
+            }
+            return stream.tty.ops.ioctl_tcsets(stream.tty, op, { c_iflag, c_oflag, c_cflag, c_lflag, c_cc });
+          }
+          return 0; // no-op, not actually adjusting terminal settings
+        }
+        case 21519: {
+          if (!stream.tty) return -59;
+          var argp = syscallGetVarargP();
+          HEAP32[((argp)>>2)] = 0;
+          return 0;
+        }
+        case 21520: {
+          if (!stream.tty) return -59;
+          return -28; // not supported
+        }
+        case 21531: {
+          var argp = syscallGetVarargP();
+          return FS.ioctl(stream, op, argp);
+        }
+        case 21523: {
+          // TODO: in theory we should write to the winsize struct that gets
+          // passed in, but for now musl doesn't read anything on it
+          if (!stream.tty) return -59;
+          if (stream.tty.ops.ioctl_tiocgwinsz) {
+            var winsize = stream.tty.ops.ioctl_tiocgwinsz(stream.tty);
+            var argp = syscallGetVarargP();
+            HEAP16[((argp)>>1)] = winsize[0];
+            HEAP16[(((argp)+(2))>>1)] = winsize[1];
+          }
+          return 0;
+        }
+        case 21524: {
+          // TODO: technically, this ioctl call should change the window size.
+          // but, since emscripten doesn't have any concept of a terminal window
+          // yet, we'll just silently throw it away as we do TIOCGWINSZ
+          if (!stream.tty) return -59;
+          return 0;
+        }
+        case 21515: {
+          if (!stream.tty) return -59;
+          return 0;
+        }
+        default: return -28; // not supported
+      }
+    } catch (e) {
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
+    return -e.errno;
+  }
+  }
+
+  
+  function ___syscall_openat(dirfd, path, flags, varargs) {
+  SYSCALLS.varargs = varargs;
+  try {
+  
+      path = SYSCALLS.getStr(path);
+      path = SYSCALLS.calculateAt(dirfd, path);
+      var mode = varargs ? syscallGetVarargI() : 0;
+      return FS.open(path, flags, mode).fd;
+    } catch (e) {
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
+    return -e.errno;
+  }
+  }
+
+  var __abort_js = () =>
+      abort('native code called abort()');
+
+  /** @type {function(...*):?} */
+  function _ape_destroy(
+  ) {
+  abort('missing function: ape_destroy');
+  }
+  _ape_destroy.stub = true;
+
+  /** @type {function(...*):?} */
+  function _ape_face_dir(
+  ) {
+  abort('missing function: ape_face_dir');
+  }
+  _ape_face_dir.stub = true;
+
+  /** @type {function(...*):?} */
+  function _ape_skel_anim_main(
+  ) {
+  abort('missing function: ape_skel_anim_main');
+  }
+  _ape_skel_anim_main.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_bonus_interact(
+  ) {
+  abort('missing function: bg_bonus_interact');
+  }
+  _bg_bonus_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_end_interact(
+  ) {
+  abort('missing function: bg_end_interact');
+  }
+  _bg_end_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_jungle_interact(
+  ) {
+  abort('missing function: bg_jungle_interact');
+  }
+  _bg_jungle_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_master_interact(
+  ) {
+  abort('missing function: bg_master_interact');
+  }
+  _bg_master_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_old_bluesky_interact(
+  ) {
+  abort('missing function: bg_old_bluesky_interact');
+  }
+  _bg_old_bluesky_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_old_bonus_interact(
+  ) {
+  abort('missing function: bg_old_bonus_interact');
+  }
+  _bg_old_bonus_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_old_cave_interact(
+  ) {
+  abort('missing function: bg_old_cave_interact');
+  }
+  _bg_old_cave_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_old_extramaster_interact(
+  ) {
+  abort('missing function: bg_old_extramaster_interact');
+  }
+  _bg_old_extramaster_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_old_ice_interact(
+  ) {
+  abort('missing function: bg_old_ice_interact');
+  }
+  _bg_old_ice_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_old_night_interact(
+  ) {
+  abort('missing function: bg_old_night_interact');
+  }
+  _bg_old_night_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_old_sand_interact(
+  ) {
+  abort('missing function: bg_old_sand_interact');
+  }
+  _bg_old_sand_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_old_space_interact(
+  ) {
+  abort('missing function: bg_old_space_interact');
+  }
+  _bg_old_space_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_old_storm_interact(
+  ) {
+  abort('missing function: bg_old_storm_interact');
+  }
+  _bg_old_storm_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_old_sunset_interact(
+  ) {
+  abort('missing function: bg_old_sunset_interact');
+  }
+  _bg_old_sunset_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_old_water_interact(
+  ) {
+  abort('missing function: bg_old_water_interact');
+  }
+  _bg_old_water_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_pilot_interact(
+  ) {
+  abort('missing function: bg_pilot_interact');
+  }
+  _bg_pilot_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_sand_interact(
+  ) {
+  abort('missing function: bg_sand_interact');
+  }
+  _bg_sand_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_space_interact(
+  ) {
+  abort('missing function: bg_space_interact');
+  }
+  _bg_space_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_storm_interact(
+  ) {
+  abort('missing function: bg_storm_interact');
+  }
+  _bg_storm_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_sunset_interact(
+  ) {
+  abort('missing function: bg_sunset_interact');
+  }
+  _bg_sunset_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _bg_water_interact(
+  ) {
+  abort('missing function: bg_water_interact');
+  }
+  _bg_water_interact.stub = true;
+
+  /** @type {function(...*):?} */
+  function _calc_spline(
+  ) {
+  abort('missing function: calc_spline');
+  }
+  _calc_spline.stub = true;
+
+  /** @type {function(...*):?} */
+  function _clip_init_detail(
+  ) {
+  abort('missing function: clip_init_detail');
+  }
+  _clip_init_detail.stub = true;
+
+  /** @type {function(...*):?} */
+  function _collide_ball_with_jamabar(
+  ) {
+  abort('missing function: collide_ball_with_jamabar');
+  }
+  _collide_ball_with_jamabar.stub = true;
+
+  /** @type {function(...*):?} */
+  function _collide_ball_with_stage(
+  ) {
+  abort('missing function: collide_ball_with_stage');
+  }
+  _collide_ball_with_stage.stub = true;
+
+  /** @type {function(...*):?} */
+  function _effect_bird_kite_init(
+  ) {
+  abort('missing function: effect_bird_kite_init');
+  }
+  _effect_bird_kite_init.stub = true;
+
+  /** @type {function(...*):?} */
+  function _effect_ending_ballfrag_init(
+  ) {
+  abort('missing function: effect_ending_ballfrag_init');
+  }
+  _effect_ending_ballfrag_init.stub = true;
+
+  /** @type {function(...*):?} */
+  function _effect_get_nameent_code_init(
+  ) {
+  abort('missing function: effect_get_nameent_code_init');
+  }
+  _effect_get_nameent_code_init.stub = true;
+
+  /** @type {function(...*):?} */
+  function _effect_icewater_particle_init(
+  ) {
+  abort('missing function: effect_icewater_particle_init');
+  }
+  _effect_icewater_particle_init.stub = true;
+
+  /** @type {function(...*):?} */
+  function _effect_icewater_reflect_init(
+  ) {
+  abort('missing function: effect_icewater_reflect_init');
+  }
+  _effect_icewater_reflect_init.stub = true;
+
+  /** @type {function(...*):?} */
+  function _effect_nameent_code_init(
+  ) {
+  abort('missing function: effect_nameent_code_init');
+  }
+  _effect_nameent_code_init.stub = true;
+
+  var abortOnCannotGrowMemory = (requestedSize) => {
+      abort(`Cannot enlarge memory arrays to size ${requestedSize} bytes (OOM). Either (1) compile with -sINITIAL_MEMORY=X with X higher than the current value ${HEAP8.length}, (2) compile with -sALLOW_MEMORY_GROWTH which allows increasing the size at runtime, or (3) if you want malloc to return NULL (0) instead of this abort, compile with -sABORTING_MALLOC=0`);
+    };
+  var _emscripten_resize_heap = (requestedSize) => {
+      var oldSize = HEAPU8.length;
+      // With CAN_ADDRESS_2GB or MEMORY64, pointers are already unsigned.
+      requestedSize >>>= 0;
+      abortOnCannotGrowMemory(requestedSize);
+    };
+
+  function _fd_close(fd) {
+  try {
+  
+      var stream = SYSCALLS.getStreamFromFD(fd);
+      FS.close(stream);
+      return 0;
+    } catch (e) {
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
+    return e.errno;
+  }
+  }
+
+  /** @param {number=} offset */
+  var doReadv = (stream, iov, iovcnt, offset) => {
+      var ret = 0;
+      for (var i = 0; i < iovcnt; i++) {
+        var ptr = HEAPU32[((iov)>>2)];
+        var len = HEAPU32[(((iov)+(4))>>2)];
+        iov += 8;
+        var curr = FS.read(stream, HEAP8, ptr, len, offset);
+        if (curr < 0) return -1;
+        ret += curr;
+        if (curr < len) break; // nothing more to read
+        if (typeof offset != 'undefined') {
+          offset += curr;
+        }
+      }
+      return ret;
+    };
+  
+  function _fd_read(fd, iov, iovcnt, pnum) {
+  try {
+  
+      var stream = SYSCALLS.getStreamFromFD(fd);
+      var num = doReadv(stream, iov, iovcnt);
+      HEAPU32[((pnum)>>2)] = num;
+      return 0;
+    } catch (e) {
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
+    return e.errno;
+  }
+  }
+
+  
+  var INT53_MAX = 9007199254740992;
+  
+  var INT53_MIN = -9007199254740992;
+  var bigintToI53Checked = (num) => (num < INT53_MIN || num > INT53_MAX) ? NaN : Number(num);
+  function _fd_seek(fd, offset, whence, newOffset) {
+    offset = bigintToI53Checked(offset);
+  
+  
+  try {
+  
+      if (isNaN(offset)) return 61;
+      var stream = SYSCALLS.getStreamFromFD(fd);
+      FS.llseek(stream, offset, whence);
+      HEAP64[((newOffset)>>3)] = BigInt(stream.position);
+      if (stream.getdents && offset === 0 && whence === 0) stream.getdents = null; // reset readdir state
+      return 0;
+    } catch (e) {
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
+    return e.errno;
+  }
+  ;
+  }
+
+  /** @param {number=} offset */
+  var doWritev = (stream, iov, iovcnt, offset) => {
+      var ret = 0;
+      for (var i = 0; i < iovcnt; i++) {
+        var ptr = HEAPU32[((iov)>>2)];
+        var len = HEAPU32[(((iov)+(4))>>2)];
+        iov += 8;
+        var curr = FS.write(stream, HEAP8, ptr, len, offset);
+        if (curr < 0) return -1;
+        ret += curr;
+        if (curr < len) {
+          // No more space to write.
+          break;
+        }
+        if (typeof offset != 'undefined') {
+          offset += curr;
+        }
+      }
+      return ret;
+    };
+  
+  function _fd_write(fd, iov, iovcnt, pnum) {
+  try {
+  
+      var stream = SYSCALLS.getStreamFromFD(fd);
+      var num = doWritev(stream, iov, iovcnt);
+      HEAPU32[((pnum)>>2)] = num;
+      return 0;
+    } catch (e) {
+    if (typeof FS == 'undefined' || !(e.name === 'ErrnoError')) throw e;
+    return e.errno;
+  }
+  }
+
+  /** @type {function(...*):?} */
+  function _func_800673BC(
+  ) {
+  abort('missing function: func_800673BC');
+  }
+  _func_800673BC.stub = true;
+
+  /** @type {function(...*):?} */
+  function _func_8009D5D8(
+  ) {
+  abort('missing function: func_8009D5D8');
+  }
+  _func_8009D5D8.stub = true;
+
+  /** @type {function(...*):?} */
+  function _func_8009D7CC(
+  ) {
+  abort('missing function: func_8009D7CC');
+  }
+  _func_8009D7CC.stub = true;
+
+  /** @type {function(...*):?} */
+  function _func_8009D7E8(
+  ) {
+  abort('missing function: func_8009D7E8');
+  }
+  _func_8009D7E8.stub = true;
+
+  /** @type {function(...*):?} */
+  function _func_8009D7FC(
+  ) {
+  abort('missing function: func_8009D7FC');
+  }
+  _func_8009D7FC.stub = true;
+
+  /** @type {function(...*):?} */
+  function _func_8009D98C(
+  ) {
+  abort('missing function: func_8009D98C');
+  }
+  _func_8009D98C.stub = true;
+
+  /** @type {function(...*):?} */
+  function _func_8009DB6C(
+  ) {
+  abort('missing function: func_8009DB6C');
+  }
+  _func_8009DB6C.stub = true;
+
+  /** @type {function(...*):?} */
+  function _hud_show_1up_banner(
+  ) {
+  abort('missing function: hud_show_1up_banner');
+  }
+  _hud_show_1up_banner.stub = true;
+
+  /** @type {function(...*):?} */
+  function _hud_show_goal_score_info(
+  ) {
+  abort('missing function: hud_show_goal_score_info');
+  }
+  _hud_show_goal_score_info.stub = true;
+
+  /** @type {function(...*):?} */
+  function _interpolate_keyframes(
+  ) {
+  abort('missing function: interpolate_keyframes');
+  }
+  _interpolate_keyframes.stub = true;
+
+  /** @type {function(...*):?} */
+  function _is_bonus_stage(
+  ) {
+  abort('missing function: is_bonus_stage');
+  }
+  _is_bonus_stage.stub = true;
+
+  /** @type {function(...*):?} */
+  function _item_pilot_collect(
+  ) {
+  abort('missing function: item_pilot_collect');
+  }
+  _item_pilot_collect.stub = true;
+
+  /** @type {function(...*):?} */
+  function _item_pilot_destroy(
+  ) {
+  abort('missing function: item_pilot_destroy');
+  }
+  _item_pilot_destroy.stub = true;
+
+  /** @type {function(...*):?} */
+  function _item_pilot_init(
+  ) {
+  abort('missing function: item_pilot_init');
+  }
+  _item_pilot_init.stub = true;
+
+  /** @type {function(...*):?} */
+  function _item_pilot_main(
+  ) {
+  abort('missing function: item_pilot_main');
+  }
+  _item_pilot_main.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_atan2(
+  ) {
+  abort('missing function: mathutil_atan2');
+  }
+  _mathutil_atan2.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_from_identity(
+  ) {
+  abort('missing function: mathutil_mtxA_from_identity');
+  }
+  _mathutil_mtxA_from_identity.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_from_mtx(
+  ) {
+  abort('missing function: mathutil_mtxA_from_mtx');
+  }
+  _mathutil_mtxA_from_mtx.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_from_quat(
+  ) {
+  abort('missing function: mathutil_mtxA_from_quat');
+  }
+  _mathutil_mtxA_from_quat.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_from_rotate_y(
+  ) {
+  abort('missing function: mathutil_mtxA_from_rotate_y');
+  }
+  _mathutil_mtxA_from_rotate_y.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_from_translate(
+  ) {
+  abort('missing function: mathutil_mtxA_from_translate');
+  }
+  _mathutil_mtxA_from_translate.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_mult_left(
+  ) {
+  abort('missing function: mathutil_mtxA_mult_left');
+  }
+  _mathutil_mtxA_mult_left.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_mult_right(
+  ) {
+  abort('missing function: mathutil_mtxA_mult_right');
+  }
+  _mathutil_mtxA_mult_right.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_normalize_basis(
+  ) {
+  abort('missing function: mathutil_mtxA_normalize_basis');
+  }
+  _mathutil_mtxA_normalize_basis.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_pop(
+  ) {
+  abort('missing function: mathutil_mtxA_pop');
+  }
+  _mathutil_mtxA_pop.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_push(
+  ) {
+  abort('missing function: mathutil_mtxA_push');
+  }
+  _mathutil_mtxA_push.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_rigid_inv_tf_point(
+  ) {
+  abort('missing function: mathutil_mtxA_rigid_inv_tf_point');
+  }
+  _mathutil_mtxA_rigid_inv_tf_point.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_rigid_inv_tf_tl(
+  ) {
+  abort('missing function: mathutil_mtxA_rigid_inv_tf_tl');
+  }
+  _mathutil_mtxA_rigid_inv_tf_tl.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_rigid_inv_tf_vec(
+  ) {
+  abort('missing function: mathutil_mtxA_rigid_inv_tf_vec');
+  }
+  _mathutil_mtxA_rigid_inv_tf_vec.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_rotate_x(
+  ) {
+  abort('missing function: mathutil_mtxA_rotate_x');
+  }
+  _mathutil_mtxA_rotate_x.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_rotate_y(
+  ) {
+  abort('missing function: mathutil_mtxA_rotate_y');
+  }
+  _mathutil_mtxA_rotate_y.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_rotate_z(
+  ) {
+  abort('missing function: mathutil_mtxA_rotate_z');
+  }
+  _mathutil_mtxA_rotate_z.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_sq_from_identity(
+  ) {
+  abort('missing function: mathutil_mtxA_sq_from_identity');
+  }
+  _mathutil_mtxA_sq_from_identity.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_tf_point(
+  ) {
+  abort('missing function: mathutil_mtxA_tf_point');
+  }
+  _mathutil_mtxA_tf_point.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_tf_point_xyz(
+  ) {
+  abort('missing function: mathutil_mtxA_tf_point_xyz');
+  }
+  _mathutil_mtxA_tf_point_xyz.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_tf_vec(
+  ) {
+  abort('missing function: mathutil_mtxA_tf_vec');
+  }
+  _mathutil_mtxA_tf_vec.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_tf_vec_xyz(
+  ) {
+  abort('missing function: mathutil_mtxA_tf_vec_xyz');
+  }
+  _mathutil_mtxA_tf_vec_xyz.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_to_euler_yxz(
+  ) {
+  abort('missing function: mathutil_mtxA_to_euler_yxz');
+  }
+  _mathutil_mtxA_to_euler_yxz.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_to_mtx(
+  ) {
+  abort('missing function: mathutil_mtxA_to_mtx');
+  }
+  _mathutil_mtxA_to_mtx.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_to_quat(
+  ) {
+  abort('missing function: mathutil_mtxA_to_quat');
+  }
+  _mathutil_mtxA_to_quat.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_translate(
+  ) {
+  abort('missing function: mathutil_mtxA_translate');
+  }
+  _mathutil_mtxA_translate.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_translate_neg(
+  ) {
+  abort('missing function: mathutil_mtxA_translate_neg');
+  }
+  _mathutil_mtxA_translate_neg.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtxA_translate_xyz(
+  ) {
+  abort('missing function: mathutil_mtxA_translate_xyz');
+  }
+  _mathutil_mtxA_translate_xyz.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_mtx_copy(
+  ) {
+  abort('missing function: mathutil_mtx_copy');
+  }
+  _mathutil_mtx_copy.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_quat_from_axis_angle(
+  ) {
+  abort('missing function: mathutil_quat_from_axis_angle');
+  }
+  _mathutil_quat_from_axis_angle.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_quat_from_dirs(
+  ) {
+  abort('missing function: mathutil_quat_from_dirs');
+  }
+  _mathutil_quat_from_dirs.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_quat_normalize(
+  ) {
+  abort('missing function: mathutil_quat_normalize');
+  }
+  _mathutil_quat_normalize.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_rsqrt(
+  ) {
+  abort('missing function: mathutil_rsqrt');
+  }
+  _mathutil_rsqrt.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_sin(
+  ) {
+  abort('missing function: mathutil_sin');
+  }
+  _mathutil_sin.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_sqrt(
+  ) {
+  abort('missing function: mathutil_sqrt');
+  }
+  _mathutil_sqrt.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_vec_dot_normalized(
+  ) {
+  abort('missing function: mathutil_vec_dot_normalized');
+  }
+  _mathutil_vec_dot_normalized.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_vec_dot_normalized_safe(
+  ) {
+  abort('missing function: mathutil_vec_dot_normalized_safe');
+  }
+  _mathutil_vec_dot_normalized_safe.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_vec_normalize_len(
+  ) {
+  abort('missing function: mathutil_vec_normalize_len');
+  }
+  _mathutil_vec_normalize_len.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mathutil_vec_set_len(
+  ) {
+  abort('missing function: mathutil_vec_set_len');
+  }
+  _mathutil_vec_set_len.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mot_ape_8008BFDC(
+  ) {
+  abort('missing function: mot_ape_8008BFDC');
+  }
+  _mot_ape_8008BFDC.stub = true;
+
+  /** @type {function(...*):?} */
+  function _mot_ape_set_quat_from_vec(
+  ) {
+  abort('missing function: mot_ape_set_quat_from_vec');
+  }
+  _mot_ape_set_quat_from_vec.stub = true;
+
+  /** @type {function(...*):?} */
+  function _new_ape_stat_motion(
+  ) {
+  abort('missing function: new_ape_stat_motion');
+  }
+  _new_ape_stat_motion.stub = true;
+
+  /** @type {function(...*):?} */
+  function _preview_create_with_allocated_tex(
+  ) {
+  abort('missing function: preview_create_with_allocated_tex');
+  }
+  _preview_create_with_allocated_tex.stub = true;
+
+  /** @type {function(...*):?} */
+  function _preview_free(
+  ) {
+  abort('missing function: preview_free');
+  }
+  _preview_free.stub = true;
+
+  /** @type {function(...*):?} */
+  function _preview_sync(
+  ) {
+  abort('missing function: preview_sync');
+  }
+  _preview_sync.stub = true;
+
+  /** @type {function(...*):?} */
+  function _raycast_stage_down(
+  ) {
+  abort('missing function: raycast_stage_down');
+  }
+  _raycast_stage_down.stub = true;
+
+  /** @type {function(...*):?} */
+  function _set_ape_model_lod(
+  ) {
+  abort('missing function: set_ape_model_lod');
+  }
+  _set_ape_model_lod.stub = true;
+
+  /** @type {function(...*):?} */
+  function _sndFXCtrl(
+  ) {
+  abort('missing function: sndFXCtrl');
+  }
+  _sndFXCtrl.stub = true;
+
+  /** @type {function(...*):?} */
+  function _sndFXCtrl14(
+  ) {
+  abort('missing function: sndFXCtrl14');
+  }
+  _sndFXCtrl14.stub = true;
+
+  /** @type {function(...*):?} */
+  function _sndFXKeyOff(
+  ) {
+  abort('missing function: sndFXKeyOff');
+  }
+  _sndFXKeyOff.stub = true;
+
+  /** @type {function(...*):?} */
+  function _sndFXStartParaInfo(
+  ) {
+  abort('missing function: sndFXStartParaInfo');
+  }
+  _sndFXStartParaInfo.stub = true;
+
+  /** @type {function(...*):?} */
+  function _stobj_nameent_btn_coli(
+  ) {
+  abort('missing function: stobj_nameent_btn_coli');
+  }
+  _stobj_nameent_btn_coli.stub = true;
+
+  /** @type {function(...*):?} */
+  function _stobj_nameent_btn_destroy(
+  ) {
+  abort('missing function: stobj_nameent_btn_destroy');
+  }
+  _stobj_nameent_btn_destroy.stub = true;
+
+  /** @type {function(...*):?} */
+  function _stobj_nameent_btn_init(
+  ) {
+  abort('missing function: stobj_nameent_btn_init');
+  }
+  _stobj_nameent_btn_init.stub = true;
+
+  /** @type {function(...*):?} */
+  function _stobj_nameent_btn_main(
+  ) {
+  abort('missing function: stobj_nameent_btn_main');
+  }
+  _stobj_nameent_btn_main.stub = true;
+
+  /** @type {function(...*):?} */
+  function _thread_create(
+  ) {
+  abort('missing function: thread_create');
+  }
+  _thread_create.stub = true;
+
+  /** @type {function(...*):?} */
+  function _vibration_control(
+  ) {
+  abort('missing function: vibration_control');
+  }
+  _vibration_control.stub = true;
+
+  var getCFunc = (ident) => {
+      var func = Module['_' + ident]; // closure exported function
+      assert(func, 'Cannot call unknown function ' + ident + ', make sure it is exported');
+      return func;
+    };
+  
+  var writeArrayToMemory = (array, buffer) => {
+      assert(array.length >= 0, 'writeArrayToMemory array must have a length (should be an array or typed array)')
+      HEAP8.set(array, buffer);
+    };
+  
+  
+  var stringToUTF8 = (str, outPtr, maxBytesToWrite) => {
+      assert(typeof maxBytesToWrite == 'number', 'stringToUTF8(str, outPtr, maxBytesToWrite) is missing the third parameter that specifies the length of the output buffer!');
+      return stringToUTF8Array(str, HEAPU8, outPtr, maxBytesToWrite);
+    };
+  
+  var stackAlloc = (sz) => __emscripten_stack_alloc(sz);
+  var stringToUTF8OnStack = (str) => {
+      var size = lengthBytesUTF8(str) + 1;
+      var ret = stackAlloc(size);
+      stringToUTF8(str, ret, size);
+      return ret;
+    };
+  
+  
+  
+  
+  
+    /**
+     * @param {string|null=} returnType
+     * @param {Array=} argTypes
+     * @param {Arguments|Array=} args
+     * @param {Object=} opts
+     */
+  var ccall = (ident, returnType, argTypes, args, opts) => {
+      // For fast lookup of conversion functions
+      var toC = {
+        'string': (str) => {
+          var ret = 0;
+          if (str !== null && str !== undefined && str !== 0) { // null string
+            ret = stringToUTF8OnStack(str);
+          }
+          return ret;
+        },
+        'array': (arr) => {
+          var ret = stackAlloc(arr.length);
+          writeArrayToMemory(arr, ret);
+          return ret;
+        }
+      };
+  
+      function convertReturnValue(ret) {
+        if (returnType === 'string') {
+          return UTF8ToString(ret);
+        }
+        if (returnType === 'boolean') return Boolean(ret);
+        return ret;
+      }
+  
+      var func = getCFunc(ident);
+      var cArgs = [];
+      var stack = 0;
+      assert(returnType !== 'array', 'Return type should not be "array".');
+      if (args) {
+        for (var i = 0; i < args.length; i++) {
+          var converter = toC[argTypes[i]];
+          if (converter) {
+            if (stack === 0) stack = stackSave();
+            cArgs[i] = converter(args[i]);
+          } else {
+            cArgs[i] = args[i];
+          }
+        }
+      }
+      var ret = func(...cArgs);
+      function onDone(ret) {
+        if (stack !== 0) stackRestore(stack);
+        return convertReturnValue(ret);
+      }
+  
+      ret = onDone(ret);
+      return ret;
+    };
+  
+    /**
+     * @param {string=} returnType
+     * @param {Array=} argTypes
+     * @param {Object=} opts
+     */
+  var cwrap = (ident, returnType, argTypes, opts) => {
+      return (...args) => ccall(ident, returnType, argTypes, args, opts);
+    };
+
+
+
+  FS.createPreloadedFile = FS_createPreloadedFile;
+  FS.staticInit();;
 // End JS library code
 
 // include: postlibrary.js
@@ -890,13 +4765,10 @@ async function createWasm() {
 
   // Begin ATMODULES hooks
   if (Module['noExitRuntime']) noExitRuntime = Module['noExitRuntime'];
+if (Module['preloadPlugins']) preloadPlugins = Module['preloadPlugins'];
 if (Module['print']) out = Module['print'];
 if (Module['printErr']) err = Module['printErr'];
 if (Module['wasmBinary']) wasmBinary = Module['wasmBinary'];
-
-Module['FS_createDataFile'] = FS.createDataFile;
-Module['FS_createPreloadedFile'] = FS.createPreloadedFile;
-
   // End ATMODULES hooks
 
   checkIncomingModuleAPI();
@@ -923,21 +4795,423 @@ Module['FS_createPreloadedFile'] = FS.createPreloadedFile;
 }
 
 // Begin runtime exports
+  Module['cwrap'] = cwrap;
+  Module['getValue'] = getValue;
+  Module['FS_createDataFile'] = FS_createDataFile;
+  var missingLibrarySymbols = [
+  'writeI53ToI64',
+  'writeI53ToI64Clamped',
+  'writeI53ToI64Signaling',
+  'writeI53ToU64Clamped',
+  'writeI53ToU64Signaling',
+  'readI53FromI64',
+  'readI53FromU64',
+  'convertI32PairToI53',
+  'convertI32PairToI53Checked',
+  'convertU32PairToI53',
+  'getTempRet0',
+  'setTempRet0',
+  'zeroMemory',
+  'exitJS',
+  'getHeapMax',
+  'growMemory',
+  'withStackSave',
+  'inetPton4',
+  'inetNtop4',
+  'inetPton6',
+  'inetNtop6',
+  'readSockaddr',
+  'writeSockaddr',
+  'emscriptenLog',
+  'readEmAsmArgs',
+  'jstoi_q',
+  'getExecutableName',
+  'autoResumeAudioContext',
+  'getDynCaller',
+  'dynCall',
+  'handleException',
+  'keepRuntimeAlive',
+  'runtimeKeepalivePush',
+  'runtimeKeepalivePop',
+  'callUserCallback',
+  'maybeExit',
+  'asmjsMangle',
+  'alignMemory',
+  'HandleAllocator',
+  'getNativeTypeSize',
+  'addOnInit',
+  'addOnPostCtor',
+  'addOnPreMain',
+  'addOnExit',
+  'STACK_SIZE',
+  'STACK_ALIGN',
+  'POINTER_SIZE',
+  'ASSERTIONS',
+  'uleb128Encode',
+  'sigToWasmTypes',
+  'generateFuncType',
+  'convertJsFunctionToWasm',
+  'getEmptyTableSlot',
+  'updateTableMap',
+  'getFunctionAddress',
+  'addFunction',
+  'removeFunction',
+  'reallyNegative',
+  'unSign',
+  'strLen',
+  'reSign',
+  'formatString',
+  'intArrayToString',
+  'AsciiToString',
+  'stringToAscii',
+  'UTF16ToString',
+  'stringToUTF16',
+  'lengthBytesUTF16',
+  'UTF32ToString',
+  'stringToUTF32',
+  'lengthBytesUTF32',
+  'stringToNewUTF8',
+  'registerKeyEventCallback',
+  'maybeCStringToJsString',
+  'findEventTarget',
+  'getBoundingClientRect',
+  'fillMouseEventData',
+  'registerMouseEventCallback',
+  'registerWheelEventCallback',
+  'registerUiEventCallback',
+  'registerFocusEventCallback',
+  'fillDeviceOrientationEventData',
+  'registerDeviceOrientationEventCallback',
+  'fillDeviceMotionEventData',
+  'registerDeviceMotionEventCallback',
+  'screenOrientation',
+  'fillOrientationChangeEventData',
+  'registerOrientationChangeEventCallback',
+  'fillFullscreenChangeEventData',
+  'registerFullscreenChangeEventCallback',
+  'JSEvents_requestFullscreen',
+  'JSEvents_resizeCanvasForFullscreen',
+  'registerRestoreOldStyle',
+  'hideEverythingExceptGivenElement',
+  'restoreHiddenElements',
+  'setLetterbox',
+  'softFullscreenResizeWebGLRenderTarget',
+  'doRequestFullscreen',
+  'fillPointerlockChangeEventData',
+  'registerPointerlockChangeEventCallback',
+  'registerPointerlockErrorEventCallback',
+  'requestPointerLock',
+  'fillVisibilityChangeEventData',
+  'registerVisibilityChangeEventCallback',
+  'registerTouchEventCallback',
+  'fillGamepadEventData',
+  'registerGamepadEventCallback',
+  'registerBeforeUnloadEventCallback',
+  'fillBatteryEventData',
+  'battery',
+  'registerBatteryEventCallback',
+  'setCanvasElementSize',
+  'getCanvasElementSize',
+  'jsStackTrace',
+  'getCallstack',
+  'convertPCtoSourceLocation',
+  'getEnvStrings',
+  'checkWasiClock',
+  'wasiRightsToMuslOFlags',
+  'wasiOFlagsToMuslOFlags',
+  'safeSetTimeout',
+  'setImmediateWrapped',
+  'safeRequestAnimationFrame',
+  'clearImmediateWrapped',
+  'registerPostMainLoop',
+  'registerPreMainLoop',
+  'getPromise',
+  'makePromise',
+  'idsToPromises',
+  'makePromiseCallback',
+  'ExceptionInfo',
+  'findMatchingCatch',
+  'Browser_asyncPrepareDataCounter',
+  'isLeapYear',
+  'ydayFromDate',
+  'arraySum',
+  'addDays',
+  'getSocketFromFD',
+  'getSocketAddress',
+  'FS_mkdirTree',
+  '_setNetworkCallback',
+  'heapObjectForWebGLType',
+  'toTypedArrayIndex',
+  'webgl_enable_ANGLE_instanced_arrays',
+  'webgl_enable_OES_vertex_array_object',
+  'webgl_enable_WEBGL_draw_buffers',
+  'webgl_enable_WEBGL_multi_draw',
+  'webgl_enable_EXT_polygon_offset_clamp',
+  'webgl_enable_EXT_clip_control',
+  'webgl_enable_WEBGL_polygon_mode',
+  'emscriptenWebGLGet',
+  'computeUnpackAlignedImageSize',
+  'colorChannelsInGlTextureFormat',
+  'emscriptenWebGLGetTexPixelData',
+  'emscriptenWebGLGetUniform',
+  'webglGetUniformLocation',
+  'webglPrepareUniformLocationsBeforeFirstUse',
+  'webglGetLeftBracePos',
+  'emscriptenWebGLGetVertexAttrib',
+  '__glGetActiveAttribOrUniform',
+  'writeGLArray',
+  'registerWebGlEventCallback',
+  'runAndAbortIfError',
+  'ALLOC_NORMAL',
+  'ALLOC_STACK',
+  'allocate',
+  'writeStringToMemory',
+  'writeAsciiToMemory',
+  'demangle',
+  'stackTrace',
+];
+missingLibrarySymbols.forEach(missingLibrarySymbol)
+
+  var unexportedSymbols = [
+  'run',
+  'addRunDependency',
+  'removeRunDependency',
+  'out',
+  'err',
+  'callMain',
+  'abort',
+  'wasmMemory',
+  'wasmExports',
+  'HEAPF32',
+  'HEAPF64',
+  'HEAP8',
+  'HEAPU8',
+  'HEAP16',
+  'HEAPU16',
+  'HEAP32',
+  'HEAPU32',
+  'HEAP64',
+  'HEAPU64',
+  'writeStackCookie',
+  'checkStackCookie',
+  'INT53_MAX',
+  'INT53_MIN',
+  'bigintToI53Checked',
+  'stackSave',
+  'stackRestore',
+  'stackAlloc',
+  'ptrToString',
+  'abortOnCannotGrowMemory',
+  'ENV',
+  'ERRNO_CODES',
+  'strError',
+  'DNS',
+  'Protocols',
+  'Sockets',
+  'timers',
+  'warnOnce',
+  'readEmAsmArgsArray',
+  'asyncLoad',
+  'mmapAlloc',
+  'wasmTable',
+  'getUniqueRunDependency',
+  'noExitRuntime',
+  'addOnPreRun',
+  'addOnPostRun',
+  'ccall',
+  'freeTableIndexes',
+  'functionsInTableMap',
+  'setValue',
+  'PATH',
+  'PATH_FS',
+  'UTF8Decoder',
+  'UTF8ArrayToString',
+  'UTF8ToString',
+  'stringToUTF8Array',
+  'stringToUTF8',
+  'lengthBytesUTF8',
+  'intArrayFromString',
+  'UTF16Decoder',
+  'stringToUTF8OnStack',
+  'writeArrayToMemory',
+  'JSEvents',
+  'specialHTMLTargets',
+  'findCanvasEventTarget',
+  'currentFullscreenStrategy',
+  'restoreOldWindowedStyle',
+  'UNWIND_CACHE',
+  'ExitStatus',
+  'doReadv',
+  'doWritev',
+  'initRandomFill',
+  'randomFill',
+  'emSetImmediate',
+  'emClearImmediate_deps',
+  'emClearImmediate',
+  'promiseMap',
+  'uncaughtExceptionCount',
+  'exceptionLast',
+  'exceptionCaught',
+  'Browser',
+  'requestFullscreen',
+  'requestFullScreen',
+  'setCanvasSize',
+  'getUserMedia',
+  'createContext',
+  'getPreloadedImageData__data',
+  'wget',
+  'MONTH_DAYS_REGULAR',
+  'MONTH_DAYS_LEAP',
+  'MONTH_DAYS_REGULAR_CUMULATIVE',
+  'MONTH_DAYS_LEAP_CUMULATIVE',
+  'SYSCALLS',
+  'preloadPlugins',
+  'FS_createPreloadedFile',
+  'FS_modeStringToFlags',
+  'FS_getMode',
+  'FS_stdin_getChar_buffer',
+  'FS_stdin_getChar',
+  'FS_unlink',
+  'FS_createPath',
+  'FS_createDevice',
+  'FS_readFile',
+  'FS',
+  'FS_root',
+  'FS_mounts',
+  'FS_devices',
+  'FS_streams',
+  'FS_nextInode',
+  'FS_nameTable',
+  'FS_currentPath',
+  'FS_initialized',
+  'FS_ignorePermissions',
+  'FS_filesystems',
+  'FS_syncFSRequests',
+  'FS_readFiles',
+  'FS_lookupPath',
+  'FS_getPath',
+  'FS_hashName',
+  'FS_hashAddNode',
+  'FS_hashRemoveNode',
+  'FS_lookupNode',
+  'FS_createNode',
+  'FS_destroyNode',
+  'FS_isRoot',
+  'FS_isMountpoint',
+  'FS_isFile',
+  'FS_isDir',
+  'FS_isLink',
+  'FS_isChrdev',
+  'FS_isBlkdev',
+  'FS_isFIFO',
+  'FS_isSocket',
+  'FS_flagsToPermissionString',
+  'FS_nodePermissions',
+  'FS_mayLookup',
+  'FS_mayCreate',
+  'FS_mayDelete',
+  'FS_mayOpen',
+  'FS_checkOpExists',
+  'FS_nextfd',
+  'FS_getStreamChecked',
+  'FS_getStream',
+  'FS_createStream',
+  'FS_closeStream',
+  'FS_dupStream',
+  'FS_doSetAttr',
+  'FS_chrdev_stream_ops',
+  'FS_major',
+  'FS_minor',
+  'FS_makedev',
+  'FS_registerDevice',
+  'FS_getDevice',
+  'FS_getMounts',
+  'FS_syncfs',
+  'FS_mount',
+  'FS_unmount',
+  'FS_lookup',
+  'FS_mknod',
+  'FS_statfs',
+  'FS_statfsStream',
+  'FS_statfsNode',
+  'FS_create',
+  'FS_mkdir',
+  'FS_mkdev',
+  'FS_symlink',
+  'FS_rename',
+  'FS_rmdir',
+  'FS_readdir',
+  'FS_readlink',
+  'FS_stat',
+  'FS_fstat',
+  'FS_lstat',
+  'FS_doChmod',
+  'FS_chmod',
+  'FS_lchmod',
+  'FS_fchmod',
+  'FS_doChown',
+  'FS_chown',
+  'FS_lchown',
+  'FS_fchown',
+  'FS_doTruncate',
+  'FS_truncate',
+  'FS_ftruncate',
+  'FS_utime',
+  'FS_open',
+  'FS_close',
+  'FS_isClosed',
+  'FS_llseek',
+  'FS_read',
+  'FS_write',
+  'FS_mmap',
+  'FS_msync',
+  'FS_ioctl',
+  'FS_writeFile',
+  'FS_cwd',
+  'FS_chdir',
+  'FS_createDefaultDirectories',
+  'FS_createDefaultDevices',
+  'FS_createSpecialDirectories',
+  'FS_createStandardStreams',
+  'FS_staticInit',
+  'FS_init',
+  'FS_quit',
+  'FS_findObject',
+  'FS_analyzePath',
+  'FS_createFile',
+  'FS_forceLoadFile',
+  'FS_createLazyFile',
+  'FS_absolutePath',
+  'FS_createFolder',
+  'FS_createLink',
+  'FS_joinPath',
+  'FS_mmapAlloc',
+  'FS_standardizePath',
+  'MEMFS',
+  'TTY',
+  'PIPEFS',
+  'SOCKFS',
+  'tempFixedLengthArray',
+  'miniTempWebGLFloatBuffers',
+  'miniTempWebGLIntBuffers',
+  'GL',
+  'AL',
+  'GLUT',
+  'EGL',
+  'GLEW',
+  'IDBStore',
+  'SDL',
+  'SDL_gfx',
+  'allocateUTF8',
+  'allocateUTF8OnStack',
+  'print',
+  'printErr',
+  'jstoi_s',
+];
+unexportedSymbols.forEach(unexportedRuntimeSymbol);
+
   // End runtime exports
   // Begin JS library exports
-  Module['ExitStatus'] = ExitStatus;
-  Module['addOnPostRun'] = addOnPostRun;
-  Module['onPostRuns'] = onPostRuns;
-  Module['callRuntimeCallbacks'] = callRuntimeCallbacks;
-  Module['addOnPreRun'] = addOnPreRun;
-  Module['onPreRuns'] = onPreRuns;
-  Module['getValue'] = getValue;
-  Module['noExitRuntime'] = noExitRuntime;
-  Module['ptrToString'] = ptrToString;
-  Module['setValue'] = setValue;
-  Module['stackRestore'] = stackRestore;
-  Module['stackSave'] = stackSave;
-  Module['warnOnce'] = warnOnce;
   // End JS library exports
 
 // end include: postlibrary.js
@@ -947,27 +5221,304 @@ function checkIncomingModuleAPI() {
 }
 
 // Imports from the Wasm binary.
-var _fflush = Module['_fflush'] = makeInvalidEarlyAccess('_fflush');
-var _emscripten_stack_init = Module['_emscripten_stack_init'] = makeInvalidEarlyAccess('_emscripten_stack_init');
-var _emscripten_stack_get_free = Module['_emscripten_stack_get_free'] = makeInvalidEarlyAccess('_emscripten_stack_get_free');
-var _emscripten_stack_get_base = Module['_emscripten_stack_get_base'] = makeInvalidEarlyAccess('_emscripten_stack_get_base');
-var _emscripten_stack_get_end = Module['_emscripten_stack_get_end'] = makeInvalidEarlyAccess('_emscripten_stack_get_end');
-var __emscripten_stack_restore = Module['__emscripten_stack_restore'] = makeInvalidEarlyAccess('__emscripten_stack_restore');
-var __emscripten_stack_alloc = Module['__emscripten_stack_alloc'] = makeInvalidEarlyAccess('__emscripten_stack_alloc');
-var _emscripten_stack_get_current = Module['_emscripten_stack_get_current'] = makeInvalidEarlyAccess('_emscripten_stack_get_current');
+var _load_stage_collision = Module['_load_stage_collision'] = makeInvalidEarlyAccess('_load_stage_collision');
+var _free_stage_collision = Module['_free_stage_collision'] = makeInvalidEarlyAccess('_free_stage_collision');
+var _ball_sim_init = Module['_ball_sim_init'] = makeInvalidEarlyAccess('_ball_sim_init');
+var _ball_sim_step = Module['_ball_sim_step'] = makeInvalidEarlyAccess('_ball_sim_step');
+var _camera_sim_init = Module['_camera_sim_init'] = makeInvalidEarlyAccess('_camera_sim_init');
+var _camera_sim_step = Module['_camera_sim_step'] = makeInvalidEarlyAccess('_camera_sim_step');
+var _world_sim_init = Module['_world_sim_init'] = makeInvalidEarlyAccess('_world_sim_init');
+var _world_sim_step = Module['_world_sim_step'] = makeInvalidEarlyAccess('_world_sim_step');
+var _world_sim_destroy = Module['_world_sim_destroy'] = makeInvalidEarlyAccess('_world_sim_destroy');
+var _stage_anim_init = Module['_stage_anim_init'] = makeInvalidEarlyAccess('_stage_anim_init');
+var _stage_anim_step = Module['_stage_anim_step'] = makeInvalidEarlyAccess('_stage_anim_step');
+var _stage_anim_destroy = Module['_stage_anim_destroy'] = makeInvalidEarlyAccess('_stage_anim_destroy');
+var _stobj_sim_init = Module['_stobj_sim_init'] = makeInvalidEarlyAccess('_stobj_sim_init');
+var _stobj_sim_step = Module['_stobj_sim_step'] = makeInvalidEarlyAccess('_stobj_sim_step');
+var _stobj_sim_destroy = Module['_stobj_sim_destroy'] = makeInvalidEarlyAccess('_stobj_sim_destroy');
+var _item_sim_init = Module['_item_sim_init'] = makeInvalidEarlyAccess('_item_sim_init');
+var _item_sim_step = Module['_item_sim_step'] = makeInvalidEarlyAccess('_item_sim_step');
+var _item_sim_destroy = Module['_item_sim_destroy'] = makeInvalidEarlyAccess('_item_sim_destroy');
+var _fflush = makeInvalidEarlyAccess('_fflush');
+var _strerror = makeInvalidEarlyAccess('_strerror');
+var _malloc = Module['_malloc'] = makeInvalidEarlyAccess('_malloc');
+var _emscripten_stack_init = makeInvalidEarlyAccess('_emscripten_stack_init');
+var _emscripten_stack_get_free = makeInvalidEarlyAccess('_emscripten_stack_get_free');
+var _emscripten_stack_get_base = makeInvalidEarlyAccess('_emscripten_stack_get_base');
+var _emscripten_stack_get_end = makeInvalidEarlyAccess('_emscripten_stack_get_end');
+var __emscripten_stack_restore = makeInvalidEarlyAccess('__emscripten_stack_restore');
+var __emscripten_stack_alloc = makeInvalidEarlyAccess('__emscripten_stack_alloc');
+var _emscripten_stack_get_current = makeInvalidEarlyAccess('_emscripten_stack_get_current');
 
 function assignWasmExports(wasmExports) {
-  Module['_fflush'] = _fflush = createExportWrapper('fflush', 1);
-  Module['_emscripten_stack_init'] = _emscripten_stack_init = wasmExports['emscripten_stack_init'];
-  Module['_emscripten_stack_get_free'] = _emscripten_stack_get_free = wasmExports['emscripten_stack_get_free'];
-  Module['_emscripten_stack_get_base'] = _emscripten_stack_get_base = wasmExports['emscripten_stack_get_base'];
-  Module['_emscripten_stack_get_end'] = _emscripten_stack_get_end = wasmExports['emscripten_stack_get_end'];
-  Module['__emscripten_stack_restore'] = __emscripten_stack_restore = wasmExports['_emscripten_stack_restore'];
-  Module['__emscripten_stack_alloc'] = __emscripten_stack_alloc = wasmExports['_emscripten_stack_alloc'];
-  Module['_emscripten_stack_get_current'] = _emscripten_stack_get_current = wasmExports['emscripten_stack_get_current'];
+  Module['_load_stage_collision'] = _load_stage_collision = createExportWrapper('load_stage_collision', 1);
+  Module['_free_stage_collision'] = _free_stage_collision = createExportWrapper('free_stage_collision', 0);
+  Module['_ball_sim_init'] = _ball_sim_init = createExportWrapper('ball_sim_init', 1);
+  Module['_ball_sim_step'] = _ball_sim_step = createExportWrapper('ball_sim_step', 1);
+  Module['_camera_sim_init'] = _camera_sim_init = createExportWrapper('camera_sim_init', 2);
+  Module['_camera_sim_step'] = _camera_sim_step = createExportWrapper('camera_sim_step', 2);
+  Module['_world_sim_init'] = _world_sim_init = createExportWrapper('world_sim_init', 0);
+  Module['_world_sim_step'] = _world_sim_step = createExportWrapper('world_sim_step', 0);
+  Module['_world_sim_destroy'] = _world_sim_destroy = createExportWrapper('world_sim_destroy', 0);
+  Module['_stage_anim_init'] = _stage_anim_init = createExportWrapper('stage_anim_init', 0);
+  Module['_stage_anim_step'] = _stage_anim_step = createExportWrapper('stage_anim_step', 0);
+  Module['_stage_anim_destroy'] = _stage_anim_destroy = createExportWrapper('stage_anim_destroy', 0);
+  Module['_stobj_sim_init'] = _stobj_sim_init = createExportWrapper('stobj_sim_init', 0);
+  Module['_stobj_sim_step'] = _stobj_sim_step = createExportWrapper('stobj_sim_step', 0);
+  Module['_stobj_sim_destroy'] = _stobj_sim_destroy = createExportWrapper('stobj_sim_destroy', 0);
+  Module['_item_sim_init'] = _item_sim_init = createExportWrapper('item_sim_init', 0);
+  Module['_item_sim_step'] = _item_sim_step = createExportWrapper('item_sim_step', 0);
+  Module['_item_sim_destroy'] = _item_sim_destroy = createExportWrapper('item_sim_destroy', 0);
+  _fflush = createExportWrapper('fflush', 1);
+  _strerror = createExportWrapper('strerror', 1);
+  Module['_malloc'] = _malloc = createExportWrapper('malloc', 1);
+  _emscripten_stack_init = wasmExports['emscripten_stack_init'];
+  _emscripten_stack_get_free = wasmExports['emscripten_stack_get_free'];
+  _emscripten_stack_get_base = wasmExports['emscripten_stack_get_base'];
+  _emscripten_stack_get_end = wasmExports['emscripten_stack_get_end'];
+  __emscripten_stack_restore = wasmExports['_emscripten_stack_restore'];
+  __emscripten_stack_alloc = wasmExports['_emscripten_stack_alloc'];
+  _emscripten_stack_get_current = wasmExports['emscripten_stack_get_current'];
 }
 var wasmImports = {
-  
+  /** @export */
+  C_MTXPerspective: _C_MTXPerspective,
+  /** @export */
+  GXSetProjection: _GXSetProjection,
+  /** @export */
+  GXSetScissor: _GXSetScissor,
+  /** @export */
+  GXSetViewport: _GXSetViewport,
+  /** @export */
+  __syscall_fcntl64: ___syscall_fcntl64,
+  /** @export */
+  __syscall_ioctl: ___syscall_ioctl,
+  /** @export */
+  __syscall_openat: ___syscall_openat,
+  /** @export */
+  _abort_js: __abort_js,
+  /** @export */
+  ape_destroy: _ape_destroy,
+  /** @export */
+  ape_face_dir: _ape_face_dir,
+  /** @export */
+  ape_skel_anim_main: _ape_skel_anim_main,
+  /** @export */
+  bg_bonus_interact: _bg_bonus_interact,
+  /** @export */
+  bg_end_interact: _bg_end_interact,
+  /** @export */
+  bg_jungle_interact: _bg_jungle_interact,
+  /** @export */
+  bg_master_interact: _bg_master_interact,
+  /** @export */
+  bg_old_bluesky_interact: _bg_old_bluesky_interact,
+  /** @export */
+  bg_old_bonus_interact: _bg_old_bonus_interact,
+  /** @export */
+  bg_old_cave_interact: _bg_old_cave_interact,
+  /** @export */
+  bg_old_extramaster_interact: _bg_old_extramaster_interact,
+  /** @export */
+  bg_old_ice_interact: _bg_old_ice_interact,
+  /** @export */
+  bg_old_night_interact: _bg_old_night_interact,
+  /** @export */
+  bg_old_sand_interact: _bg_old_sand_interact,
+  /** @export */
+  bg_old_space_interact: _bg_old_space_interact,
+  /** @export */
+  bg_old_storm_interact: _bg_old_storm_interact,
+  /** @export */
+  bg_old_sunset_interact: _bg_old_sunset_interact,
+  /** @export */
+  bg_old_water_interact: _bg_old_water_interact,
+  /** @export */
+  bg_pilot_interact: _bg_pilot_interact,
+  /** @export */
+  bg_sand_interact: _bg_sand_interact,
+  /** @export */
+  bg_space_interact: _bg_space_interact,
+  /** @export */
+  bg_storm_interact: _bg_storm_interact,
+  /** @export */
+  bg_sunset_interact: _bg_sunset_interact,
+  /** @export */
+  bg_water_interact: _bg_water_interact,
+  /** @export */
+  calc_spline: _calc_spline,
+  /** @export */
+  clip_init_detail: _clip_init_detail,
+  /** @export */
+  collide_ball_with_jamabar: _collide_ball_with_jamabar,
+  /** @export */
+  collide_ball_with_stage: _collide_ball_with_stage,
+  /** @export */
+  effect_bird_kite_init: _effect_bird_kite_init,
+  /** @export */
+  effect_ending_ballfrag_init: _effect_ending_ballfrag_init,
+  /** @export */
+  effect_get_nameent_code_init: _effect_get_nameent_code_init,
+  /** @export */
+  effect_icewater_particle_init: _effect_icewater_particle_init,
+  /** @export */
+  effect_icewater_reflect_init: _effect_icewater_reflect_init,
+  /** @export */
+  effect_nameent_code_init: _effect_nameent_code_init,
+  /** @export */
+  emscripten_resize_heap: _emscripten_resize_heap,
+  /** @export */
+  fd_close: _fd_close,
+  /** @export */
+  fd_read: _fd_read,
+  /** @export */
+  fd_seek: _fd_seek,
+  /** @export */
+  fd_write: _fd_write,
+  /** @export */
+  func_800673BC: _func_800673BC,
+  /** @export */
+  func_8009D5D8: _func_8009D5D8,
+  /** @export */
+  func_8009D7CC: _func_8009D7CC,
+  /** @export */
+  func_8009D7E8: _func_8009D7E8,
+  /** @export */
+  func_8009D7FC: _func_8009D7FC,
+  /** @export */
+  func_8009D98C: _func_8009D98C,
+  /** @export */
+  func_8009DB6C: _func_8009DB6C,
+  /** @export */
+  hud_show_1up_banner: _hud_show_1up_banner,
+  /** @export */
+  hud_show_goal_score_info: _hud_show_goal_score_info,
+  /** @export */
+  interpolate_keyframes: _interpolate_keyframes,
+  /** @export */
+  is_bonus_stage: _is_bonus_stage,
+  /** @export */
+  item_pilot_collect: _item_pilot_collect,
+  /** @export */
+  item_pilot_destroy: _item_pilot_destroy,
+  /** @export */
+  item_pilot_init: _item_pilot_init,
+  /** @export */
+  item_pilot_main: _item_pilot_main,
+  /** @export */
+  mathutil_atan2: _mathutil_atan2,
+  /** @export */
+  mathutil_mtxA_from_identity: _mathutil_mtxA_from_identity,
+  /** @export */
+  mathutil_mtxA_from_mtx: _mathutil_mtxA_from_mtx,
+  /** @export */
+  mathutil_mtxA_from_quat: _mathutil_mtxA_from_quat,
+  /** @export */
+  mathutil_mtxA_from_rotate_y: _mathutil_mtxA_from_rotate_y,
+  /** @export */
+  mathutil_mtxA_from_translate: _mathutil_mtxA_from_translate,
+  /** @export */
+  mathutil_mtxA_mult_left: _mathutil_mtxA_mult_left,
+  /** @export */
+  mathutil_mtxA_mult_right: _mathutil_mtxA_mult_right,
+  /** @export */
+  mathutil_mtxA_normalize_basis: _mathutil_mtxA_normalize_basis,
+  /** @export */
+  mathutil_mtxA_pop: _mathutil_mtxA_pop,
+  /** @export */
+  mathutil_mtxA_push: _mathutil_mtxA_push,
+  /** @export */
+  mathutil_mtxA_rigid_inv_tf_point: _mathutil_mtxA_rigid_inv_tf_point,
+  /** @export */
+  mathutil_mtxA_rigid_inv_tf_tl: _mathutil_mtxA_rigid_inv_tf_tl,
+  /** @export */
+  mathutil_mtxA_rigid_inv_tf_vec: _mathutil_mtxA_rigid_inv_tf_vec,
+  /** @export */
+  mathutil_mtxA_rotate_x: _mathutil_mtxA_rotate_x,
+  /** @export */
+  mathutil_mtxA_rotate_y: _mathutil_mtxA_rotate_y,
+  /** @export */
+  mathutil_mtxA_rotate_z: _mathutil_mtxA_rotate_z,
+  /** @export */
+  mathutil_mtxA_sq_from_identity: _mathutil_mtxA_sq_from_identity,
+  /** @export */
+  mathutil_mtxA_tf_point: _mathutil_mtxA_tf_point,
+  /** @export */
+  mathutil_mtxA_tf_point_xyz: _mathutil_mtxA_tf_point_xyz,
+  /** @export */
+  mathutil_mtxA_tf_vec: _mathutil_mtxA_tf_vec,
+  /** @export */
+  mathutil_mtxA_tf_vec_xyz: _mathutil_mtxA_tf_vec_xyz,
+  /** @export */
+  mathutil_mtxA_to_euler_yxz: _mathutil_mtxA_to_euler_yxz,
+  /** @export */
+  mathutil_mtxA_to_mtx: _mathutil_mtxA_to_mtx,
+  /** @export */
+  mathutil_mtxA_to_quat: _mathutil_mtxA_to_quat,
+  /** @export */
+  mathutil_mtxA_translate: _mathutil_mtxA_translate,
+  /** @export */
+  mathutil_mtxA_translate_neg: _mathutil_mtxA_translate_neg,
+  /** @export */
+  mathutil_mtxA_translate_xyz: _mathutil_mtxA_translate_xyz,
+  /** @export */
+  mathutil_mtx_copy: _mathutil_mtx_copy,
+  /** @export */
+  mathutil_quat_from_axis_angle: _mathutil_quat_from_axis_angle,
+  /** @export */
+  mathutil_quat_from_dirs: _mathutil_quat_from_dirs,
+  /** @export */
+  mathutil_quat_normalize: _mathutil_quat_normalize,
+  /** @export */
+  mathutil_rsqrt: _mathutil_rsqrt,
+  /** @export */
+  mathutil_sin: _mathutil_sin,
+  /** @export */
+  mathutil_sqrt: _mathutil_sqrt,
+  /** @export */
+  mathutil_vec_dot_normalized: _mathutil_vec_dot_normalized,
+  /** @export */
+  mathutil_vec_dot_normalized_safe: _mathutil_vec_dot_normalized_safe,
+  /** @export */
+  mathutil_vec_normalize_len: _mathutil_vec_normalize_len,
+  /** @export */
+  mathutil_vec_set_len: _mathutil_vec_set_len,
+  /** @export */
+  mot_ape_8008BFDC: _mot_ape_8008BFDC,
+  /** @export */
+  mot_ape_set_quat_from_vec: _mot_ape_set_quat_from_vec,
+  /** @export */
+  new_ape_stat_motion: _new_ape_stat_motion,
+  /** @export */
+  preview_create_with_allocated_tex: _preview_create_with_allocated_tex,
+  /** @export */
+  preview_free: _preview_free,
+  /** @export */
+  preview_sync: _preview_sync,
+  /** @export */
+  raycast_stage_down: _raycast_stage_down,
+  /** @export */
+  set_ape_model_lod: _set_ape_model_lod,
+  /** @export */
+  sndFXCtrl: _sndFXCtrl,
+  /** @export */
+  sndFXCtrl14: _sndFXCtrl14,
+  /** @export */
+  sndFXKeyOff: _sndFXKeyOff,
+  /** @export */
+  sndFXStartParaInfo: _sndFXStartParaInfo,
+  /** @export */
+  stobj_nameent_btn_coli: _stobj_nameent_btn_coli,
+  /** @export */
+  stobj_nameent_btn_destroy: _stobj_nameent_btn_destroy,
+  /** @export */
+  stobj_nameent_btn_init: _stobj_nameent_btn_init,
+  /** @export */
+  stobj_nameent_btn_main: _stobj_nameent_btn_main,
+  /** @export */
+  thread_create: _thread_create,
+  /** @export */
+  vibration_control: _vibration_control
 };
 var wasmExports = await createWasm();
 
@@ -1056,12 +5607,22 @@ function checkUnflushedContent() {
   }
   try { // it doesn't matter if it fails
     _fflush(0);
+    // also flush in the JS FS layer
+    ['stdout', 'stderr'].forEach((name) => {
+      var info = FS.analyzePath('/dev/' + name);
+      if (!info) return;
+      var stream = info.object;
+      var rdev = stream.rdev;
+      var tty = TTY.ttys[rdev];
+      if (tty?.output?.length) {
+        has = true;
+      }
+    });
   } catch(e) {}
   out = oldOut;
   err = oldErr;
   if (has) {
     warnOnce('stdio streams had content in them that was not flushed. you should set EXIT_RUNTIME to 1 (see the Emscripten FAQ), or make sure to emit a newline when you printf etc.');
-    warnOnce('(this may also be due to not including full filesystem support - try building with -sFORCE_FILESYSTEM)');
   }
 }
 
@@ -1121,9 +5682,9 @@ for (const prop of Object.keys(Module)) {
 );
 })();
 if (typeof exports === 'object' && typeof module === 'object') {
-  module.exports = Module;
+  module.exports = createMKBModule;
   // This default export looks redundant, but it allows TS to import this
   // commonjs style module.
-  module.exports.default = Module;
+  module.exports.default = createMKBModule;
 } else if (typeof define === 'function' && define['amd'])
-  define([], () => Module);
+  define([], () => createMKBModule);

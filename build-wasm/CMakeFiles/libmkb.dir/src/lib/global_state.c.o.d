@@ -1,0 +1,28 @@
+CMakeFiles/libmkb.dir/src/lib/global_state.c.o: \
+  A:\programs\git\smb-decomp\src\lib\global_state.c \
+  A:\programs\git\smb-decomp\src\mode.h \
+  A:\programs\git\smb-decomp\include\dolphin\types.h \
+  A:\programs\git\smb-decomp\src\variables.h \
+  A:\programs\git\smb-decomp\include\dolphin\gx\GXStruct.h \
+  A:\programs\git\smb-decomp\include\dolphin\vitypes.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSAlloc.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSFont.h \
+  A:\programs\git\smb-decomp\src\types.h \
+  A:\programs\git\smb-decomp\include\dolphin\gx\GXEnum.h \
+  A:\programs\git\smb-decomp\include\dolphin\gx\GXFifo.h \
+  A:\programs\git\smb-decomp\include\dolphin\mtx.h \
+  A:\programs\git\smb-decomp\src\input.h \
+  A:\programs\git\smb-decomp\include\dolphin\pad.h \
+  A:\programs\git\smb-decomp\src\mathutil.h \
+  A:\programs\git\smb-decomp\include\stdint.h \
+  A:\programs\git\smb-decomp\include\stddef.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\stddef.h \
+  A:\programs\git\emsdk\upstream\emscripten\cache\sysroot\include\stddef.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_header_macro.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_ptrdiff_t.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_size_t.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_wchar_t.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_null.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_offsetof.h \
+  A:\programs\git\smb-decomp\include\stdlib.h \
+  A:\programs\git\smb-decomp\include\wchar.h

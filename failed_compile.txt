@@ -1,0 +1,2600 @@
+loser@loser-PC MINGW64 /a/programs/git/smb-decomp
+$ TMP=/a/tmp make -d HOSTCC=gcc HOSTCFLAGS="-Wall -O3 -DLIBMKB_HOST -DNONMATCHING" libmkb.a
+GNU Make 4.4.1
+Built for x86_64-pc-msys
+Copyright (C) 1988-2023 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Reading makefiles...
+Reading makefile 'Makefile'...
+Reading makefile 'asm/c++_exception_data.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/main.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/init.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/init_2.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/mathutil.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/mode.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/pause_menu.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/event.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/polydisp.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/adv.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/code_5.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/sel.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/game.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/camera.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/frustum.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/light.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/gxsync.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/info.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/code_7.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/input.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bitmap.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_com.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_adv.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_end.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_rnk.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_sel.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_nml.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_bwl.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_rac.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_bil.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_fgt.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_glf.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_tgt.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_how.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bmp_list_cmd.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/trig_tables.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/perf.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/sound.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/window.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/pool.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/nl2ngc.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/motload.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/mot_joint.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/motload_3.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/motload_4.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/ball.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/lib/ball_sim.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/lib/camera_sim.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/lib/stage_loader.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/stcoli.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/world.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/interpolate_keyframes.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/stage.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/code_8.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/recplay.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/recplay_cmpr.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/effect.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/background.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_old_bluesky.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_old_cave.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_old_extramaster.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_old_night.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_old_space.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_old_sunset.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_old_bonus.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_old_ice.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_old_sand.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_old_storm.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_old_water.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_jungle.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_sand.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_water.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_space.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_sunset.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_bonus.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_storm.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_master.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_pilot.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/bg_end.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/course.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/item.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/item_coin.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/item_pilot.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/obj_collision.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/stobj.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/stobj_goal.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/sprite.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/textbox.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/hud.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/ape_icon.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/help.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/unk_anim_data.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/minimap.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/ord_tbl.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/code_3.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/ranking_screen.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/mot_ape.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/spline.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/thread.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/mt_effect.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/lzs_decompress.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/avdisp.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/load.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/shadow.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/mini.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/lens_flare.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/code_9.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/poly_shadow.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/mouse.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/rend_efc.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/rend_efc_mirror.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/rend_efc_3.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/relocation.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/gxutil.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/mini_commend.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/gxcache.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/memcard.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/DEMOPuts.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/view.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/code_6.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'asm/mini_ranking.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/dvd.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/preview.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/name_entry.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'asm/credits.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/vibration.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/ending.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/ending_camera.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/ending_dialogue.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/base/asm/PPCArch.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/__start.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/asm/OS.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/asm/OSAlarm.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/OSAlloc.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/OSArena.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/OSAudioSystem.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/asm/OSCache.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/asm/OSContext.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/OSError.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/asm/OSExi.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/asm/OSFont.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/asm/OSInterrupt.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/asm/OSLink.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/OSMemory.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/OSMutex.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/asm/OSReboot.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/asm/OSReset.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/asm/OSResetSW.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/asm/OSRtc.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/si/asm/SIBios.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/OSSync.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/OSThread.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/asm/OSTime.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/exi/asm/EXIUart.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/os/__ppc_eabi_init.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/db/db.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/mtx/asm/mtx.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/mtx/mtx44.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/mtx/asm/vec.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/dvd/asm/dvdlow.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/dvd/asm/dvdfs.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/dvd/asm/dvd.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/dvd/dvdqueue.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/dvd/asm/dvderror.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/dvd/fstload.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/vi/asm/vi.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/demo/DEMOFont.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/pad/Pad.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/ai/ai.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/ar/asm/ar.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/ar/asm/arq.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/dsp/dsp.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/dsp/dsp_debug.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/dsp/dsp_task.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDBios.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDUnlock.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDRdwr.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDBlock.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDDir.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDCheck.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDMount.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDFormat.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDOpen.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDCreate.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDRead.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDWrite.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDDelete.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDStat.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/card/CARDRename.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/hio/hio.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/GXInit.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/GXFifo.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/asm/GXAttr.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/asm/GXMisc.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/GXGeometry.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/asm/GXFrameBuf.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/GXLight.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/asm/GXTexture.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/asm/GXBump.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/GXTev.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/asm/GXPixel.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/asm/GXDraw.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/GXStubs.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/GXDisplayList.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/GXTransform.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/gx/GXPerf.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/perf/asm/perf.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/perf/asm/perfdraw.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/asm/seq.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/asm/synth.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/seq_api.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/snd_synthapi.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/asm/stream.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/asm/synthdata.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/asm/synthmacros.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/asm/synthvoice.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/synth_ac.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/asm/synth_adsr.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/synth_dbtab.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/asm/s_data.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/asm/hw_dspctrl.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/hw_volconv.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/snd3d.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/asm/synth_2.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/snd_math.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/asm/snd_midictrl.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/snd_service.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/HARDWARE.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/hw_aramdma.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/hw_dolphin.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/hw_memory.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/reverb_fx.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/asm/reverb.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/musyx/asm/chorus_fx.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/dtk/asm/dtk.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Runtime/Src/__mem.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Runtime/Src/__va_arg.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Runtime/Src/ExceptionPPC.cp.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/asm/Runtime/Src/runtime.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Src/ansi_fp.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/char_io.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/critical_regions.ppc_eabi.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/ctype.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/direct_io.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mbstring.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem_funcs.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/printf.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/float.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/string.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wchar_io.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/math/s_fabs.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/math/scalbn.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/math/e_rem_pio2.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/math/fminmaxdim.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/math/k_cos.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/math/k_rem_pio2.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/math/k_sin.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/math/s_copysign.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/math/s_cos.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/math/s_floor.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/math/s_frexp.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/math/s_ldexp.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/math/s_sin.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/asm/math/inverse_trig.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/asm/math/trigf.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/common_float_tables.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/exponentialsf.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/mainloop.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/nubevent.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/nubinit.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/msg.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/msgbuf.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/serpoll.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/usr_put.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/dispatch.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/msghndlr.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/support.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/mutex_TRK.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/notify.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/flush_cache.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/Portable/mem_TRK.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/targimpl.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/__exception.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/mpc_7xx_603e.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/main_TRK.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk_glue.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/TRK_MINNOW_DOLPHIN/asm/targcont.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/amcExi2/AmcExi.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/amcExi2/AmcExi2Comm.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/odemustubs/asm/odemustubs.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'libraries/amcnotstub/amcnotstub.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/sel_ngc_rel.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'asm/sel_ngc_rel.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/sel_stage_rel.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/sel_stage_rel_2.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/sel_stage_rel_3.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/mini_race.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'asm/mini_race.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/mini_bowling.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'asm/mini_bowling.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'asm/mini_fight.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/mini_pilot.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'asm/mini_pilot.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/mini_golf.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'asm/mini_golf.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/mini_billiards.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'asm/mini_billiards.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/rel_sample.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/test_mode.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'asm/test_mode.s.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'src/option.c.dep' (search path) (don't care) (no ~ expansion)...
+Reading makefile 'asm/option.s.dep' (search path) (don't care) (no ~ expansion)...
+Updating makefiles....
+ Considering target file 'Makefile'.
+  Looking for an implicit rule for 'Makefile'.
+  No implicit rule found for 'Makefile'.
+ Finished prerequisites of target file 'Makefile'.
+ No need to remake target 'Makefile'.
+ Considering target file 'asm/c++_exception_data.s.dep'.
+  File 'asm/c++_exception_data.s.dep' does not exist.
+  Looking for an implicit rule for 'asm/c++_exception_data.s.dep'.
+  No implicit rule found for 'asm/c++_exception_data.s.dep'.
+ Finished prerequisites of target file 'asm/c++_exception_data.s.dep'.
+ Must remake target 'asm/c++_exception_data.s.dep'.
+ Failed to remake target file 'asm/c++_exception_data.s.dep'.
+ Considering target file 'src/main.c.dep'.
+  File 'src/main.c.dep' does not exist.
+  Looking for an implicit rule for 'src/main.c.dep'.
+  No implicit rule found for 'src/main.c.dep'.
+ Finished prerequisites of target file 'src/main.c.dep'.
+ Must remake target 'src/main.c.dep'.
+ Failed to remake target file 'src/main.c.dep'.
+ Considering target file 'src/init.c.dep'.
+  File 'src/init.c.dep' does not exist.
+  Looking for an implicit rule for 'src/init.c.dep'.
+  No implicit rule found for 'src/init.c.dep'.
+ Finished prerequisites of target file 'src/init.c.dep'.
+ Must remake target 'src/init.c.dep'.
+ Failed to remake target file 'src/init.c.dep'.
+ Considering target file 'src/init_2.c.dep'.
+  File 'src/init_2.c.dep' does not exist.
+  Looking for an implicit rule for 'src/init_2.c.dep'.
+  No implicit rule found for 'src/init_2.c.dep'.
+ Finished prerequisites of target file 'src/init_2.c.dep'.
+ Must remake target 'src/init_2.c.dep'.
+ Failed to remake target file 'src/init_2.c.dep'.
+ Considering target file 'src/mathutil.c.dep'.
+  File 'src/mathutil.c.dep' does not exist.
+  Looking for an implicit rule for 'src/mathutil.c.dep'.
+  No implicit rule found for 'src/mathutil.c.dep'.
+ Finished prerequisites of target file 'src/mathutil.c.dep'.
+ Must remake target 'src/mathutil.c.dep'.
+ Failed to remake target file 'src/mathutil.c.dep'.
+ Considering target file 'src/mode.c.dep'.
+  File 'src/mode.c.dep' does not exist.
+  Looking for an implicit rule for 'src/mode.c.dep'.
+  No implicit rule found for 'src/mode.c.dep'.
+ Finished prerequisites of target file 'src/mode.c.dep'.
+ Must remake target 'src/mode.c.dep'.
+ Failed to remake target file 'src/mode.c.dep'.
+ Considering target file 'src/pause_menu.c.dep'.
+  File 'src/pause_menu.c.dep' does not exist.
+  Looking for an implicit rule for 'src/pause_menu.c.dep'.
+  No implicit rule found for 'src/pause_menu.c.dep'.
+ Finished prerequisites of target file 'src/pause_menu.c.dep'.
+ Must remake target 'src/pause_menu.c.dep'.
+ Failed to remake target file 'src/pause_menu.c.dep'.
+ Considering target file 'src/event.c.dep'.
+  File 'src/event.c.dep' does not exist.
+  Looking for an implicit rule for 'src/event.c.dep'.
+  No implicit rule found for 'src/event.c.dep'.
+ Finished prerequisites of target file 'src/event.c.dep'.
+ Must remake target 'src/event.c.dep'.
+ Failed to remake target file 'src/event.c.dep'.
+ Considering target file 'src/polydisp.c.dep'.
+  File 'src/polydisp.c.dep' does not exist.
+  Looking for an implicit rule for 'src/polydisp.c.dep'.
+  No implicit rule found for 'src/polydisp.c.dep'.
+ Finished prerequisites of target file 'src/polydisp.c.dep'.
+ Must remake target 'src/polydisp.c.dep'.
+ Failed to remake target file 'src/polydisp.c.dep'.
+ Considering target file 'src/adv.c.dep'.
+  File 'src/adv.c.dep' does not exist.
+  Looking for an implicit rule for 'src/adv.c.dep'.
+  No implicit rule found for 'src/adv.c.dep'.
+ Finished prerequisites of target file 'src/adv.c.dep'.
+ Must remake target 'src/adv.c.dep'.
+ Failed to remake target file 'src/adv.c.dep'.
+ Considering target file 'src/code_5.c.dep'.
+  File 'src/code_5.c.dep' does not exist.
+  Looking for an implicit rule for 'src/code_5.c.dep'.
+  No implicit rule found for 'src/code_5.c.dep'.
+ Finished prerequisites of target file 'src/code_5.c.dep'.
+ Must remake target 'src/code_5.c.dep'.
+ Failed to remake target file 'src/code_5.c.dep'.
+ Considering target file 'src/sel.c.dep'.
+  File 'src/sel.c.dep' does not exist.
+  Looking for an implicit rule for 'src/sel.c.dep'.
+  No implicit rule found for 'src/sel.c.dep'.
+ Finished prerequisites of target file 'src/sel.c.dep'.
+ Must remake target 'src/sel.c.dep'.
+ Failed to remake target file 'src/sel.c.dep'.
+ Considering target file 'src/game.c.dep'.
+  File 'src/game.c.dep' does not exist.
+  Looking for an implicit rule for 'src/game.c.dep'.
+  No implicit rule found for 'src/game.c.dep'.
+ Finished prerequisites of target file 'src/game.c.dep'.
+ Must remake target 'src/game.c.dep'.
+ Failed to remake target file 'src/game.c.dep'.
+ Considering target file 'src/camera.c.dep'.
+  File 'src/camera.c.dep' does not exist.
+  Looking for an implicit rule for 'src/camera.c.dep'.
+  No implicit rule found for 'src/camera.c.dep'.
+ Finished prerequisites of target file 'src/camera.c.dep'.
+ Must remake target 'src/camera.c.dep'.
+ Failed to remake target file 'src/camera.c.dep'.
+ Considering target file 'src/frustum.c.dep'.
+  File 'src/frustum.c.dep' does not exist.
+  Looking for an implicit rule for 'src/frustum.c.dep'.
+  No implicit rule found for 'src/frustum.c.dep'.
+ Finished prerequisites of target file 'src/frustum.c.dep'.
+ Must remake target 'src/frustum.c.dep'.
+ Failed to remake target file 'src/frustum.c.dep'.
+ Considering target file 'src/light.c.dep'.
+  File 'src/light.c.dep' does not exist.
+  Looking for an implicit rule for 'src/light.c.dep'.
+  No implicit rule found for 'src/light.c.dep'.
+ Finished prerequisites of target file 'src/light.c.dep'.
+ Must remake target 'src/light.c.dep'.
+ Failed to remake target file 'src/light.c.dep'.
+ Considering target file 'src/gxsync.c.dep'.
+  File 'src/gxsync.c.dep' does not exist.
+  Looking for an implicit rule for 'src/gxsync.c.dep'.
+  No implicit rule found for 'src/gxsync.c.dep'.
+ Finished prerequisites of target file 'src/gxsync.c.dep'.
+ Must remake target 'src/gxsync.c.dep'.
+ Failed to remake target file 'src/gxsync.c.dep'.
+ Considering target file 'src/info.c.dep'.
+  File 'src/info.c.dep' does not exist.
+  Looking for an implicit rule for 'src/info.c.dep'.
+  No implicit rule found for 'src/info.c.dep'.
+ Finished prerequisites of target file 'src/info.c.dep'.
+ Must remake target 'src/info.c.dep'.
+ Failed to remake target file 'src/info.c.dep'.
+ Considering target file 'src/code_7.c.dep'.
+  File 'src/code_7.c.dep' does not exist.
+  Looking for an implicit rule for 'src/code_7.c.dep'.
+  No implicit rule found for 'src/code_7.c.dep'.
+ Finished prerequisites of target file 'src/code_7.c.dep'.
+ Must remake target 'src/code_7.c.dep'.
+ Failed to remake target file 'src/code_7.c.dep'.
+ Considering target file 'src/input.c.dep'.
+  File 'src/input.c.dep' does not exist.
+  Looking for an implicit rule for 'src/input.c.dep'.
+  No implicit rule found for 'src/input.c.dep'.
+ Finished prerequisites of target file 'src/input.c.dep'.
+ Must remake target 'src/input.c.dep'.
+ Failed to remake target file 'src/input.c.dep'.
+ Considering target file 'src/bitmap.c.dep'.
+  File 'src/bitmap.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bitmap.c.dep'.
+  No implicit rule found for 'src/bitmap.c.dep'.
+ Finished prerequisites of target file 'src/bitmap.c.dep'.
+ Must remake target 'src/bitmap.c.dep'.
+ Failed to remake target file 'src/bitmap.c.dep'.
+ Considering target file 'src/bmp_list_com.c.dep'.
+  File 'src/bmp_list_com.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_com.c.dep'.
+  No implicit rule found for 'src/bmp_list_com.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_com.c.dep'.
+ Must remake target 'src/bmp_list_com.c.dep'.
+ Failed to remake target file 'src/bmp_list_com.c.dep'.
+ Considering target file 'src/bmp_list_adv.c.dep'.
+  File 'src/bmp_list_adv.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_adv.c.dep'.
+  No implicit rule found for 'src/bmp_list_adv.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_adv.c.dep'.
+ Must remake target 'src/bmp_list_adv.c.dep'.
+ Failed to remake target file 'src/bmp_list_adv.c.dep'.
+ Considering target file 'src/bmp_list_end.c.dep'.
+  File 'src/bmp_list_end.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_end.c.dep'.
+  No implicit rule found for 'src/bmp_list_end.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_end.c.dep'.
+ Must remake target 'src/bmp_list_end.c.dep'.
+ Failed to remake target file 'src/bmp_list_end.c.dep'.
+ Considering target file 'src/bmp_list_rnk.c.dep'.
+  File 'src/bmp_list_rnk.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_rnk.c.dep'.
+  No implicit rule found for 'src/bmp_list_rnk.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_rnk.c.dep'.
+ Must remake target 'src/bmp_list_rnk.c.dep'.
+ Failed to remake target file 'src/bmp_list_rnk.c.dep'.
+ Considering target file 'src/bmp_list_sel.c.dep'.
+  File 'src/bmp_list_sel.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_sel.c.dep'.
+  No implicit rule found for 'src/bmp_list_sel.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_sel.c.dep'.
+ Must remake target 'src/bmp_list_sel.c.dep'.
+ Failed to remake target file 'src/bmp_list_sel.c.dep'.
+ Considering target file 'src/bmp_list_nml.c.dep'.
+  File 'src/bmp_list_nml.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_nml.c.dep'.
+  No implicit rule found for 'src/bmp_list_nml.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_nml.c.dep'.
+ Must remake target 'src/bmp_list_nml.c.dep'.
+ Failed to remake target file 'src/bmp_list_nml.c.dep'.
+ Considering target file 'src/bmp_list_bwl.c.dep'.
+  File 'src/bmp_list_bwl.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_bwl.c.dep'.
+  No implicit rule found for 'src/bmp_list_bwl.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_bwl.c.dep'.
+ Must remake target 'src/bmp_list_bwl.c.dep'.
+ Failed to remake target file 'src/bmp_list_bwl.c.dep'.
+ Considering target file 'src/bmp_list_rac.c.dep'.
+  File 'src/bmp_list_rac.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_rac.c.dep'.
+  No implicit rule found for 'src/bmp_list_rac.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_rac.c.dep'.
+ Must remake target 'src/bmp_list_rac.c.dep'.
+ Failed to remake target file 'src/bmp_list_rac.c.dep'.
+ Considering target file 'src/bmp_list_bil.c.dep'.
+  File 'src/bmp_list_bil.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_bil.c.dep'.
+  No implicit rule found for 'src/bmp_list_bil.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_bil.c.dep'.
+ Must remake target 'src/bmp_list_bil.c.dep'.
+ Failed to remake target file 'src/bmp_list_bil.c.dep'.
+ Considering target file 'src/bmp_list_fgt.c.dep'.
+  File 'src/bmp_list_fgt.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_fgt.c.dep'.
+  No implicit rule found for 'src/bmp_list_fgt.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_fgt.c.dep'.
+ Must remake target 'src/bmp_list_fgt.c.dep'.
+ Failed to remake target file 'src/bmp_list_fgt.c.dep'.
+ Considering target file 'src/bmp_list_glf.c.dep'.
+  File 'src/bmp_list_glf.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_glf.c.dep'.
+  No implicit rule found for 'src/bmp_list_glf.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_glf.c.dep'.
+ Must remake target 'src/bmp_list_glf.c.dep'.
+ Failed to remake target file 'src/bmp_list_glf.c.dep'.
+ Considering target file 'src/bmp_list_tgt.c.dep'.
+  File 'src/bmp_list_tgt.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_tgt.c.dep'.
+  No implicit rule found for 'src/bmp_list_tgt.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_tgt.c.dep'.
+ Must remake target 'src/bmp_list_tgt.c.dep'.
+ Failed to remake target file 'src/bmp_list_tgt.c.dep'.
+ Considering target file 'src/bmp_list_how.c.dep'.
+  File 'src/bmp_list_how.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_how.c.dep'.
+  No implicit rule found for 'src/bmp_list_how.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_how.c.dep'.
+ Must remake target 'src/bmp_list_how.c.dep'.
+ Failed to remake target file 'src/bmp_list_how.c.dep'.
+ Considering target file 'src/bmp_list_cmd.c.dep'.
+  File 'src/bmp_list_cmd.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bmp_list_cmd.c.dep'.
+  No implicit rule found for 'src/bmp_list_cmd.c.dep'.
+ Finished prerequisites of target file 'src/bmp_list_cmd.c.dep'.
+ Must remake target 'src/bmp_list_cmd.c.dep'.
+ Failed to remake target file 'src/bmp_list_cmd.c.dep'.
+ Considering target file 'src/trig_tables.c.dep'.
+  File 'src/trig_tables.c.dep' does not exist.
+  Looking for an implicit rule for 'src/trig_tables.c.dep'.
+  No implicit rule found for 'src/trig_tables.c.dep'.
+ Finished prerequisites of target file 'src/trig_tables.c.dep'.
+ Must remake target 'src/trig_tables.c.dep'.
+ Failed to remake target file 'src/trig_tables.c.dep'.
+ Considering target file 'src/perf.c.dep'.
+  File 'src/perf.c.dep' does not exist.
+  Looking for an implicit rule for 'src/perf.c.dep'.
+  No implicit rule found for 'src/perf.c.dep'.
+ Finished prerequisites of target file 'src/perf.c.dep'.
+ Must remake target 'src/perf.c.dep'.
+ Failed to remake target file 'src/perf.c.dep'.
+ Considering target file 'src/sound.c.dep'.
+  File 'src/sound.c.dep' does not exist.
+  Looking for an implicit rule for 'src/sound.c.dep'.
+  No implicit rule found for 'src/sound.c.dep'.
+ Finished prerequisites of target file 'src/sound.c.dep'.
+ Must remake target 'src/sound.c.dep'.
+ Failed to remake target file 'src/sound.c.dep'.
+ Considering target file 'src/window.c.dep'.
+  File 'src/window.c.dep' does not exist.
+  Looking for an implicit rule for 'src/window.c.dep'.
+  No implicit rule found for 'src/window.c.dep'.
+ Finished prerequisites of target file 'src/window.c.dep'.
+ Must remake target 'src/window.c.dep'.
+ Failed to remake target file 'src/window.c.dep'.
+ Considering target file 'src/pool.c.dep'.
+  File 'src/pool.c.dep' does not exist.
+  Looking for an implicit rule for 'src/pool.c.dep'.
+  No implicit rule found for 'src/pool.c.dep'.
+ Finished prerequisites of target file 'src/pool.c.dep'.
+ Must remake target 'src/pool.c.dep'.
+ Failed to remake target file 'src/pool.c.dep'.
+ Considering target file 'src/nl2ngc.c.dep'.
+  File 'src/nl2ngc.c.dep' does not exist.
+  Looking for an implicit rule for 'src/nl2ngc.c.dep'.
+  No implicit rule found for 'src/nl2ngc.c.dep'.
+ Finished prerequisites of target file 'src/nl2ngc.c.dep'.
+ Must remake target 'src/nl2ngc.c.dep'.
+ Failed to remake target file 'src/nl2ngc.c.dep'.
+ Considering target file 'src/motload.c.dep'.
+  File 'src/motload.c.dep' does not exist.
+  Looking for an implicit rule for 'src/motload.c.dep'.
+  No implicit rule found for 'src/motload.c.dep'.
+ Finished prerequisites of target file 'src/motload.c.dep'.
+ Must remake target 'src/motload.c.dep'.
+ Failed to remake target file 'src/motload.c.dep'.
+ Considering target file 'src/mot_joint.c.dep'.
+  File 'src/mot_joint.c.dep' does not exist.
+  Looking for an implicit rule for 'src/mot_joint.c.dep'.
+  No implicit rule found for 'src/mot_joint.c.dep'.
+ Finished prerequisites of target file 'src/mot_joint.c.dep'.
+ Must remake target 'src/mot_joint.c.dep'.
+ Failed to remake target file 'src/mot_joint.c.dep'.
+ Considering target file 'src/motload_3.c.dep'.
+  File 'src/motload_3.c.dep' does not exist.
+  Looking for an implicit rule for 'src/motload_3.c.dep'.
+  No implicit rule found for 'src/motload_3.c.dep'.
+ Finished prerequisites of target file 'src/motload_3.c.dep'.
+ Must remake target 'src/motload_3.c.dep'.
+ Failed to remake target file 'src/motload_3.c.dep'.
+ Considering target file 'src/motload_4.c.dep'.
+  File 'src/motload_4.c.dep' does not exist.
+  Looking for an implicit rule for 'src/motload_4.c.dep'.
+  No implicit rule found for 'src/motload_4.c.dep'.
+ Finished prerequisites of target file 'src/motload_4.c.dep'.
+ Must remake target 'src/motload_4.c.dep'.
+ Failed to remake target file 'src/motload_4.c.dep'.
+ Considering target file 'src/ball.c.dep'.
+  File 'src/ball.c.dep' does not exist.
+  Looking for an implicit rule for 'src/ball.c.dep'.
+  No implicit rule found for 'src/ball.c.dep'.
+ Finished prerequisites of target file 'src/ball.c.dep'.
+ Must remake target 'src/ball.c.dep'.
+ Failed to remake target file 'src/ball.c.dep'.
+ Considering target file 'src/lib/ball_sim.c.dep'.
+  File 'src/lib/ball_sim.c.dep' does not exist.
+  Looking for an implicit rule for 'src/lib/ball_sim.c.dep'.
+  No implicit rule found for 'src/lib/ball_sim.c.dep'.
+ Finished prerequisites of target file 'src/lib/ball_sim.c.dep'.
+ Must remake target 'src/lib/ball_sim.c.dep'.
+ Failed to remake target file 'src/lib/ball_sim.c.dep'.
+ Considering target file 'src/lib/camera_sim.c.dep'.
+  File 'src/lib/camera_sim.c.dep' does not exist.
+  Looking for an implicit rule for 'src/lib/camera_sim.c.dep'.
+  No implicit rule found for 'src/lib/camera_sim.c.dep'.
+ Finished prerequisites of target file 'src/lib/camera_sim.c.dep'.
+ Must remake target 'src/lib/camera_sim.c.dep'.
+ Failed to remake target file 'src/lib/camera_sim.c.dep'.
+ Considering target file 'src/lib/stage_loader.c.dep'.
+  File 'src/lib/stage_loader.c.dep' does not exist.
+  Looking for an implicit rule for 'src/lib/stage_loader.c.dep'.
+  No implicit rule found for 'src/lib/stage_loader.c.dep'.
+ Finished prerequisites of target file 'src/lib/stage_loader.c.dep'.
+ Must remake target 'src/lib/stage_loader.c.dep'.
+ Failed to remake target file 'src/lib/stage_loader.c.dep'.
+ Considering target file 'src/stcoli.c.dep'.
+  File 'src/stcoli.c.dep' does not exist.
+  Looking for an implicit rule for 'src/stcoli.c.dep'.
+  No implicit rule found for 'src/stcoli.c.dep'.
+ Finished prerequisites of target file 'src/stcoli.c.dep'.
+ Must remake target 'src/stcoli.c.dep'.
+ Failed to remake target file 'src/stcoli.c.dep'.
+ Considering target file 'src/world.c.dep'.
+  File 'src/world.c.dep' does not exist.
+  Looking for an implicit rule for 'src/world.c.dep'.
+  No implicit rule found for 'src/world.c.dep'.
+ Finished prerequisites of target file 'src/world.c.dep'.
+ Must remake target 'src/world.c.dep'.
+ Failed to remake target file 'src/world.c.dep'.
+ Considering target file 'src/interpolate_keyframes.c.dep'.
+  File 'src/interpolate_keyframes.c.dep' does not exist.
+  Looking for an implicit rule for 'src/interpolate_keyframes.c.dep'.
+  No implicit rule found for 'src/interpolate_keyframes.c.dep'.
+ Finished prerequisites of target file 'src/interpolate_keyframes.c.dep'.
+ Must remake target 'src/interpolate_keyframes.c.dep'.
+ Failed to remake target file 'src/interpolate_keyframes.c.dep'.
+ Considering target file 'src/stage.c.dep'.
+  File 'src/stage.c.dep' does not exist.
+  Looking for an implicit rule for 'src/stage.c.dep'.
+  No implicit rule found for 'src/stage.c.dep'.
+ Finished prerequisites of target file 'src/stage.c.dep'.
+ Must remake target 'src/stage.c.dep'.
+ Failed to remake target file 'src/stage.c.dep'.
+ Considering target file 'src/code_8.c.dep'.
+  File 'src/code_8.c.dep' does not exist.
+  Looking for an implicit rule for 'src/code_8.c.dep'.
+  No implicit rule found for 'src/code_8.c.dep'.
+ Finished prerequisites of target file 'src/code_8.c.dep'.
+ Must remake target 'src/code_8.c.dep'.
+ Failed to remake target file 'src/code_8.c.dep'.
+ Considering target file 'src/recplay.c.dep'.
+  File 'src/recplay.c.dep' does not exist.
+  Looking for an implicit rule for 'src/recplay.c.dep'.
+  No implicit rule found for 'src/recplay.c.dep'.
+ Finished prerequisites of target file 'src/recplay.c.dep'.
+ Must remake target 'src/recplay.c.dep'.
+ Failed to remake target file 'src/recplay.c.dep'.
+ Considering target file 'src/recplay_cmpr.c.dep'.
+  File 'src/recplay_cmpr.c.dep' does not exist.
+  Looking for an implicit rule for 'src/recplay_cmpr.c.dep'.
+  No implicit rule found for 'src/recplay_cmpr.c.dep'.
+ Finished prerequisites of target file 'src/recplay_cmpr.c.dep'.
+ Must remake target 'src/recplay_cmpr.c.dep'.
+ Failed to remake target file 'src/recplay_cmpr.c.dep'.
+ Considering target file 'src/effect.c.dep'.
+  File 'src/effect.c.dep' does not exist.
+  Looking for an implicit rule for 'src/effect.c.dep'.
+  No implicit rule found for 'src/effect.c.dep'.
+ Finished prerequisites of target file 'src/effect.c.dep'.
+ Must remake target 'src/effect.c.dep'.
+ Failed to remake target file 'src/effect.c.dep'.
+ Considering target file 'src/background.c.dep'.
+  File 'src/background.c.dep' does not exist.
+  Looking for an implicit rule for 'src/background.c.dep'.
+  No implicit rule found for 'src/background.c.dep'.
+ Finished prerequisites of target file 'src/background.c.dep'.
+ Must remake target 'src/background.c.dep'.
+ Failed to remake target file 'src/background.c.dep'.
+ Considering target file 'src/bg_old_bluesky.c.dep'.
+  File 'src/bg_old_bluesky.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_old_bluesky.c.dep'.
+  No implicit rule found for 'src/bg_old_bluesky.c.dep'.
+ Finished prerequisites of target file 'src/bg_old_bluesky.c.dep'.
+ Must remake target 'src/bg_old_bluesky.c.dep'.
+ Failed to remake target file 'src/bg_old_bluesky.c.dep'.
+ Considering target file 'src/bg_old_cave.c.dep'.
+  File 'src/bg_old_cave.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_old_cave.c.dep'.
+  No implicit rule found for 'src/bg_old_cave.c.dep'.
+ Finished prerequisites of target file 'src/bg_old_cave.c.dep'.
+ Must remake target 'src/bg_old_cave.c.dep'.
+ Failed to remake target file 'src/bg_old_cave.c.dep'.
+ Considering target file 'src/bg_old_extramaster.c.dep'.
+  File 'src/bg_old_extramaster.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_old_extramaster.c.dep'.
+  No implicit rule found for 'src/bg_old_extramaster.c.dep'.
+ Finished prerequisites of target file 'src/bg_old_extramaster.c.dep'.
+ Must remake target 'src/bg_old_extramaster.c.dep'.
+ Failed to remake target file 'src/bg_old_extramaster.c.dep'.
+ Considering target file 'src/bg_old_night.c.dep'.
+  File 'src/bg_old_night.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_old_night.c.dep'.
+  No implicit rule found for 'src/bg_old_night.c.dep'.
+ Finished prerequisites of target file 'src/bg_old_night.c.dep'.
+ Must remake target 'src/bg_old_night.c.dep'.
+ Failed to remake target file 'src/bg_old_night.c.dep'.
+ Considering target file 'src/bg_old_space.c.dep'.
+  File 'src/bg_old_space.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_old_space.c.dep'.
+  No implicit rule found for 'src/bg_old_space.c.dep'.
+ Finished prerequisites of target file 'src/bg_old_space.c.dep'.
+ Must remake target 'src/bg_old_space.c.dep'.
+ Failed to remake target file 'src/bg_old_space.c.dep'.
+ Considering target file 'src/bg_old_sunset.c.dep'.
+  File 'src/bg_old_sunset.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_old_sunset.c.dep'.
+  No implicit rule found for 'src/bg_old_sunset.c.dep'.
+ Finished prerequisites of target file 'src/bg_old_sunset.c.dep'.
+ Must remake target 'src/bg_old_sunset.c.dep'.
+ Failed to remake target file 'src/bg_old_sunset.c.dep'.
+ Considering target file 'src/bg_old_bonus.c.dep'.
+  File 'src/bg_old_bonus.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_old_bonus.c.dep'.
+  No implicit rule found for 'src/bg_old_bonus.c.dep'.
+ Finished prerequisites of target file 'src/bg_old_bonus.c.dep'.
+ Must remake target 'src/bg_old_bonus.c.dep'.
+ Failed to remake target file 'src/bg_old_bonus.c.dep'.
+ Considering target file 'src/bg_old_ice.c.dep'.
+  File 'src/bg_old_ice.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_old_ice.c.dep'.
+  No implicit rule found for 'src/bg_old_ice.c.dep'.
+ Finished prerequisites of target file 'src/bg_old_ice.c.dep'.
+ Must remake target 'src/bg_old_ice.c.dep'.
+ Failed to remake target file 'src/bg_old_ice.c.dep'.
+ Considering target file 'src/bg_old_sand.c.dep'.
+  File 'src/bg_old_sand.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_old_sand.c.dep'.
+  No implicit rule found for 'src/bg_old_sand.c.dep'.
+ Finished prerequisites of target file 'src/bg_old_sand.c.dep'.
+ Must remake target 'src/bg_old_sand.c.dep'.
+ Failed to remake target file 'src/bg_old_sand.c.dep'.
+ Considering target file 'src/bg_old_storm.c.dep'.
+  File 'src/bg_old_storm.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_old_storm.c.dep'.
+  No implicit rule found for 'src/bg_old_storm.c.dep'.
+ Finished prerequisites of target file 'src/bg_old_storm.c.dep'.
+ Must remake target 'src/bg_old_storm.c.dep'.
+ Failed to remake target file 'src/bg_old_storm.c.dep'.
+ Considering target file 'src/bg_old_water.c.dep'.
+  File 'src/bg_old_water.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_old_water.c.dep'.
+  No implicit rule found for 'src/bg_old_water.c.dep'.
+ Finished prerequisites of target file 'src/bg_old_water.c.dep'.
+ Must remake target 'src/bg_old_water.c.dep'.
+ Failed to remake target file 'src/bg_old_water.c.dep'.
+ Considering target file 'src/bg_jungle.c.dep'.
+  File 'src/bg_jungle.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_jungle.c.dep'.
+  No implicit rule found for 'src/bg_jungle.c.dep'.
+ Finished prerequisites of target file 'src/bg_jungle.c.dep'.
+ Must remake target 'src/bg_jungle.c.dep'.
+ Failed to remake target file 'src/bg_jungle.c.dep'.
+ Considering target file 'src/bg_sand.c.dep'.
+  File 'src/bg_sand.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_sand.c.dep'.
+  No implicit rule found for 'src/bg_sand.c.dep'.
+ Finished prerequisites of target file 'src/bg_sand.c.dep'.
+ Must remake target 'src/bg_sand.c.dep'.
+ Failed to remake target file 'src/bg_sand.c.dep'.
+ Considering target file 'src/bg_water.c.dep'.
+  File 'src/bg_water.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_water.c.dep'.
+  No implicit rule found for 'src/bg_water.c.dep'.
+ Finished prerequisites of target file 'src/bg_water.c.dep'.
+ Must remake target 'src/bg_water.c.dep'.
+ Failed to remake target file 'src/bg_water.c.dep'.
+ Considering target file 'src/bg_space.c.dep'.
+  File 'src/bg_space.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_space.c.dep'.
+  No implicit rule found for 'src/bg_space.c.dep'.
+ Finished prerequisites of target file 'src/bg_space.c.dep'.
+ Must remake target 'src/bg_space.c.dep'.
+ Failed to remake target file 'src/bg_space.c.dep'.
+ Considering target file 'src/bg_sunset.c.dep'.
+  File 'src/bg_sunset.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_sunset.c.dep'.
+  No implicit rule found for 'src/bg_sunset.c.dep'.
+ Finished prerequisites of target file 'src/bg_sunset.c.dep'.
+ Must remake target 'src/bg_sunset.c.dep'.
+ Failed to remake target file 'src/bg_sunset.c.dep'.
+ Considering target file 'src/bg_bonus.c.dep'.
+  File 'src/bg_bonus.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_bonus.c.dep'.
+  No implicit rule found for 'src/bg_bonus.c.dep'.
+ Finished prerequisites of target file 'src/bg_bonus.c.dep'.
+ Must remake target 'src/bg_bonus.c.dep'.
+ Failed to remake target file 'src/bg_bonus.c.dep'.
+ Considering target file 'src/bg_storm.c.dep'.
+  File 'src/bg_storm.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_storm.c.dep'.
+  No implicit rule found for 'src/bg_storm.c.dep'.
+ Finished prerequisites of target file 'src/bg_storm.c.dep'.
+ Must remake target 'src/bg_storm.c.dep'.
+ Failed to remake target file 'src/bg_storm.c.dep'.
+ Considering target file 'src/bg_master.c.dep'.
+  File 'src/bg_master.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_master.c.dep'.
+  No implicit rule found for 'src/bg_master.c.dep'.
+ Finished prerequisites of target file 'src/bg_master.c.dep'.
+ Must remake target 'src/bg_master.c.dep'.
+ Failed to remake target file 'src/bg_master.c.dep'.
+ Considering target file 'src/bg_pilot.c.dep'.
+  File 'src/bg_pilot.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_pilot.c.dep'.
+  No implicit rule found for 'src/bg_pilot.c.dep'.
+ Finished prerequisites of target file 'src/bg_pilot.c.dep'.
+ Must remake target 'src/bg_pilot.c.dep'.
+ Failed to remake target file 'src/bg_pilot.c.dep'.
+ Considering target file 'src/bg_end.c.dep'.
+  File 'src/bg_end.c.dep' does not exist.
+  Looking for an implicit rule for 'src/bg_end.c.dep'.
+  No implicit rule found for 'src/bg_end.c.dep'.
+ Finished prerequisites of target file 'src/bg_end.c.dep'.
+ Must remake target 'src/bg_end.c.dep'.
+ Failed to remake target file 'src/bg_end.c.dep'.
+ Considering target file 'src/course.c.dep'.
+  File 'src/course.c.dep' does not exist.
+  Looking for an implicit rule for 'src/course.c.dep'.
+  No implicit rule found for 'src/course.c.dep'.
+ Finished prerequisites of target file 'src/course.c.dep'.
+ Must remake target 'src/course.c.dep'.
+ Failed to remake target file 'src/course.c.dep'.
+ Considering target file 'src/item.c.dep'.
+  File 'src/item.c.dep' does not exist.
+  Looking for an implicit rule for 'src/item.c.dep'.
+  No implicit rule found for 'src/item.c.dep'.
+ Finished prerequisites of target file 'src/item.c.dep'.
+ Must remake target 'src/item.c.dep'.
+ Failed to remake target file 'src/item.c.dep'.
+ Considering target file 'src/item_coin.c.dep'.
+  File 'src/item_coin.c.dep' does not exist.
+  Looking for an implicit rule for 'src/item_coin.c.dep'.
+  No implicit rule found for 'src/item_coin.c.dep'.
+ Finished prerequisites of target file 'src/item_coin.c.dep'.
+ Must remake target 'src/item_coin.c.dep'.
+ Failed to remake target file 'src/item_coin.c.dep'.
+ Considering target file 'src/item_pilot.c.dep'.
+  File 'src/item_pilot.c.dep' does not exist.
+  Looking for an implicit rule for 'src/item_pilot.c.dep'.
+  No implicit rule found for 'src/item_pilot.c.dep'.
+ Finished prerequisites of target file 'src/item_pilot.c.dep'.
+ Must remake target 'src/item_pilot.c.dep'.
+ Failed to remake target file 'src/item_pilot.c.dep'.
+ Considering target file 'src/obj_collision.c.dep'.
+  File 'src/obj_collision.c.dep' does not exist.
+  Looking for an implicit rule for 'src/obj_collision.c.dep'.
+  No implicit rule found for 'src/obj_collision.c.dep'.
+ Finished prerequisites of target file 'src/obj_collision.c.dep'.
+ Must remake target 'src/obj_collision.c.dep'.
+ Failed to remake target file 'src/obj_collision.c.dep'.
+ Considering target file 'src/stobj.c.dep'.
+  File 'src/stobj.c.dep' does not exist.
+  Looking for an implicit rule for 'src/stobj.c.dep'.
+  No implicit rule found for 'src/stobj.c.dep'.
+ Finished prerequisites of target file 'src/stobj.c.dep'.
+ Must remake target 'src/stobj.c.dep'.
+ Failed to remake target file 'src/stobj.c.dep'.
+ Considering target file 'src/stobj_goal.c.dep'.
+  File 'src/stobj_goal.c.dep' does not exist.
+  Looking for an implicit rule for 'src/stobj_goal.c.dep'.
+  No implicit rule found for 'src/stobj_goal.c.dep'.
+ Finished prerequisites of target file 'src/stobj_goal.c.dep'.
+ Must remake target 'src/stobj_goal.c.dep'.
+ Failed to remake target file 'src/stobj_goal.c.dep'.
+ Considering target file 'src/sprite.c.dep'.
+  File 'src/sprite.c.dep' does not exist.
+  Looking for an implicit rule for 'src/sprite.c.dep'.
+  No implicit rule found for 'src/sprite.c.dep'.
+ Finished prerequisites of target file 'src/sprite.c.dep'.
+ Must remake target 'src/sprite.c.dep'.
+ Failed to remake target file 'src/sprite.c.dep'.
+ Considering target file 'src/textbox.c.dep'.
+  File 'src/textbox.c.dep' does not exist.
+  Looking for an implicit rule for 'src/textbox.c.dep'.
+  No implicit rule found for 'src/textbox.c.dep'.
+ Finished prerequisites of target file 'src/textbox.c.dep'.
+ Must remake target 'src/textbox.c.dep'.
+ Failed to remake target file 'src/textbox.c.dep'.
+ Considering target file 'src/hud.c.dep'.
+  File 'src/hud.c.dep' does not exist.
+  Looking for an implicit rule for 'src/hud.c.dep'.
+  No implicit rule found for 'src/hud.c.dep'.
+ Finished prerequisites of target file 'src/hud.c.dep'.
+ Must remake target 'src/hud.c.dep'.
+ Failed to remake target file 'src/hud.c.dep'.
+ Considering target file 'src/ape_icon.c.dep'.
+  File 'src/ape_icon.c.dep' does not exist.
+  Looking for an implicit rule for 'src/ape_icon.c.dep'.
+  No implicit rule found for 'src/ape_icon.c.dep'.
+ Finished prerequisites of target file 'src/ape_icon.c.dep'.
+ Must remake target 'src/ape_icon.c.dep'.
+ Failed to remake target file 'src/ape_icon.c.dep'.
+ Considering target file 'src/help.c.dep'.
+  File 'src/help.c.dep' does not exist.
+  Looking for an implicit rule for 'src/help.c.dep'.
+  No implicit rule found for 'src/help.c.dep'.
+ Finished prerequisites of target file 'src/help.c.dep'.
+ Must remake target 'src/help.c.dep'.
+ Failed to remake target file 'src/help.c.dep'.
+ Considering target file 'src/unk_anim_data.c.dep'.
+  File 'src/unk_anim_data.c.dep' does not exist.
+  Looking for an implicit rule for 'src/unk_anim_data.c.dep'.
+  No implicit rule found for 'src/unk_anim_data.c.dep'.
+ Finished prerequisites of target file 'src/unk_anim_data.c.dep'.
+ Must remake target 'src/unk_anim_data.c.dep'.
+ Failed to remake target file 'src/unk_anim_data.c.dep'.
+ Considering target file 'src/minimap.c.dep'.
+  File 'src/minimap.c.dep' does not exist.
+  Looking for an implicit rule for 'src/minimap.c.dep'.
+  No implicit rule found for 'src/minimap.c.dep'.
+ Finished prerequisites of target file 'src/minimap.c.dep'.
+ Must remake target 'src/minimap.c.dep'.
+ Failed to remake target file 'src/minimap.c.dep'.
+ Considering target file 'src/ord_tbl.c.dep'.
+  File 'src/ord_tbl.c.dep' does not exist.
+  Looking for an implicit rule for 'src/ord_tbl.c.dep'.
+  No implicit rule found for 'src/ord_tbl.c.dep'.
+ Finished prerequisites of target file 'src/ord_tbl.c.dep'.
+ Must remake target 'src/ord_tbl.c.dep'.
+ Failed to remake target file 'src/ord_tbl.c.dep'.
+ Considering target file 'src/code_3.c.dep'.
+  File 'src/code_3.c.dep' does not exist.
+  Looking for an implicit rule for 'src/code_3.c.dep'.
+  No implicit rule found for 'src/code_3.c.dep'.
+ Finished prerequisites of target file 'src/code_3.c.dep'.
+ Must remake target 'src/code_3.c.dep'.
+ Failed to remake target file 'src/code_3.c.dep'.
+ Considering target file 'src/ranking_screen.c.dep'.
+  File 'src/ranking_screen.c.dep' does not exist.
+  Looking for an implicit rule for 'src/ranking_screen.c.dep'.
+  No implicit rule found for 'src/ranking_screen.c.dep'.
+ Finished prerequisites of target file 'src/ranking_screen.c.dep'.
+ Must remake target 'src/ranking_screen.c.dep'.
+ Failed to remake target file 'src/ranking_screen.c.dep'.
+ Considering target file 'src/mot_ape.c.dep'.
+  File 'src/mot_ape.c.dep' does not exist.
+  Looking for an implicit rule for 'src/mot_ape.c.dep'.
+  No implicit rule found for 'src/mot_ape.c.dep'.
+ Finished prerequisites of target file 'src/mot_ape.c.dep'.
+ Must remake target 'src/mot_ape.c.dep'.
+ Failed to remake target file 'src/mot_ape.c.dep'.
+ Considering target file 'src/spline.c.dep'.
+  File 'src/spline.c.dep' does not exist.
+  Looking for an implicit rule for 'src/spline.c.dep'.
+  No implicit rule found for 'src/spline.c.dep'.
+ Finished prerequisites of target file 'src/spline.c.dep'.
+ Must remake target 'src/spline.c.dep'.
+ Failed to remake target file 'src/spline.c.dep'.
+ Considering target file 'src/thread.c.dep'.
+  File 'src/thread.c.dep' does not exist.
+  Looking for an implicit rule for 'src/thread.c.dep'.
+  No implicit rule found for 'src/thread.c.dep'.
+ Finished prerequisites of target file 'src/thread.c.dep'.
+ Must remake target 'src/thread.c.dep'.
+ Failed to remake target file 'src/thread.c.dep'.
+ Considering target file 'src/mt_effect.c.dep'.
+  File 'src/mt_effect.c.dep' does not exist.
+  Looking for an implicit rule for 'src/mt_effect.c.dep'.
+  No implicit rule found for 'src/mt_effect.c.dep'.
+ Finished prerequisites of target file 'src/mt_effect.c.dep'.
+ Must remake target 'src/mt_effect.c.dep'.
+ Failed to remake target file 'src/mt_effect.c.dep'.
+ Considering target file 'src/lzs_decompress.c.dep'.
+  File 'src/lzs_decompress.c.dep' does not exist.
+  Looking for an implicit rule for 'src/lzs_decompress.c.dep'.
+  No implicit rule found for 'src/lzs_decompress.c.dep'.
+ Finished prerequisites of target file 'src/lzs_decompress.c.dep'.
+ Must remake target 'src/lzs_decompress.c.dep'.
+ Failed to remake target file 'src/lzs_decompress.c.dep'.
+ Considering target file 'src/avdisp.c.dep'.
+  File 'src/avdisp.c.dep' does not exist.
+  Looking for an implicit rule for 'src/avdisp.c.dep'.
+  No implicit rule found for 'src/avdisp.c.dep'.
+ Finished prerequisites of target file 'src/avdisp.c.dep'.
+ Must remake target 'src/avdisp.c.dep'.
+ Failed to remake target file 'src/avdisp.c.dep'.
+ Considering target file 'src/load.c.dep'.
+  File 'src/load.c.dep' does not exist.
+  Looking for an implicit rule for 'src/load.c.dep'.
+  No implicit rule found for 'src/load.c.dep'.
+ Finished prerequisites of target file 'src/load.c.dep'.
+ Must remake target 'src/load.c.dep'.
+ Failed to remake target file 'src/load.c.dep'.
+ Considering target file 'src/shadow.c.dep'.
+  File 'src/shadow.c.dep' does not exist.
+  Looking for an implicit rule for 'src/shadow.c.dep'.
+  No implicit rule found for 'src/shadow.c.dep'.
+ Finished prerequisites of target file 'src/shadow.c.dep'.
+ Must remake target 'src/shadow.c.dep'.
+ Failed to remake target file 'src/shadow.c.dep'.
+ Considering target file 'src/mini.c.dep'.
+  File 'src/mini.c.dep' does not exist.
+  Looking for an implicit rule for 'src/mini.c.dep'.
+  No implicit rule found for 'src/mini.c.dep'.
+ Finished prerequisites of target file 'src/mini.c.dep'.
+ Must remake target 'src/mini.c.dep'.
+ Failed to remake target file 'src/mini.c.dep'.
+ Considering target file 'src/lens_flare.c.dep'.
+  File 'src/lens_flare.c.dep' does not exist.
+  Looking for an implicit rule for 'src/lens_flare.c.dep'.
+  No implicit rule found for 'src/lens_flare.c.dep'.
+ Finished prerequisites of target file 'src/lens_flare.c.dep'.
+ Must remake target 'src/lens_flare.c.dep'.
+ Failed to remake target file 'src/lens_flare.c.dep'.
+ Considering target file 'src/code_9.c.dep'.
+  File 'src/code_9.c.dep' does not exist.
+  Looking for an implicit rule for 'src/code_9.c.dep'.
+  No implicit rule found for 'src/code_9.c.dep'.
+ Finished prerequisites of target file 'src/code_9.c.dep'.
+ Must remake target 'src/code_9.c.dep'.
+ Failed to remake target file 'src/code_9.c.dep'.
+ Considering target file 'src/poly_shadow.c.dep'.
+  File 'src/poly_shadow.c.dep' does not exist.
+  Looking for an implicit rule for 'src/poly_shadow.c.dep'.
+  No implicit rule found for 'src/poly_shadow.c.dep'.
+ Finished prerequisites of target file 'src/poly_shadow.c.dep'.
+ Must remake target 'src/poly_shadow.c.dep'.
+ Failed to remake target file 'src/poly_shadow.c.dep'.
+ Considering target file 'src/mouse.c.dep'.
+  File 'src/mouse.c.dep' does not exist.
+  Looking for an implicit rule for 'src/mouse.c.dep'.
+  No implicit rule found for 'src/mouse.c.dep'.
+ Finished prerequisites of target file 'src/mouse.c.dep'.
+ Must remake target 'src/mouse.c.dep'.
+ Failed to remake target file 'src/mouse.c.dep'.
+ Considering target file 'src/rend_efc.c.dep'.
+  File 'src/rend_efc.c.dep' does not exist.
+  Looking for an implicit rule for 'src/rend_efc.c.dep'.
+  No implicit rule found for 'src/rend_efc.c.dep'.
+ Finished prerequisites of target file 'src/rend_efc.c.dep'.
+ Must remake target 'src/rend_efc.c.dep'.
+ Failed to remake target file 'src/rend_efc.c.dep'.
+ Considering target file 'src/rend_efc_mirror.c.dep'.
+  File 'src/rend_efc_mirror.c.dep' does not exist.
+  Looking for an implicit rule for 'src/rend_efc_mirror.c.dep'.
+  No implicit rule found for 'src/rend_efc_mirror.c.dep'.
+ Finished prerequisites of target file 'src/rend_efc_mirror.c.dep'.
+ Must remake target 'src/rend_efc_mirror.c.dep'.
+ Failed to remake target file 'src/rend_efc_mirror.c.dep'.
+ Considering target file 'src/rend_efc_3.c.dep'.
+  File 'src/rend_efc_3.c.dep' does not exist.
+  Looking for an implicit rule for 'src/rend_efc_3.c.dep'.
+  No implicit rule found for 'src/rend_efc_3.c.dep'.
+ Finished prerequisites of target file 'src/rend_efc_3.c.dep'.
+ Must remake target 'src/rend_efc_3.c.dep'.
+ Failed to remake target file 'src/rend_efc_3.c.dep'.
+ Considering target file 'src/relocation.c.dep'.
+  File 'src/relocation.c.dep' does not exist.
+  Looking for an implicit rule for 'src/relocation.c.dep'.
+  No implicit rule found for 'src/relocation.c.dep'.
+ Finished prerequisites of target file 'src/relocation.c.dep'.
+ Must remake target 'src/relocation.c.dep'.
+ Failed to remake target file 'src/relocation.c.dep'.
+ Considering target file 'src/gxutil.c.dep'.
+  File 'src/gxutil.c.dep' does not exist.
+  Looking for an implicit rule for 'src/gxutil.c.dep'.
+  No implicit rule found for 'src/gxutil.c.dep'.
+ Finished prerequisites of target file 'src/gxutil.c.dep'.
+ Must remake target 'src/gxutil.c.dep'.
+ Failed to remake target file 'src/gxutil.c.dep'.
+ Considering target file 'src/mini_commend.c.dep'.
+  File 'src/mini_commend.c.dep' does not exist.
+  Looking for an implicit rule for 'src/mini_commend.c.dep'.
+  No implicit rule found for 'src/mini_commend.c.dep'.
+ Finished prerequisites of target file 'src/mini_commend.c.dep'.
+ Must remake target 'src/mini_commend.c.dep'.
+ Failed to remake target file 'src/mini_commend.c.dep'.
+ Considering target file 'src/gxcache.c.dep'.
+  File 'src/gxcache.c.dep' does not exist.
+  Looking for an implicit rule for 'src/gxcache.c.dep'.
+  No implicit rule found for 'src/gxcache.c.dep'.
+ Finished prerequisites of target file 'src/gxcache.c.dep'.
+ Must remake target 'src/gxcache.c.dep'.
+ Failed to remake target file 'src/gxcache.c.dep'.
+ Considering target file 'src/memcard.c.dep'.
+  File 'src/memcard.c.dep' does not exist.
+  Looking for an implicit rule for 'src/memcard.c.dep'.
+  No implicit rule found for 'src/memcard.c.dep'.
+ Finished prerequisites of target file 'src/memcard.c.dep'.
+ Must remake target 'src/memcard.c.dep'.
+ Failed to remake target file 'src/memcard.c.dep'.
+ Considering target file 'src/DEMOPuts.c.dep'.
+  File 'src/DEMOPuts.c.dep' does not exist.
+  Looking for an implicit rule for 'src/DEMOPuts.c.dep'.
+  No implicit rule found for 'src/DEMOPuts.c.dep'.
+ Finished prerequisites of target file 'src/DEMOPuts.c.dep'.
+ Must remake target 'src/DEMOPuts.c.dep'.
+ Failed to remake target file 'src/DEMOPuts.c.dep'.
+ Considering target file 'src/view.c.dep'.
+  File 'src/view.c.dep' does not exist.
+  Looking for an implicit rule for 'src/view.c.dep'.
+  No implicit rule found for 'src/view.c.dep'.
+ Finished prerequisites of target file 'src/view.c.dep'.
+ Must remake target 'src/view.c.dep'.
+ Failed to remake target file 'src/view.c.dep'.
+ Considering target file 'src/code_6.c.dep'.
+  File 'src/code_6.c.dep' does not exist.
+  Looking for an implicit rule for 'src/code_6.c.dep'.
+  No implicit rule found for 'src/code_6.c.dep'.
+ Finished prerequisites of target file 'src/code_6.c.dep'.
+ Must remake target 'src/code_6.c.dep'.
+ Failed to remake target file 'src/code_6.c.dep'.
+ Considering target file 'asm/mini_ranking.s.dep'.
+  File 'asm/mini_ranking.s.dep' does not exist.
+  Looking for an implicit rule for 'asm/mini_ranking.s.dep'.
+  No implicit rule found for 'asm/mini_ranking.s.dep'.
+ Finished prerequisites of target file 'asm/mini_ranking.s.dep'.
+ Must remake target 'asm/mini_ranking.s.dep'.
+ Failed to remake target file 'asm/mini_ranking.s.dep'.
+ Considering target file 'src/dvd.c.dep'.
+  File 'src/dvd.c.dep' does not exist.
+  Looking for an implicit rule for 'src/dvd.c.dep'.
+  No implicit rule found for 'src/dvd.c.dep'.
+ Finished prerequisites of target file 'src/dvd.c.dep'.
+ Must remake target 'src/dvd.c.dep'.
+ Failed to remake target file 'src/dvd.c.dep'.
+ Considering target file 'src/preview.c.dep'.
+  File 'src/preview.c.dep' does not exist.
+  Looking for an implicit rule for 'src/preview.c.dep'.
+  No implicit rule found for 'src/preview.c.dep'.
+ Finished prerequisites of target file 'src/preview.c.dep'.
+ Must remake target 'src/preview.c.dep'.
+ Failed to remake target file 'src/preview.c.dep'.
+ Considering target file 'src/name_entry.c.dep'.
+  File 'src/name_entry.c.dep' does not exist.
+  Looking for an implicit rule for 'src/name_entry.c.dep'.
+  No implicit rule found for 'src/name_entry.c.dep'.
+ Finished prerequisites of target file 'src/name_entry.c.dep'.
+ Must remake target 'src/name_entry.c.dep'.
+ Failed to remake target file 'src/name_entry.c.dep'.
+ Considering target file 'asm/credits.s.dep'.
+  File 'asm/credits.s.dep' does not exist.
+  Looking for an implicit rule for 'asm/credits.s.dep'.
+  No implicit rule found for 'asm/credits.s.dep'.
+ Finished prerequisites of target file 'asm/credits.s.dep'.
+ Must remake target 'asm/credits.s.dep'.
+ Failed to remake target file 'asm/credits.s.dep'.
+ Considering target file 'src/vibration.c.dep'.
+  File 'src/vibration.c.dep' does not exist.
+  Looking for an implicit rule for 'src/vibration.c.dep'.
+  No implicit rule found for 'src/vibration.c.dep'.
+ Finished prerequisites of target file 'src/vibration.c.dep'.
+ Must remake target 'src/vibration.c.dep'.
+ Failed to remake target file 'src/vibration.c.dep'.
+ Considering target file 'src/ending.c.dep'.
+  File 'src/ending.c.dep' does not exist.
+  Looking for an implicit rule for 'src/ending.c.dep'.
+  No implicit rule found for 'src/ending.c.dep'.
+ Finished prerequisites of target file 'src/ending.c.dep'.
+ Must remake target 'src/ending.c.dep'.
+ Failed to remake target file 'src/ending.c.dep'.
+ Considering target file 'src/ending_camera.c.dep'.
+  File 'src/ending_camera.c.dep' does not exist.
+  Looking for an implicit rule for 'src/ending_camera.c.dep'.
+  No implicit rule found for 'src/ending_camera.c.dep'.
+ Finished prerequisites of target file 'src/ending_camera.c.dep'.
+ Must remake target 'src/ending_camera.c.dep'.
+ Failed to remake target file 'src/ending_camera.c.dep'.
+ Considering target file 'src/ending_dialogue.c.dep'.
+  File 'src/ending_dialogue.c.dep' does not exist.
+  Looking for an implicit rule for 'src/ending_dialogue.c.dep'.
+  No implicit rule found for 'src/ending_dialogue.c.dep'.
+ Finished prerequisites of target file 'src/ending_dialogue.c.dep'.
+ Must remake target 'src/ending_dialogue.c.dep'.
+ Failed to remake target file 'src/ending_dialogue.c.dep'.
+ Considering target file 'libraries/base/asm/PPCArch.s.dep'.
+  File 'libraries/base/asm/PPCArch.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/base/asm/PPCArch.s.dep'.
+  No implicit rule found for 'libraries/base/asm/PPCArch.s.dep'.
+ Finished prerequisites of target file 'libraries/base/asm/PPCArch.s.dep'.
+ Must remake target 'libraries/base/asm/PPCArch.s.dep'.
+ Failed to remake target file 'libraries/base/asm/PPCArch.s.dep'.
+ Considering target file 'libraries/os/__start.c.dep'.
+  File 'libraries/os/__start.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/__start.c.dep'.
+  No implicit rule found for 'libraries/os/__start.c.dep'.
+ Finished prerequisites of target file 'libraries/os/__start.c.dep'.
+ Must remake target 'libraries/os/__start.c.dep'.
+ Failed to remake target file 'libraries/os/__start.c.dep'.
+ Considering target file 'libraries/os/asm/OS.s.dep'.
+  File 'libraries/os/asm/OS.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/asm/OS.s.dep'.
+  No implicit rule found for 'libraries/os/asm/OS.s.dep'.
+ Finished prerequisites of target file 'libraries/os/asm/OS.s.dep'.
+ Must remake target 'libraries/os/asm/OS.s.dep'.
+ Failed to remake target file 'libraries/os/asm/OS.s.dep'.
+ Considering target file 'libraries/os/asm/OSAlarm.s.dep'.
+  File 'libraries/os/asm/OSAlarm.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/asm/OSAlarm.s.dep'.
+  No implicit rule found for 'libraries/os/asm/OSAlarm.s.dep'.
+ Finished prerequisites of target file 'libraries/os/asm/OSAlarm.s.dep'.
+ Must remake target 'libraries/os/asm/OSAlarm.s.dep'.
+ Failed to remake target file 'libraries/os/asm/OSAlarm.s.dep'.
+ Considering target file 'libraries/os/OSAlloc.c.dep'.
+  File 'libraries/os/OSAlloc.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/OSAlloc.c.dep'.
+  No implicit rule found for 'libraries/os/OSAlloc.c.dep'.
+ Finished prerequisites of target file 'libraries/os/OSAlloc.c.dep'.
+ Must remake target 'libraries/os/OSAlloc.c.dep'.
+ Failed to remake target file 'libraries/os/OSAlloc.c.dep'.
+ Considering target file 'libraries/os/OSArena.c.dep'.
+  File 'libraries/os/OSArena.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/OSArena.c.dep'.
+  No implicit rule found for 'libraries/os/OSArena.c.dep'.
+ Finished prerequisites of target file 'libraries/os/OSArena.c.dep'.
+ Must remake target 'libraries/os/OSArena.c.dep'.
+ Failed to remake target file 'libraries/os/OSArena.c.dep'.
+ Considering target file 'libraries/os/OSAudioSystem.c.dep'.
+  File 'libraries/os/OSAudioSystem.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/OSAudioSystem.c.dep'.
+  No implicit rule found for 'libraries/os/OSAudioSystem.c.dep'.
+ Finished prerequisites of target file 'libraries/os/OSAudioSystem.c.dep'.
+ Must remake target 'libraries/os/OSAudioSystem.c.dep'.
+ Failed to remake target file 'libraries/os/OSAudioSystem.c.dep'.
+ Considering target file 'libraries/os/asm/OSCache.s.dep'.
+  File 'libraries/os/asm/OSCache.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/asm/OSCache.s.dep'.
+  No implicit rule found for 'libraries/os/asm/OSCache.s.dep'.
+ Finished prerequisites of target file 'libraries/os/asm/OSCache.s.dep'.
+ Must remake target 'libraries/os/asm/OSCache.s.dep'.
+ Failed to remake target file 'libraries/os/asm/OSCache.s.dep'.
+ Considering target file 'libraries/os/asm/OSContext.s.dep'.
+  File 'libraries/os/asm/OSContext.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/asm/OSContext.s.dep'.
+  No implicit rule found for 'libraries/os/asm/OSContext.s.dep'.
+ Finished prerequisites of target file 'libraries/os/asm/OSContext.s.dep'.
+ Must remake target 'libraries/os/asm/OSContext.s.dep'.
+ Failed to remake target file 'libraries/os/asm/OSContext.s.dep'.
+ Considering target file 'libraries/os/OSError.c.dep'.
+  File 'libraries/os/OSError.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/OSError.c.dep'.
+  No implicit rule found for 'libraries/os/OSError.c.dep'.
+ Finished prerequisites of target file 'libraries/os/OSError.c.dep'.
+ Must remake target 'libraries/os/OSError.c.dep'.
+ Failed to remake target file 'libraries/os/OSError.c.dep'.
+ Considering target file 'libraries/os/asm/OSExi.s.dep'.
+  File 'libraries/os/asm/OSExi.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/asm/OSExi.s.dep'.
+  No implicit rule found for 'libraries/os/asm/OSExi.s.dep'.
+ Finished prerequisites of target file 'libraries/os/asm/OSExi.s.dep'.
+ Must remake target 'libraries/os/asm/OSExi.s.dep'.
+ Failed to remake target file 'libraries/os/asm/OSExi.s.dep'.
+ Considering target file 'libraries/os/asm/OSFont.s.dep'.
+  File 'libraries/os/asm/OSFont.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/asm/OSFont.s.dep'.
+  No implicit rule found for 'libraries/os/asm/OSFont.s.dep'.
+ Finished prerequisites of target file 'libraries/os/asm/OSFont.s.dep'.
+ Must remake target 'libraries/os/asm/OSFont.s.dep'.
+ Failed to remake target file 'libraries/os/asm/OSFont.s.dep'.
+ Considering target file 'libraries/os/asm/OSInterrupt.s.dep'.
+  File 'libraries/os/asm/OSInterrupt.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/asm/OSInterrupt.s.dep'.
+  No implicit rule found for 'libraries/os/asm/OSInterrupt.s.dep'.
+ Finished prerequisites of target file 'libraries/os/asm/OSInterrupt.s.dep'.
+ Must remake target 'libraries/os/asm/OSInterrupt.s.dep'.
+ Failed to remake target file 'libraries/os/asm/OSInterrupt.s.dep'.
+ Considering target file 'libraries/os/asm/OSLink.s.dep'.
+  File 'libraries/os/asm/OSLink.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/asm/OSLink.s.dep'.
+  No implicit rule found for 'libraries/os/asm/OSLink.s.dep'.
+ Finished prerequisites of target file 'libraries/os/asm/OSLink.s.dep'.
+ Must remake target 'libraries/os/asm/OSLink.s.dep'.
+ Failed to remake target file 'libraries/os/asm/OSLink.s.dep'.
+ Considering target file 'libraries/os/OSMemory.c.dep'.
+  File 'libraries/os/OSMemory.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/OSMemory.c.dep'.
+  No implicit rule found for 'libraries/os/OSMemory.c.dep'.
+ Finished prerequisites of target file 'libraries/os/OSMemory.c.dep'.
+ Must remake target 'libraries/os/OSMemory.c.dep'.
+ Failed to remake target file 'libraries/os/OSMemory.c.dep'.
+ Considering target file 'libraries/os/OSMutex.c.dep'.
+  File 'libraries/os/OSMutex.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/OSMutex.c.dep'.
+  No implicit rule found for 'libraries/os/OSMutex.c.dep'.
+ Finished prerequisites of target file 'libraries/os/OSMutex.c.dep'.
+ Must remake target 'libraries/os/OSMutex.c.dep'.
+ Failed to remake target file 'libraries/os/OSMutex.c.dep'.
+ Considering target file 'libraries/os/asm/OSReboot.s.dep'.
+  File 'libraries/os/asm/OSReboot.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/asm/OSReboot.s.dep'.
+  No implicit rule found for 'libraries/os/asm/OSReboot.s.dep'.
+ Finished prerequisites of target file 'libraries/os/asm/OSReboot.s.dep'.
+ Must remake target 'libraries/os/asm/OSReboot.s.dep'.
+ Failed to remake target file 'libraries/os/asm/OSReboot.s.dep'.
+ Considering target file 'libraries/os/asm/OSReset.s.dep'.
+  File 'libraries/os/asm/OSReset.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/asm/OSReset.s.dep'.
+  No implicit rule found for 'libraries/os/asm/OSReset.s.dep'.
+ Finished prerequisites of target file 'libraries/os/asm/OSReset.s.dep'.
+ Must remake target 'libraries/os/asm/OSReset.s.dep'.
+ Failed to remake target file 'libraries/os/asm/OSReset.s.dep'.
+ Considering target file 'libraries/os/asm/OSResetSW.s.dep'.
+  File 'libraries/os/asm/OSResetSW.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/asm/OSResetSW.s.dep'.
+  No implicit rule found for 'libraries/os/asm/OSResetSW.s.dep'.
+ Finished prerequisites of target file 'libraries/os/asm/OSResetSW.s.dep'.
+ Must remake target 'libraries/os/asm/OSResetSW.s.dep'.
+ Failed to remake target file 'libraries/os/asm/OSResetSW.s.dep'.
+ Considering target file 'libraries/os/asm/OSRtc.s.dep'.
+  File 'libraries/os/asm/OSRtc.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/asm/OSRtc.s.dep'.
+  No implicit rule found for 'libraries/os/asm/OSRtc.s.dep'.
+ Finished prerequisites of target file 'libraries/os/asm/OSRtc.s.dep'.
+ Must remake target 'libraries/os/asm/OSRtc.s.dep'.
+ Failed to remake target file 'libraries/os/asm/OSRtc.s.dep'.
+ Considering target file 'libraries/si/asm/SIBios.s.dep'.
+  File 'libraries/si/asm/SIBios.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/si/asm/SIBios.s.dep'.
+  No implicit rule found for 'libraries/si/asm/SIBios.s.dep'.
+ Finished prerequisites of target file 'libraries/si/asm/SIBios.s.dep'.
+ Must remake target 'libraries/si/asm/SIBios.s.dep'.
+ Failed to remake target file 'libraries/si/asm/SIBios.s.dep'.
+ Considering target file 'libraries/os/OSSync.c.dep'.
+  File 'libraries/os/OSSync.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/OSSync.c.dep'.
+  No implicit rule found for 'libraries/os/OSSync.c.dep'.
+ Finished prerequisites of target file 'libraries/os/OSSync.c.dep'.
+ Must remake target 'libraries/os/OSSync.c.dep'.
+ Failed to remake target file 'libraries/os/OSSync.c.dep'.
+ Considering target file 'libraries/os/OSThread.c.dep'.
+  File 'libraries/os/OSThread.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/OSThread.c.dep'.
+  No implicit rule found for 'libraries/os/OSThread.c.dep'.
+ Finished prerequisites of target file 'libraries/os/OSThread.c.dep'.
+ Must remake target 'libraries/os/OSThread.c.dep'.
+ Failed to remake target file 'libraries/os/OSThread.c.dep'.
+ Considering target file 'libraries/os/asm/OSTime.s.dep'.
+  File 'libraries/os/asm/OSTime.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/asm/OSTime.s.dep'.
+  No implicit rule found for 'libraries/os/asm/OSTime.s.dep'.
+ Finished prerequisites of target file 'libraries/os/asm/OSTime.s.dep'.
+ Must remake target 'libraries/os/asm/OSTime.s.dep'.
+ Failed to remake target file 'libraries/os/asm/OSTime.s.dep'.
+ Considering target file 'libraries/exi/asm/EXIUart.s.dep'.
+  File 'libraries/exi/asm/EXIUart.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/exi/asm/EXIUart.s.dep'.
+  No implicit rule found for 'libraries/exi/asm/EXIUart.s.dep'.
+ Finished prerequisites of target file 'libraries/exi/asm/EXIUart.s.dep'.
+ Must remake target 'libraries/exi/asm/EXIUart.s.dep'.
+ Failed to remake target file 'libraries/exi/asm/EXIUart.s.dep'.
+ Considering target file 'libraries/os/__ppc_eabi_init.c.dep'.
+  File 'libraries/os/__ppc_eabi_init.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/os/__ppc_eabi_init.c.dep'.
+  No implicit rule found for 'libraries/os/__ppc_eabi_init.c.dep'.
+ Finished prerequisites of target file 'libraries/os/__ppc_eabi_init.c.dep'.
+ Must remake target 'libraries/os/__ppc_eabi_init.c.dep'.
+ Failed to remake target file 'libraries/os/__ppc_eabi_init.c.dep'.
+ Considering target file 'libraries/db/db.c.dep'.
+  File 'libraries/db/db.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/db/db.c.dep'.
+  No implicit rule found for 'libraries/db/db.c.dep'.
+ Finished prerequisites of target file 'libraries/db/db.c.dep'.
+ Must remake target 'libraries/db/db.c.dep'.
+ Failed to remake target file 'libraries/db/db.c.dep'.
+ Considering target file 'libraries/mtx/asm/mtx.s.dep'.
+  File 'libraries/mtx/asm/mtx.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/mtx/asm/mtx.s.dep'.
+  No implicit rule found for 'libraries/mtx/asm/mtx.s.dep'.
+ Finished prerequisites of target file 'libraries/mtx/asm/mtx.s.dep'.
+ Must remake target 'libraries/mtx/asm/mtx.s.dep'.
+ Failed to remake target file 'libraries/mtx/asm/mtx.s.dep'.
+ Considering target file 'libraries/mtx/mtx44.c.dep'.
+  File 'libraries/mtx/mtx44.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/mtx/mtx44.c.dep'.
+  No implicit rule found for 'libraries/mtx/mtx44.c.dep'.
+ Finished prerequisites of target file 'libraries/mtx/mtx44.c.dep'.
+ Must remake target 'libraries/mtx/mtx44.c.dep'.
+ Failed to remake target file 'libraries/mtx/mtx44.c.dep'.
+ Considering target file 'libraries/mtx/asm/vec.s.dep'.
+  File 'libraries/mtx/asm/vec.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/mtx/asm/vec.s.dep'.
+  No implicit rule found for 'libraries/mtx/asm/vec.s.dep'.
+ Finished prerequisites of target file 'libraries/mtx/asm/vec.s.dep'.
+ Must remake target 'libraries/mtx/asm/vec.s.dep'.
+ Failed to remake target file 'libraries/mtx/asm/vec.s.dep'.
+ Considering target file 'libraries/dvd/asm/dvdlow.s.dep'.
+  File 'libraries/dvd/asm/dvdlow.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/dvd/asm/dvdlow.s.dep'.
+  No implicit rule found for 'libraries/dvd/asm/dvdlow.s.dep'.
+ Finished prerequisites of target file 'libraries/dvd/asm/dvdlow.s.dep'.
+ Must remake target 'libraries/dvd/asm/dvdlow.s.dep'.
+ Failed to remake target file 'libraries/dvd/asm/dvdlow.s.dep'.
+ Considering target file 'libraries/dvd/asm/dvdfs.s.dep'.
+  File 'libraries/dvd/asm/dvdfs.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/dvd/asm/dvdfs.s.dep'.
+  No implicit rule found for 'libraries/dvd/asm/dvdfs.s.dep'.
+ Finished prerequisites of target file 'libraries/dvd/asm/dvdfs.s.dep'.
+ Must remake target 'libraries/dvd/asm/dvdfs.s.dep'.
+ Failed to remake target file 'libraries/dvd/asm/dvdfs.s.dep'.
+ Considering target file 'libraries/dvd/asm/dvd.s.dep'.
+  File 'libraries/dvd/asm/dvd.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/dvd/asm/dvd.s.dep'.
+  No implicit rule found for 'libraries/dvd/asm/dvd.s.dep'.
+ Finished prerequisites of target file 'libraries/dvd/asm/dvd.s.dep'.
+ Must remake target 'libraries/dvd/asm/dvd.s.dep'.
+ Failed to remake target file 'libraries/dvd/asm/dvd.s.dep'.
+ Considering target file 'libraries/dvd/dvdqueue.c.dep'.
+  File 'libraries/dvd/dvdqueue.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/dvd/dvdqueue.c.dep'.
+  No implicit rule found for 'libraries/dvd/dvdqueue.c.dep'.
+ Finished prerequisites of target file 'libraries/dvd/dvdqueue.c.dep'.
+ Must remake target 'libraries/dvd/dvdqueue.c.dep'.
+ Failed to remake target file 'libraries/dvd/dvdqueue.c.dep'.
+ Considering target file 'libraries/dvd/asm/dvderror.s.dep'.
+  File 'libraries/dvd/asm/dvderror.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/dvd/asm/dvderror.s.dep'.
+  No implicit rule found for 'libraries/dvd/asm/dvderror.s.dep'.
+ Finished prerequisites of target file 'libraries/dvd/asm/dvderror.s.dep'.
+ Must remake target 'libraries/dvd/asm/dvderror.s.dep'.
+ Failed to remake target file 'libraries/dvd/asm/dvderror.s.dep'.
+ Considering target file 'libraries/dvd/fstload.c.dep'.
+  File 'libraries/dvd/fstload.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/dvd/fstload.c.dep'.
+  No implicit rule found for 'libraries/dvd/fstload.c.dep'.
+ Finished prerequisites of target file 'libraries/dvd/fstload.c.dep'.
+ Must remake target 'libraries/dvd/fstload.c.dep'.
+ Failed to remake target file 'libraries/dvd/fstload.c.dep'.
+ Considering target file 'libraries/vi/asm/vi.s.dep'.
+  File 'libraries/vi/asm/vi.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/vi/asm/vi.s.dep'.
+  No implicit rule found for 'libraries/vi/asm/vi.s.dep'.
+ Finished prerequisites of target file 'libraries/vi/asm/vi.s.dep'.
+ Must remake target 'libraries/vi/asm/vi.s.dep'.
+ Failed to remake target file 'libraries/vi/asm/vi.s.dep'.
+ Considering target file 'libraries/demo/DEMOFont.c.dep'.
+  File 'libraries/demo/DEMOFont.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/demo/DEMOFont.c.dep'.
+  No implicit rule found for 'libraries/demo/DEMOFont.c.dep'.
+ Finished prerequisites of target file 'libraries/demo/DEMOFont.c.dep'.
+ Must remake target 'libraries/demo/DEMOFont.c.dep'.
+ Failed to remake target file 'libraries/demo/DEMOFont.c.dep'.
+ Considering target file 'libraries/pad/Pad.c.dep'.
+  File 'libraries/pad/Pad.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/pad/Pad.c.dep'.
+  No implicit rule found for 'libraries/pad/Pad.c.dep'.
+ Finished prerequisites of target file 'libraries/pad/Pad.c.dep'.
+ Must remake target 'libraries/pad/Pad.c.dep'.
+ Failed to remake target file 'libraries/pad/Pad.c.dep'.
+ Considering target file 'libraries/ai/ai.c.dep'.
+  File 'libraries/ai/ai.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/ai/ai.c.dep'.
+  No implicit rule found for 'libraries/ai/ai.c.dep'.
+ Finished prerequisites of target file 'libraries/ai/ai.c.dep'.
+ Must remake target 'libraries/ai/ai.c.dep'.
+ Failed to remake target file 'libraries/ai/ai.c.dep'.
+ Considering target file 'libraries/ar/asm/ar.s.dep'.
+  File 'libraries/ar/asm/ar.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/ar/asm/ar.s.dep'.
+  No implicit rule found for 'libraries/ar/asm/ar.s.dep'.
+ Finished prerequisites of target file 'libraries/ar/asm/ar.s.dep'.
+ Must remake target 'libraries/ar/asm/ar.s.dep'.
+ Failed to remake target file 'libraries/ar/asm/ar.s.dep'.
+ Considering target file 'libraries/ar/asm/arq.s.dep'.
+  File 'libraries/ar/asm/arq.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/ar/asm/arq.s.dep'.
+  No implicit rule found for 'libraries/ar/asm/arq.s.dep'.
+ Finished prerequisites of target file 'libraries/ar/asm/arq.s.dep'.
+ Must remake target 'libraries/ar/asm/arq.s.dep'.
+ Failed to remake target file 'libraries/ar/asm/arq.s.dep'.
+ Considering target file 'libraries/dsp/dsp.c.dep'.
+  File 'libraries/dsp/dsp.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/dsp/dsp.c.dep'.
+  No implicit rule found for 'libraries/dsp/dsp.c.dep'.
+ Finished prerequisites of target file 'libraries/dsp/dsp.c.dep'.
+ Must remake target 'libraries/dsp/dsp.c.dep'.
+ Failed to remake target file 'libraries/dsp/dsp.c.dep'.
+ Considering target file 'libraries/dsp/dsp_debug.c.dep'.
+  File 'libraries/dsp/dsp_debug.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/dsp/dsp_debug.c.dep'.
+  No implicit rule found for 'libraries/dsp/dsp_debug.c.dep'.
+ Finished prerequisites of target file 'libraries/dsp/dsp_debug.c.dep'.
+ Must remake target 'libraries/dsp/dsp_debug.c.dep'.
+ Failed to remake target file 'libraries/dsp/dsp_debug.c.dep'.
+ Considering target file 'libraries/dsp/dsp_task.c.dep'.
+  File 'libraries/dsp/dsp_task.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/dsp/dsp_task.c.dep'.
+  No implicit rule found for 'libraries/dsp/dsp_task.c.dep'.
+ Finished prerequisites of target file 'libraries/dsp/dsp_task.c.dep'.
+ Must remake target 'libraries/dsp/dsp_task.c.dep'.
+ Failed to remake target file 'libraries/dsp/dsp_task.c.dep'.
+ Considering target file 'libraries/card/CARDBios.c.dep'.
+  File 'libraries/card/CARDBios.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDBios.c.dep'.
+  No implicit rule found for 'libraries/card/CARDBios.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDBios.c.dep'.
+ Must remake target 'libraries/card/CARDBios.c.dep'.
+ Failed to remake target file 'libraries/card/CARDBios.c.dep'.
+ Considering target file 'libraries/card/CARDUnlock.c.dep'.
+  File 'libraries/card/CARDUnlock.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDUnlock.c.dep'.
+  No implicit rule found for 'libraries/card/CARDUnlock.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDUnlock.c.dep'.
+ Must remake target 'libraries/card/CARDUnlock.c.dep'.
+ Failed to remake target file 'libraries/card/CARDUnlock.c.dep'.
+ Considering target file 'libraries/card/CARDRdwr.c.dep'.
+  File 'libraries/card/CARDRdwr.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDRdwr.c.dep'.
+  No implicit rule found for 'libraries/card/CARDRdwr.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDRdwr.c.dep'.
+ Must remake target 'libraries/card/CARDRdwr.c.dep'.
+ Failed to remake target file 'libraries/card/CARDRdwr.c.dep'.
+ Considering target file 'libraries/card/CARDBlock.c.dep'.
+  File 'libraries/card/CARDBlock.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDBlock.c.dep'.
+  No implicit rule found for 'libraries/card/CARDBlock.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDBlock.c.dep'.
+ Must remake target 'libraries/card/CARDBlock.c.dep'.
+ Failed to remake target file 'libraries/card/CARDBlock.c.dep'.
+ Considering target file 'libraries/card/CARDDir.c.dep'.
+  File 'libraries/card/CARDDir.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDDir.c.dep'.
+  No implicit rule found for 'libraries/card/CARDDir.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDDir.c.dep'.
+ Must remake target 'libraries/card/CARDDir.c.dep'.
+ Failed to remake target file 'libraries/card/CARDDir.c.dep'.
+ Considering target file 'libraries/card/CARDCheck.c.dep'.
+  File 'libraries/card/CARDCheck.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDCheck.c.dep'.
+  No implicit rule found for 'libraries/card/CARDCheck.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDCheck.c.dep'.
+ Must remake target 'libraries/card/CARDCheck.c.dep'.
+ Failed to remake target file 'libraries/card/CARDCheck.c.dep'.
+ Considering target file 'libraries/card/CARDMount.c.dep'.
+  File 'libraries/card/CARDMount.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDMount.c.dep'.
+  No implicit rule found for 'libraries/card/CARDMount.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDMount.c.dep'.
+ Must remake target 'libraries/card/CARDMount.c.dep'.
+ Failed to remake target file 'libraries/card/CARDMount.c.dep'.
+ Considering target file 'libraries/card/CARDFormat.c.dep'.
+  File 'libraries/card/CARDFormat.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDFormat.c.dep'.
+  No implicit rule found for 'libraries/card/CARDFormat.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDFormat.c.dep'.
+ Must remake target 'libraries/card/CARDFormat.c.dep'.
+ Failed to remake target file 'libraries/card/CARDFormat.c.dep'.
+ Considering target file 'libraries/card/CARDOpen.c.dep'.
+  File 'libraries/card/CARDOpen.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDOpen.c.dep'.
+  No implicit rule found for 'libraries/card/CARDOpen.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDOpen.c.dep'.
+ Must remake target 'libraries/card/CARDOpen.c.dep'.
+ Failed to remake target file 'libraries/card/CARDOpen.c.dep'.
+ Considering target file 'libraries/card/CARDCreate.c.dep'.
+  File 'libraries/card/CARDCreate.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDCreate.c.dep'.
+  No implicit rule found for 'libraries/card/CARDCreate.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDCreate.c.dep'.
+ Must remake target 'libraries/card/CARDCreate.c.dep'.
+ Failed to remake target file 'libraries/card/CARDCreate.c.dep'.
+ Considering target file 'libraries/card/CARDRead.c.dep'.
+  File 'libraries/card/CARDRead.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDRead.c.dep'.
+  No implicit rule found for 'libraries/card/CARDRead.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDRead.c.dep'.
+ Must remake target 'libraries/card/CARDRead.c.dep'.
+ Failed to remake target file 'libraries/card/CARDRead.c.dep'.
+ Considering target file 'libraries/card/CARDWrite.c.dep'.
+  File 'libraries/card/CARDWrite.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDWrite.c.dep'.
+  No implicit rule found for 'libraries/card/CARDWrite.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDWrite.c.dep'.
+ Must remake target 'libraries/card/CARDWrite.c.dep'.
+ Failed to remake target file 'libraries/card/CARDWrite.c.dep'.
+ Considering target file 'libraries/card/CARDDelete.c.dep'.
+  File 'libraries/card/CARDDelete.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDDelete.c.dep'.
+  No implicit rule found for 'libraries/card/CARDDelete.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDDelete.c.dep'.
+ Must remake target 'libraries/card/CARDDelete.c.dep'.
+ Failed to remake target file 'libraries/card/CARDDelete.c.dep'.
+ Considering target file 'libraries/card/CARDStat.c.dep'.
+  File 'libraries/card/CARDStat.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDStat.c.dep'.
+  No implicit rule found for 'libraries/card/CARDStat.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDStat.c.dep'.
+ Must remake target 'libraries/card/CARDStat.c.dep'.
+ Failed to remake target file 'libraries/card/CARDStat.c.dep'.
+ Considering target file 'libraries/card/CARDRename.c.dep'.
+  File 'libraries/card/CARDRename.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/card/CARDRename.c.dep'.
+  No implicit rule found for 'libraries/card/CARDRename.c.dep'.
+ Finished prerequisites of target file 'libraries/card/CARDRename.c.dep'.
+ Must remake target 'libraries/card/CARDRename.c.dep'.
+ Failed to remake target file 'libraries/card/CARDRename.c.dep'.
+ Considering target file 'libraries/hio/hio.c.dep'.
+  File 'libraries/hio/hio.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/hio/hio.c.dep'.
+  No implicit rule found for 'libraries/hio/hio.c.dep'.
+ Finished prerequisites of target file 'libraries/hio/hio.c.dep'.
+ Must remake target 'libraries/hio/hio.c.dep'.
+ Failed to remake target file 'libraries/hio/hio.c.dep'.
+ Considering target file 'libraries/gx/GXInit.c.dep'.
+  File 'libraries/gx/GXInit.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/GXInit.c.dep'.
+  No implicit rule found for 'libraries/gx/GXInit.c.dep'.
+ Finished prerequisites of target file 'libraries/gx/GXInit.c.dep'.
+ Must remake target 'libraries/gx/GXInit.c.dep'.
+ Failed to remake target file 'libraries/gx/GXInit.c.dep'.
+ Considering target file 'libraries/gx/GXFifo.c.dep'.
+  File 'libraries/gx/GXFifo.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/GXFifo.c.dep'.
+  No implicit rule found for 'libraries/gx/GXFifo.c.dep'.
+ Finished prerequisites of target file 'libraries/gx/GXFifo.c.dep'.
+ Must remake target 'libraries/gx/GXFifo.c.dep'.
+ Failed to remake target file 'libraries/gx/GXFifo.c.dep'.
+ Considering target file 'libraries/gx/asm/GXAttr.s.dep'.
+  File 'libraries/gx/asm/GXAttr.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/asm/GXAttr.s.dep'.
+  No implicit rule found for 'libraries/gx/asm/GXAttr.s.dep'.
+ Finished prerequisites of target file 'libraries/gx/asm/GXAttr.s.dep'.
+ Must remake target 'libraries/gx/asm/GXAttr.s.dep'.
+ Failed to remake target file 'libraries/gx/asm/GXAttr.s.dep'.
+ Considering target file 'libraries/gx/asm/GXMisc.s.dep'.
+  File 'libraries/gx/asm/GXMisc.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/asm/GXMisc.s.dep'.
+  No implicit rule found for 'libraries/gx/asm/GXMisc.s.dep'.
+ Finished prerequisites of target file 'libraries/gx/asm/GXMisc.s.dep'.
+ Must remake target 'libraries/gx/asm/GXMisc.s.dep'.
+ Failed to remake target file 'libraries/gx/asm/GXMisc.s.dep'.
+ Considering target file 'libraries/gx/GXGeometry.c.dep'.
+  File 'libraries/gx/GXGeometry.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/GXGeometry.c.dep'.
+  No implicit rule found for 'libraries/gx/GXGeometry.c.dep'.
+ Finished prerequisites of target file 'libraries/gx/GXGeometry.c.dep'.
+ Must remake target 'libraries/gx/GXGeometry.c.dep'.
+ Failed to remake target file 'libraries/gx/GXGeometry.c.dep'.
+ Considering target file 'libraries/gx/asm/GXFrameBuf.s.dep'.
+  File 'libraries/gx/asm/GXFrameBuf.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/asm/GXFrameBuf.s.dep'.
+  No implicit rule found for 'libraries/gx/asm/GXFrameBuf.s.dep'.
+ Finished prerequisites of target file 'libraries/gx/asm/GXFrameBuf.s.dep'.
+ Must remake target 'libraries/gx/asm/GXFrameBuf.s.dep'.
+ Failed to remake target file 'libraries/gx/asm/GXFrameBuf.s.dep'.
+ Considering target file 'libraries/gx/GXLight.c.dep'.
+  File 'libraries/gx/GXLight.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/GXLight.c.dep'.
+  No implicit rule found for 'libraries/gx/GXLight.c.dep'.
+ Finished prerequisites of target file 'libraries/gx/GXLight.c.dep'.
+ Must remake target 'libraries/gx/GXLight.c.dep'.
+ Failed to remake target file 'libraries/gx/GXLight.c.dep'.
+ Considering target file 'libraries/gx/asm/GXTexture.s.dep'.
+  File 'libraries/gx/asm/GXTexture.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/asm/GXTexture.s.dep'.
+  No implicit rule found for 'libraries/gx/asm/GXTexture.s.dep'.
+ Finished prerequisites of target file 'libraries/gx/asm/GXTexture.s.dep'.
+ Must remake target 'libraries/gx/asm/GXTexture.s.dep'.
+ Failed to remake target file 'libraries/gx/asm/GXTexture.s.dep'.
+ Considering target file 'libraries/gx/asm/GXBump.s.dep'.
+  File 'libraries/gx/asm/GXBump.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/asm/GXBump.s.dep'.
+  No implicit rule found for 'libraries/gx/asm/GXBump.s.dep'.
+ Finished prerequisites of target file 'libraries/gx/asm/GXBump.s.dep'.
+ Must remake target 'libraries/gx/asm/GXBump.s.dep'.
+ Failed to remake target file 'libraries/gx/asm/GXBump.s.dep'.
+ Considering target file 'libraries/gx/GXTev.c.dep'.
+  File 'libraries/gx/GXTev.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/GXTev.c.dep'.
+  No implicit rule found for 'libraries/gx/GXTev.c.dep'.
+ Finished prerequisites of target file 'libraries/gx/GXTev.c.dep'.
+ Must remake target 'libraries/gx/GXTev.c.dep'.
+ Failed to remake target file 'libraries/gx/GXTev.c.dep'.
+ Considering target file 'libraries/gx/asm/GXPixel.s.dep'.
+  File 'libraries/gx/asm/GXPixel.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/asm/GXPixel.s.dep'.
+  No implicit rule found for 'libraries/gx/asm/GXPixel.s.dep'.
+ Finished prerequisites of target file 'libraries/gx/asm/GXPixel.s.dep'.
+ Must remake target 'libraries/gx/asm/GXPixel.s.dep'.
+ Failed to remake target file 'libraries/gx/asm/GXPixel.s.dep'.
+ Considering target file 'libraries/gx/asm/GXDraw.s.dep'.
+  File 'libraries/gx/asm/GXDraw.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/asm/GXDraw.s.dep'.
+  No implicit rule found for 'libraries/gx/asm/GXDraw.s.dep'.
+ Finished prerequisites of target file 'libraries/gx/asm/GXDraw.s.dep'.
+ Must remake target 'libraries/gx/asm/GXDraw.s.dep'.
+ Failed to remake target file 'libraries/gx/asm/GXDraw.s.dep'.
+ Considering target file 'libraries/gx/GXStubs.c.dep'.
+  File 'libraries/gx/GXStubs.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/GXStubs.c.dep'.
+  No implicit rule found for 'libraries/gx/GXStubs.c.dep'.
+ Finished prerequisites of target file 'libraries/gx/GXStubs.c.dep'.
+ Must remake target 'libraries/gx/GXStubs.c.dep'.
+ Failed to remake target file 'libraries/gx/GXStubs.c.dep'.
+ Considering target file 'libraries/gx/GXDisplayList.c.dep'.
+  File 'libraries/gx/GXDisplayList.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/GXDisplayList.c.dep'.
+  No implicit rule found for 'libraries/gx/GXDisplayList.c.dep'.
+ Finished prerequisites of target file 'libraries/gx/GXDisplayList.c.dep'.
+ Must remake target 'libraries/gx/GXDisplayList.c.dep'.
+ Failed to remake target file 'libraries/gx/GXDisplayList.c.dep'.
+ Considering target file 'libraries/gx/GXTransform.c.dep'.
+  File 'libraries/gx/GXTransform.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/GXTransform.c.dep'.
+  No implicit rule found for 'libraries/gx/GXTransform.c.dep'.
+ Finished prerequisites of target file 'libraries/gx/GXTransform.c.dep'.
+ Must remake target 'libraries/gx/GXTransform.c.dep'.
+ Failed to remake target file 'libraries/gx/GXTransform.c.dep'.
+ Considering target file 'libraries/gx/GXPerf.c.dep'.
+  File 'libraries/gx/GXPerf.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/gx/GXPerf.c.dep'.
+  No implicit rule found for 'libraries/gx/GXPerf.c.dep'.
+ Finished prerequisites of target file 'libraries/gx/GXPerf.c.dep'.
+ Must remake target 'libraries/gx/GXPerf.c.dep'.
+ Failed to remake target file 'libraries/gx/GXPerf.c.dep'.
+ Considering target file 'libraries/perf/asm/perf.s.dep'.
+  File 'libraries/perf/asm/perf.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/perf/asm/perf.s.dep'.
+  No implicit rule found for 'libraries/perf/asm/perf.s.dep'.
+ Finished prerequisites of target file 'libraries/perf/asm/perf.s.dep'.
+ Must remake target 'libraries/perf/asm/perf.s.dep'.
+ Failed to remake target file 'libraries/perf/asm/perf.s.dep'.
+ Considering target file 'libraries/perf/asm/perfdraw.s.dep'.
+  File 'libraries/perf/asm/perfdraw.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/perf/asm/perfdraw.s.dep'.
+  No implicit rule found for 'libraries/perf/asm/perfdraw.s.dep'.
+ Finished prerequisites of target file 'libraries/perf/asm/perfdraw.s.dep'.
+ Must remake target 'libraries/perf/asm/perfdraw.s.dep'.
+ Failed to remake target file 'libraries/perf/asm/perfdraw.s.dep'.
+ Considering target file 'libraries/musyx/asm/seq.s.dep'.
+  File 'libraries/musyx/asm/seq.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/asm/seq.s.dep'.
+  No implicit rule found for 'libraries/musyx/asm/seq.s.dep'.
+ Finished prerequisites of target file 'libraries/musyx/asm/seq.s.dep'.
+ Must remake target 'libraries/musyx/asm/seq.s.dep'.
+ Failed to remake target file 'libraries/musyx/asm/seq.s.dep'.
+ Considering target file 'libraries/musyx/asm/synth.s.dep'.
+  File 'libraries/musyx/asm/synth.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/asm/synth.s.dep'.
+  No implicit rule found for 'libraries/musyx/asm/synth.s.dep'.
+ Finished prerequisites of target file 'libraries/musyx/asm/synth.s.dep'.
+ Must remake target 'libraries/musyx/asm/synth.s.dep'.
+ Failed to remake target file 'libraries/musyx/asm/synth.s.dep'.
+ Considering target file 'libraries/musyx/seq_api.c.dep'.
+  File 'libraries/musyx/seq_api.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/seq_api.c.dep'.
+  No implicit rule found for 'libraries/musyx/seq_api.c.dep'.
+ Finished prerequisites of target file 'libraries/musyx/seq_api.c.dep'.
+ Must remake target 'libraries/musyx/seq_api.c.dep'.
+ Failed to remake target file 'libraries/musyx/seq_api.c.dep'.
+ Considering target file 'libraries/musyx/snd_synthapi.c.dep'.
+  File 'libraries/musyx/snd_synthapi.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/snd_synthapi.c.dep'.
+  No implicit rule found for 'libraries/musyx/snd_synthapi.c.dep'.
+ Finished prerequisites of target file 'libraries/musyx/snd_synthapi.c.dep'.
+ Must remake target 'libraries/musyx/snd_synthapi.c.dep'.
+ Failed to remake target file 'libraries/musyx/snd_synthapi.c.dep'.
+ Considering target file 'libraries/musyx/asm/stream.s.dep'.
+  File 'libraries/musyx/asm/stream.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/asm/stream.s.dep'.
+  No implicit rule found for 'libraries/musyx/asm/stream.s.dep'.
+ Finished prerequisites of target file 'libraries/musyx/asm/stream.s.dep'.
+ Must remake target 'libraries/musyx/asm/stream.s.dep'.
+ Failed to remake target file 'libraries/musyx/asm/stream.s.dep'.
+ Considering target file 'libraries/musyx/asm/synthdata.s.dep'.
+  File 'libraries/musyx/asm/synthdata.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/asm/synthdata.s.dep'.
+  No implicit rule found for 'libraries/musyx/asm/synthdata.s.dep'.
+ Finished prerequisites of target file 'libraries/musyx/asm/synthdata.s.dep'.
+ Must remake target 'libraries/musyx/asm/synthdata.s.dep'.
+ Failed to remake target file 'libraries/musyx/asm/synthdata.s.dep'.
+ Considering target file 'libraries/musyx/asm/synthmacros.s.dep'.
+  File 'libraries/musyx/asm/synthmacros.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/asm/synthmacros.s.dep'.
+  No implicit rule found for 'libraries/musyx/asm/synthmacros.s.dep'.
+ Finished prerequisites of target file 'libraries/musyx/asm/synthmacros.s.dep'.
+ Must remake target 'libraries/musyx/asm/synthmacros.s.dep'.
+ Failed to remake target file 'libraries/musyx/asm/synthmacros.s.dep'.
+ Considering target file 'libraries/musyx/asm/synthvoice.s.dep'.
+  File 'libraries/musyx/asm/synthvoice.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/asm/synthvoice.s.dep'.
+  No implicit rule found for 'libraries/musyx/asm/synthvoice.s.dep'.
+ Finished prerequisites of target file 'libraries/musyx/asm/synthvoice.s.dep'.
+ Must remake target 'libraries/musyx/asm/synthvoice.s.dep'.
+ Failed to remake target file 'libraries/musyx/asm/synthvoice.s.dep'.
+ Considering target file 'libraries/musyx/synth_ac.c.dep'.
+  File 'libraries/musyx/synth_ac.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/synth_ac.c.dep'.
+  No implicit rule found for 'libraries/musyx/synth_ac.c.dep'.
+ Finished prerequisites of target file 'libraries/musyx/synth_ac.c.dep'.
+ Must remake target 'libraries/musyx/synth_ac.c.dep'.
+ Failed to remake target file 'libraries/musyx/synth_ac.c.dep'.
+ Considering target file 'libraries/musyx/asm/synth_adsr.s.dep'.
+  File 'libraries/musyx/asm/synth_adsr.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/asm/synth_adsr.s.dep'.
+  No implicit rule found for 'libraries/musyx/asm/synth_adsr.s.dep'.
+ Finished prerequisites of target file 'libraries/musyx/asm/synth_adsr.s.dep'.
+ Must remake target 'libraries/musyx/asm/synth_adsr.s.dep'.
+ Failed to remake target file 'libraries/musyx/asm/synth_adsr.s.dep'.
+ Considering target file 'libraries/musyx/synth_dbtab.c.dep'.
+  File 'libraries/musyx/synth_dbtab.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/synth_dbtab.c.dep'.
+  No implicit rule found for 'libraries/musyx/synth_dbtab.c.dep'.
+ Finished prerequisites of target file 'libraries/musyx/synth_dbtab.c.dep'.
+ Must remake target 'libraries/musyx/synth_dbtab.c.dep'.
+ Failed to remake target file 'libraries/musyx/synth_dbtab.c.dep'.
+ Considering target file 'libraries/musyx/asm/s_data.s.dep'.
+  File 'libraries/musyx/asm/s_data.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/asm/s_data.s.dep'.
+  No implicit rule found for 'libraries/musyx/asm/s_data.s.dep'.
+ Finished prerequisites of target file 'libraries/musyx/asm/s_data.s.dep'.
+ Must remake target 'libraries/musyx/asm/s_data.s.dep'.
+ Failed to remake target file 'libraries/musyx/asm/s_data.s.dep'.
+ Considering target file 'libraries/musyx/asm/hw_dspctrl.s.dep'.
+  File 'libraries/musyx/asm/hw_dspctrl.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/asm/hw_dspctrl.s.dep'.
+  No implicit rule found for 'libraries/musyx/asm/hw_dspctrl.s.dep'.
+ Finished prerequisites of target file 'libraries/musyx/asm/hw_dspctrl.s.dep'.
+ Must remake target 'libraries/musyx/asm/hw_dspctrl.s.dep'.
+ Failed to remake target file 'libraries/musyx/asm/hw_dspctrl.s.dep'.
+ Considering target file 'libraries/musyx/hw_volconv.c.dep'.
+  File 'libraries/musyx/hw_volconv.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/hw_volconv.c.dep'.
+  No implicit rule found for 'libraries/musyx/hw_volconv.c.dep'.
+ Finished prerequisites of target file 'libraries/musyx/hw_volconv.c.dep'.
+ Must remake target 'libraries/musyx/hw_volconv.c.dep'.
+ Failed to remake target file 'libraries/musyx/hw_volconv.c.dep'.
+ Considering target file 'libraries/musyx/snd3d.c.dep'.
+  File 'libraries/musyx/snd3d.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/snd3d.c.dep'.
+  No implicit rule found for 'libraries/musyx/snd3d.c.dep'.
+ Finished prerequisites of target file 'libraries/musyx/snd3d.c.dep'.
+ Must remake target 'libraries/musyx/snd3d.c.dep'.
+ Failed to remake target file 'libraries/musyx/snd3d.c.dep'.
+ Considering target file 'libraries/musyx/asm/synth_2.s.dep'.
+  File 'libraries/musyx/asm/synth_2.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/asm/synth_2.s.dep'.
+  No implicit rule found for 'libraries/musyx/asm/synth_2.s.dep'.
+ Finished prerequisites of target file 'libraries/musyx/asm/synth_2.s.dep'.
+ Must remake target 'libraries/musyx/asm/synth_2.s.dep'.
+ Failed to remake target file 'libraries/musyx/asm/synth_2.s.dep'.
+ Considering target file 'libraries/musyx/snd_math.c.dep'.
+  File 'libraries/musyx/snd_math.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/snd_math.c.dep'.
+  No implicit rule found for 'libraries/musyx/snd_math.c.dep'.
+ Finished prerequisites of target file 'libraries/musyx/snd_math.c.dep'.
+ Must remake target 'libraries/musyx/snd_math.c.dep'.
+ Failed to remake target file 'libraries/musyx/snd_math.c.dep'.
+ Considering target file 'libraries/musyx/asm/snd_midictrl.s.dep'.
+  File 'libraries/musyx/asm/snd_midictrl.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/asm/snd_midictrl.s.dep'.
+  No implicit rule found for 'libraries/musyx/asm/snd_midictrl.s.dep'.
+ Finished prerequisites of target file 'libraries/musyx/asm/snd_midictrl.s.dep'.
+ Must remake target 'libraries/musyx/asm/snd_midictrl.s.dep'.
+ Failed to remake target file 'libraries/musyx/asm/snd_midictrl.s.dep'.
+ Considering target file 'libraries/musyx/snd_service.c.dep'.
+  File 'libraries/musyx/snd_service.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/snd_service.c.dep'.
+  No implicit rule found for 'libraries/musyx/snd_service.c.dep'.
+ Finished prerequisites of target file 'libraries/musyx/snd_service.c.dep'.
+ Must remake target 'libraries/musyx/snd_service.c.dep'.
+ Failed to remake target file 'libraries/musyx/snd_service.c.dep'.
+ Considering target file 'libraries/musyx/HARDWARE.c.dep'.
+  File 'libraries/musyx/HARDWARE.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/HARDWARE.c.dep'.
+  No implicit rule found for 'libraries/musyx/HARDWARE.c.dep'.
+ Finished prerequisites of target file 'libraries/musyx/HARDWARE.c.dep'.
+ Must remake target 'libraries/musyx/HARDWARE.c.dep'.
+ Failed to remake target file 'libraries/musyx/HARDWARE.c.dep'.
+ Considering target file 'libraries/musyx/hw_aramdma.c.dep'.
+  File 'libraries/musyx/hw_aramdma.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/hw_aramdma.c.dep'.
+  No implicit rule found for 'libraries/musyx/hw_aramdma.c.dep'.
+ Finished prerequisites of target file 'libraries/musyx/hw_aramdma.c.dep'.
+ Must remake target 'libraries/musyx/hw_aramdma.c.dep'.
+ Failed to remake target file 'libraries/musyx/hw_aramdma.c.dep'.
+ Considering target file 'libraries/musyx/hw_dolphin.c.dep'.
+  File 'libraries/musyx/hw_dolphin.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/hw_dolphin.c.dep'.
+  No implicit rule found for 'libraries/musyx/hw_dolphin.c.dep'.
+ Finished prerequisites of target file 'libraries/musyx/hw_dolphin.c.dep'.
+ Must remake target 'libraries/musyx/hw_dolphin.c.dep'.
+ Failed to remake target file 'libraries/musyx/hw_dolphin.c.dep'.
+ Considering target file 'libraries/musyx/hw_memory.c.dep'.
+  File 'libraries/musyx/hw_memory.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/hw_memory.c.dep'.
+  No implicit rule found for 'libraries/musyx/hw_memory.c.dep'.
+ Finished prerequisites of target file 'libraries/musyx/hw_memory.c.dep'.
+ Must remake target 'libraries/musyx/hw_memory.c.dep'.
+ Failed to remake target file 'libraries/musyx/hw_memory.c.dep'.
+ Considering target file 'libraries/musyx/reverb_fx.c.dep'.
+  File 'libraries/musyx/reverb_fx.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/reverb_fx.c.dep'.
+  No implicit rule found for 'libraries/musyx/reverb_fx.c.dep'.
+ Finished prerequisites of target file 'libraries/musyx/reverb_fx.c.dep'.
+ Must remake target 'libraries/musyx/reverb_fx.c.dep'.
+ Failed to remake target file 'libraries/musyx/reverb_fx.c.dep'.
+ Considering target file 'libraries/musyx/asm/reverb.s.dep'.
+  File 'libraries/musyx/asm/reverb.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/asm/reverb.s.dep'.
+  No implicit rule found for 'libraries/musyx/asm/reverb.s.dep'.
+ Finished prerequisites of target file 'libraries/musyx/asm/reverb.s.dep'.
+ Must remake target 'libraries/musyx/asm/reverb.s.dep'.
+ Failed to remake target file 'libraries/musyx/asm/reverb.s.dep'.
+ Considering target file 'libraries/musyx/asm/chorus_fx.s.dep'.
+  File 'libraries/musyx/asm/chorus_fx.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/musyx/asm/chorus_fx.s.dep'.
+  No implicit rule found for 'libraries/musyx/asm/chorus_fx.s.dep'.
+ Finished prerequisites of target file 'libraries/musyx/asm/chorus_fx.s.dep'.
+ Must remake target 'libraries/musyx/asm/chorus_fx.s.dep'.
+ Failed to remake target file 'libraries/musyx/asm/chorus_fx.s.dep'.
+ Considering target file 'libraries/dtk/asm/dtk.s.dep'.
+  File 'libraries/dtk/asm/dtk.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/dtk/asm/dtk.s.dep'.
+  No implicit rule found for 'libraries/dtk/asm/dtk.s.dep'.
+ Finished prerequisites of target file 'libraries/dtk/asm/dtk.s.dep'.
+ Must remake target 'libraries/dtk/asm/dtk.s.dep'.
+ Failed to remake target file 'libraries/dtk/asm/dtk.s.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Runtime/Src/__mem.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Runtime/Src/__mem.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Runtime/Src/__mem.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Runtime/Src/__mem.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Runtime/Src/__mem.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Runtime/Src/__mem.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Runtime/Src/__mem.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Runtime/Src/__va_arg.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Runtime/Src/__va_arg.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Runtime/Src/__va_arg.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Runtime/Src/__va_arg.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Runtime/Src/__va_arg.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Runtime/Src/__va_arg.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Runtime/Src/__va_arg.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Runtime/Src/ExceptionPPC.cp.dep'.
+  File 'libraries/PowerPC_EABI_Support/Runtime/Src/ExceptionPPC.cp.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Runtime/Src/ExceptionPPC.cp.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Runtime/Src/ExceptionPPC.cp.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Runtime/Src/ExceptionPPC.cp.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Runtime/Src/ExceptionPPC.cp.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Runtime/Src/ExceptionPPC.cp.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/asm/Runtime/Src/runtime.s.dep'.
+  File 'libraries/PowerPC_EABI_Support/asm/Runtime/Src/runtime.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/asm/Runtime/Src/runtime.s.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/asm/Runtime/Src/runtime.s.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/asm/Runtime/Src/runtime.s.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/asm/Runtime/Src/runtime.s.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/asm/Runtime/Src/runtime.s.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp.dep'.
+  File 'libraries/PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/abort_exit.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Src/ansi_fp.s.dep'.
+  File 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Src/ansi_fp.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Src/ansi_fp.s.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Src/ansi_fp.s.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Src/ansi_fp.s.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Src/ansi_fp.s.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Src/ansi_fp.s.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/buffer_io.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/char_io.s.dep'.
+  File 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/char_io.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/char_io.s.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/char_io.s.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/char_io.s.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/char_io.s.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/char_io.s.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/critical_regions.ppc_eabi.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/critical_regions.ppc_eabi.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/critical_regions.ppc_eabi.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/critical_regions.ppc_eabi.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/critical_regions.ppc_eabi.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/critical_regions.ppc_eabi.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/PPC_EABI/SRC/critical_regions.ppc_eabi.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/ctype.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/ctype.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/ctype.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/ctype.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/ctype.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/ctype.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/ctype.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/direct_io.s.dep'.
+  File 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/direct_io.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/direct_io.s.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/direct_io.s.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/direct_io.s.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/direct_io.s.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/direct_io.s.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mbstring.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mbstring.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mbstring.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mbstring.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mbstring.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mbstring.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mbstring.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem_funcs.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem_funcs.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem_funcs.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem_funcs.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem_funcs.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem_funcs.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/mem_funcs.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/misc_io.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/printf.s.dep'.
+  File 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/printf.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/printf.s.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/printf.s.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/printf.s.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/printf.s.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/printf.s.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/float.s.dep'.
+  File 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/float.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/float.s.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/float.s.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/float.s.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/float.s.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/float.s.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/rand.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/string.s.dep'.
+  File 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/string.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/string.s.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/string.s.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/string.s.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/string.s.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common/Src/string.s.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wchar_io.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wchar_io.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wchar_io.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wchar_io.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wchar_io.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wchar_io.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common/Src/wchar_io.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/math/s_fabs.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/math/s_fabs.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/math/s_fabs.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/math/s_fabs.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/math/s_fabs.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/math/s_fabs.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/math/s_fabs.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/math/scalbn.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/math/scalbn.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/math/scalbn.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/math/scalbn.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/math/scalbn.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/math/scalbn.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/math/scalbn.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/math/e_rem_pio2.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/math/e_rem_pio2.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/math/e_rem_pio2.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/math/e_rem_pio2.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/math/e_rem_pio2.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/math/e_rem_pio2.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/math/e_rem_pio2.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/math/fminmaxdim.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/math/fminmaxdim.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/math/fminmaxdim.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/math/fminmaxdim.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/math/fminmaxdim.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/math/fminmaxdim.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/math/fminmaxdim.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/math/k_cos.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/math/k_cos.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/math/k_cos.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/math/k_cos.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/math/k_cos.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/math/k_cos.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/math/k_cos.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/math/k_rem_pio2.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/math/k_rem_pio2.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/math/k_rem_pio2.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/math/k_rem_pio2.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/math/k_rem_pio2.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/math/k_rem_pio2.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/math/k_rem_pio2.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/math/k_sin.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/math/k_sin.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/math/k_sin.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/math/k_sin.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/math/k_sin.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/math/k_sin.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/math/k_sin.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/math/s_copysign.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/math/s_copysign.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/math/s_copysign.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/math/s_copysign.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/math/s_copysign.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/math/s_copysign.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/math/s_copysign.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/math/s_cos.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/math/s_cos.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/math/s_cos.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/math/s_cos.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/math/s_cos.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/math/s_cos.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/math/s_cos.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/math/s_floor.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/math/s_floor.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/math/s_floor.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/math/s_floor.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/math/s_floor.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/math/s_floor.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/math/s_floor.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/math/s_frexp.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/math/s_frexp.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/math/s_frexp.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/math/s_frexp.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/math/s_frexp.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/math/s_frexp.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/math/s_frexp.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/math/s_ldexp.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/math/s_ldexp.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/math/s_ldexp.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/math/s_ldexp.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/math/s_ldexp.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/math/s_ldexp.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/math/s_ldexp.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/math/s_sin.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/math/s_sin.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/math/s_sin.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/math/s_sin.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/math/s_sin.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/math/s_sin.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/math/s_sin.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/asm/math/inverse_trig.s.dep'.
+  File 'libraries/PowerPC_EABI_Support/asm/math/inverse_trig.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/asm/math/inverse_trig.s.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/asm/math/inverse_trig.s.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/asm/math/inverse_trig.s.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/asm/math/inverse_trig.s.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/asm/math/inverse_trig.s.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/asm/math/trigf.s.dep'.
+  File 'libraries/PowerPC_EABI_Support/asm/math/trigf.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/asm/math/trigf.s.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/asm/math/trigf.s.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/asm/math/trigf.s.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/asm/math/trigf.s.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/asm/math/trigf.s.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/common_float_tables.c.dep'.
+  File 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/common_float_tables.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/common_float_tables.c.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/common_float_tables.c.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/common_float_tables.c.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/common_float_tables.c.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/common_float_tables.c.dep'.
+ Considering target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/exponentialsf.s.dep'.
+  File 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/exponentialsf.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/exponentialsf.s.dep'.
+  No implicit rule found for 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/exponentialsf.s.dep'.
+ Finished prerequisites of target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/exponentialsf.s.dep'.
+ Must remake target 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/exponentialsf.s.dep'.
+ Failed to remake target file 'libraries/PowerPC_EABI_Support/asm/Msl/MSL_C/MSL_Common_Embedded/Math/Single_precision/exponentialsf.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/mainloop.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/mainloop.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/mainloop.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/mainloop.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/mainloop.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/mainloop.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/mainloop.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/nubevent.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/nubevent.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/nubevent.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/nubevent.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/nubevent.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/nubevent.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/nubevent.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/nubinit.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/nubinit.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/nubinit.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/nubinit.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/nubinit.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/nubinit.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/nubinit.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/msg.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/msg.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/msg.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/msg.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/msg.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/msg.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/msg.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/msgbuf.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/msgbuf.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/msgbuf.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/msgbuf.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/msgbuf.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/msgbuf.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/msgbuf.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/serpoll.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/serpoll.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/serpoll.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/serpoll.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/serpoll.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/serpoll.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/serpoll.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/usr_put.c.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/usr_put.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/usr_put.c.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/usr_put.c.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/usr_put.c.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/usr_put.c.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/usr_put.c.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/dispatch.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/dispatch.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/dispatch.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/dispatch.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/dispatch.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/dispatch.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/dispatch.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/msghndlr.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/msghndlr.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/msghndlr.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/msghndlr.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/msghndlr.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/msghndlr.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/msghndlr.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/support.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/support.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/support.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/support.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/support.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/support.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/support.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/mutex_TRK.c.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/mutex_TRK.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/mutex_TRK.c.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/mutex_TRK.c.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/mutex_TRK.c.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/mutex_TRK.c.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/mutex_TRK.c.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/notify.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/notify.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/notify.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/notify.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/notify.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/notify.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/notify.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/flush_cache.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/flush_cache.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/flush_cache.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/flush_cache.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/flush_cache.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/flush_cache.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/flush_cache.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/Portable/mem_TRK.c.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/Portable/mem_TRK.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/Portable/mem_TRK.c.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/Portable/mem_TRK.c.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/Portable/mem_TRK.c.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/Portable/mem_TRK.c.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/Portable/mem_TRK.c.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/targimpl.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/targimpl.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/targimpl.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/targimpl.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/targimpl.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/targimpl.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/targimpl.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/__exception.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/__exception.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/__exception.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/__exception.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/__exception.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/__exception.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/__exception.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/mpc_7xx_603e.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/mpc_7xx_603e.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/mpc_7xx_603e.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/mpc_7xx_603e.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/mpc_7xx_603e.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/mpc_7xx_603e.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/mpc_7xx_603e.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/main_TRK.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/main_TRK.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/main_TRK.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/main_TRK.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/main_TRK.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/main_TRK.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/main_TRK.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk_glue.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk_glue.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk_glue.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk_glue.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk_glue.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk_glue.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk_glue.s.dep'.
+ Considering target file 'libraries/TRK_MINNOW_DOLPHIN/asm/targcont.s.dep'.
+  File 'libraries/TRK_MINNOW_DOLPHIN/asm/targcont.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/TRK_MINNOW_DOLPHIN/asm/targcont.s.dep'.
+  No implicit rule found for 'libraries/TRK_MINNOW_DOLPHIN/asm/targcont.s.dep'.
+ Finished prerequisites of target file 'libraries/TRK_MINNOW_DOLPHIN/asm/targcont.s.dep'.
+ Must remake target 'libraries/TRK_MINNOW_DOLPHIN/asm/targcont.s.dep'.
+ Failed to remake target file 'libraries/TRK_MINNOW_DOLPHIN/asm/targcont.s.dep'.
+ Considering target file 'libraries/amcExi2/AmcExi.c.dep'.
+  File 'libraries/amcExi2/AmcExi.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/amcExi2/AmcExi.c.dep'.
+  No implicit rule found for 'libraries/amcExi2/AmcExi.c.dep'.
+ Finished prerequisites of target file 'libraries/amcExi2/AmcExi.c.dep'.
+ Must remake target 'libraries/amcExi2/AmcExi.c.dep'.
+ Failed to remake target file 'libraries/amcExi2/AmcExi.c.dep'.
+ Considering target file 'libraries/amcExi2/AmcExi2Comm.c.dep'.
+  File 'libraries/amcExi2/AmcExi2Comm.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/amcExi2/AmcExi2Comm.c.dep'.
+  No implicit rule found for 'libraries/amcExi2/AmcExi2Comm.c.dep'.
+ Finished prerequisites of target file 'libraries/amcExi2/AmcExi2Comm.c.dep'.
+ Must remake target 'libraries/amcExi2/AmcExi2Comm.c.dep'.
+ Failed to remake target file 'libraries/amcExi2/AmcExi2Comm.c.dep'.
+ Considering target file 'libraries/odemustubs/asm/odemustubs.s.dep'.
+  File 'libraries/odemustubs/asm/odemustubs.s.dep' does not exist.
+  Looking for an implicit rule for 'libraries/odemustubs/asm/odemustubs.s.dep'.
+  No implicit rule found for 'libraries/odemustubs/asm/odemustubs.s.dep'.
+ Finished prerequisites of target file 'libraries/odemustubs/asm/odemustubs.s.dep'.
+ Must remake target 'libraries/odemustubs/asm/odemustubs.s.dep'.
+ Failed to remake target file 'libraries/odemustubs/asm/odemustubs.s.dep'.
+ Considering target file 'libraries/amcnotstub/amcnotstub.c.dep'.
+  File 'libraries/amcnotstub/amcnotstub.c.dep' does not exist.
+  Looking for an implicit rule for 'libraries/amcnotstub/amcnotstub.c.dep'.
+  No implicit rule found for 'libraries/amcnotstub/amcnotstub.c.dep'.
+ Finished prerequisites of target file 'libraries/amcnotstub/amcnotstub.c.dep'.
+ Must remake target 'libraries/amcnotstub/amcnotstub.c.dep'.
+ Failed to remake target file 'libraries/amcnotstub/amcnotstub.c.dep'.
+ Considering target file 'src/sel_ngc_rel.c.dep'.
+  File 'src/sel_ngc_rel.c.dep' does not exist.
+  Looking for an implicit rule for 'src/sel_ngc_rel.c.dep'.
+  No implicit rule found for 'src/sel_ngc_rel.c.dep'.
+ Finished prerequisites of target file 'src/sel_ngc_rel.c.dep'.
+ Must remake target 'src/sel_ngc_rel.c.dep'.
+ Failed to remake target file 'src/sel_ngc_rel.c.dep'.
+ Considering target file 'asm/sel_ngc_rel.s.dep'.
+  File 'asm/sel_ngc_rel.s.dep' does not exist.
+  Looking for an implicit rule for 'asm/sel_ngc_rel.s.dep'.
+  No implicit rule found for 'asm/sel_ngc_rel.s.dep'.
+ Finished prerequisites of target file 'asm/sel_ngc_rel.s.dep'.
+ Must remake target 'asm/sel_ngc_rel.s.dep'.
+ Failed to remake target file 'asm/sel_ngc_rel.s.dep'.
+ Considering target file 'src/sel_stage_rel.c.dep'.
+  File 'src/sel_stage_rel.c.dep' does not exist.
+  Looking for an implicit rule for 'src/sel_stage_rel.c.dep'.
+  No implicit rule found for 'src/sel_stage_rel.c.dep'.
+ Finished prerequisites of target file 'src/sel_stage_rel.c.dep'.
+ Must remake target 'src/sel_stage_rel.c.dep'.
+ Failed to remake target file 'src/sel_stage_rel.c.dep'.
+ Considering target file 'src/sel_stage_rel_2.c.dep'.
+  File 'src/sel_stage_rel_2.c.dep' does not exist.
+  Looking for an implicit rule for 'src/sel_stage_rel_2.c.dep'.
+  No implicit rule found for 'src/sel_stage_rel_2.c.dep'.
+ Finished prerequisites of target file 'src/sel_stage_rel_2.c.dep'.
+ Must remake target 'src/sel_stage_rel_2.c.dep'.
+ Failed to remake target file 'src/sel_stage_rel_2.c.dep'.
+ Considering target file 'src/sel_stage_rel_3.c.dep'.
+  File 'src/sel_stage_rel_3.c.dep' does not exist.
+  Looking for an implicit rule for 'src/sel_stage_rel_3.c.dep'.
+  No implicit rule found for 'src/sel_stage_rel_3.c.dep'.
+ Finished prerequisites of target file 'src/sel_stage_rel_3.c.dep'.
+ Must remake target 'src/sel_stage_rel_3.c.dep'.
+ Failed to remake target file 'src/sel_stage_rel_3.c.dep'.
+ Considering target file 'src/mini_race.c.dep'.
+  File 'src/mini_race.c.dep' does not exist.
+  Looking for an implicit rule for 'src/mini_race.c.dep'.
+  No implicit rule found for 'src/mini_race.c.dep'.
+ Finished prerequisites of target file 'src/mini_race.c.dep'.
+ Must remake target 'src/mini_race.c.dep'.
+ Failed to remake target file 'src/mini_race.c.dep'.
+ Considering target file 'asm/mini_race.s.dep'.
+  File 'asm/mini_race.s.dep' does not exist.
+  Looking for an implicit rule for 'asm/mini_race.s.dep'.
+  No implicit rule found for 'asm/mini_race.s.dep'.
+ Finished prerequisites of target file 'asm/mini_race.s.dep'.
+ Must remake target 'asm/mini_race.s.dep'.
+ Failed to remake target file 'asm/mini_race.s.dep'.
+ Considering target file 'src/mini_bowling.c.dep'.
+  File 'src/mini_bowling.c.dep' does not exist.
+  Looking for an implicit rule for 'src/mini_bowling.c.dep'.
+  No implicit rule found for 'src/mini_bowling.c.dep'.
+ Finished prerequisites of target file 'src/mini_bowling.c.dep'.
+ Must remake target 'src/mini_bowling.c.dep'.
+ Failed to remake target file 'src/mini_bowling.c.dep'.
+ Considering target file 'asm/mini_bowling.s.dep'.
+  File 'asm/mini_bowling.s.dep' does not exist.
+  Looking for an implicit rule for 'asm/mini_bowling.s.dep'.
+  No implicit rule found for 'asm/mini_bowling.s.dep'.
+ Finished prerequisites of target file 'asm/mini_bowling.s.dep'.
+ Must remake target 'asm/mini_bowling.s.dep'.
+ Failed to remake target file 'asm/mini_bowling.s.dep'.
+ Considering target file 'asm/mini_fight.s.dep'.
+  File 'asm/mini_fight.s.dep' does not exist.
+  Looking for an implicit rule for 'asm/mini_fight.s.dep'.
+  No implicit rule found for 'asm/mini_fight.s.dep'.
+ Finished prerequisites of target file 'asm/mini_fight.s.dep'.
+ Must remake target 'asm/mini_fight.s.dep'.
+ Failed to remake target file 'asm/mini_fight.s.dep'.
+ Considering target file 'src/mini_pilot.c.dep'.
+  File 'src/mini_pilot.c.dep' does not exist.
+  Looking for an implicit rule for 'src/mini_pilot.c.dep'.
+  No implicit rule found for 'src/mini_pilot.c.dep'.
+ Finished prerequisites of target file 'src/mini_pilot.c.dep'.
+ Must remake target 'src/mini_pilot.c.dep'.
+ Failed to remake target file 'src/mini_pilot.c.dep'.
+ Considering target file 'asm/mini_pilot.s.dep'.
+  File 'asm/mini_pilot.s.dep' does not exist.
+  Looking for an implicit rule for 'asm/mini_pilot.s.dep'.
+  No implicit rule found for 'asm/mini_pilot.s.dep'.
+ Finished prerequisites of target file 'asm/mini_pilot.s.dep'.
+ Must remake target 'asm/mini_pilot.s.dep'.
+ Failed to remake target file 'asm/mini_pilot.s.dep'.
+ Considering target file 'src/mini_golf.c.dep'.
+  File 'src/mini_golf.c.dep' does not exist.
+  Looking for an implicit rule for 'src/mini_golf.c.dep'.
+  No implicit rule found for 'src/mini_golf.c.dep'.
+ Finished prerequisites of target file 'src/mini_golf.c.dep'.
+ Must remake target 'src/mini_golf.c.dep'.
+ Failed to remake target file 'src/mini_golf.c.dep'.
+ Considering target file 'asm/mini_golf.s.dep'.
+  File 'asm/mini_golf.s.dep' does not exist.
+  Looking for an implicit rule for 'asm/mini_golf.s.dep'.
+  No implicit rule found for 'asm/mini_golf.s.dep'.
+ Finished prerequisites of target file 'asm/mini_golf.s.dep'.
+ Must remake target 'asm/mini_golf.s.dep'.
+ Failed to remake target file 'asm/mini_golf.s.dep'.
+ Considering target file 'src/mini_billiards.c.dep'.
+  File 'src/mini_billiards.c.dep' does not exist.
+  Looking for an implicit rule for 'src/mini_billiards.c.dep'.
+  No implicit rule found for 'src/mini_billiards.c.dep'.
+ Finished prerequisites of target file 'src/mini_billiards.c.dep'.
+ Must remake target 'src/mini_billiards.c.dep'.
+ Failed to remake target file 'src/mini_billiards.c.dep'.
+ Considering target file 'asm/mini_billiards.s.dep'.
+  File 'asm/mini_billiards.s.dep' does not exist.
+  Looking for an implicit rule for 'asm/mini_billiards.s.dep'.
+  No implicit rule found for 'asm/mini_billiards.s.dep'.
+ Finished prerequisites of target file 'asm/mini_billiards.s.dep'.
+ Must remake target 'asm/mini_billiards.s.dep'.
+ Failed to remake target file 'asm/mini_billiards.s.dep'.
+ Considering target file 'src/rel_sample.c.dep'.
+  File 'src/rel_sample.c.dep' does not exist.
+  Looking for an implicit rule for 'src/rel_sample.c.dep'.
+  No implicit rule found for 'src/rel_sample.c.dep'.
+ Finished prerequisites of target file 'src/rel_sample.c.dep'.
+ Must remake target 'src/rel_sample.c.dep'.
+ Failed to remake target file 'src/rel_sample.c.dep'.
+ Considering target file 'src/test_mode.c.dep'.
+  File 'src/test_mode.c.dep' does not exist.
+  Looking for an implicit rule for 'src/test_mode.c.dep'.
+  No implicit rule found for 'src/test_mode.c.dep'.
+ Finished prerequisites of target file 'src/test_mode.c.dep'.
+ Must remake target 'src/test_mode.c.dep'.
+ Failed to remake target file 'src/test_mode.c.dep'.
+ Considering target file 'asm/test_mode.s.dep'.
+  File 'asm/test_mode.s.dep' does not exist.
+  Looking for an implicit rule for 'asm/test_mode.s.dep'.
+  No implicit rule found for 'asm/test_mode.s.dep'.
+ Finished prerequisites of target file 'asm/test_mode.s.dep'.
+ Must remake target 'asm/test_mode.s.dep'.
+ Failed to remake target file 'asm/test_mode.s.dep'.
+ Considering target file 'src/option.c.dep'.
+  File 'src/option.c.dep' does not exist.
+  Looking for an implicit rule for 'src/option.c.dep'.
+  No implicit rule found for 'src/option.c.dep'.
+ Finished prerequisites of target file 'src/option.c.dep'.
+ Must remake target 'src/option.c.dep'.
+ Failed to remake target file 'src/option.c.dep'.
+ Considering target file 'asm/option.s.dep'.
+  File 'asm/option.s.dep' does not exist.
+  Looking for an implicit rule for 'asm/option.s.dep'.
+  No implicit rule found for 'asm/option.s.dep'.
+ Finished prerequisites of target file 'asm/option.s.dep'.
+ Must remake target 'asm/option.s.dep'.
+ Failed to remake target file 'asm/option.s.dep'.
+Updating goal targets....
+Considering target file 'libmkb.a'.
+ File 'libmkb.a' does not exist.
+ Considering target file 'src/lib/stage_loader.lib.o'.
+  File 'src/lib/stage_loader.lib.o' does not exist.
+  Looking for an implicit rule for 'src/lib/stage_loader.lib.o'.
+   Trying pattern rule '%.lib.o: %.c' with stem 'stage_loader'.
+   Trying implicit prerequisite 'src/lib/stage_loader.c'.
+   Found 'src/lib/stage_loader.c'.
+  Found implicit rule '%.lib.o: %.c' for 'src/lib/stage_loader.lib.o'.
+  Considering target file 'src/lib/stage_loader.c'.
+   Looking for an implicit rule for 'src/lib/stage_loader.c'.
+   No implicit rule found for 'src/lib/stage_loader.c'.
+  Finished prerequisites of target file 'src/lib/stage_loader.c'.
+  No need to remake target 'src/lib/stage_loader.c'.
+ Finished prerequisites of target file 'src/lib/stage_loader.lib.o'.
+ Must remake target 'src/lib/stage_loader.lib.o'.
+Makefile:597: update target 'src/lib/stage_loader.lib.o' due to: target does not exist
+gcc -Wall -O3 -DLIBMKB_HOST -DNONMATCHING -DC_ONLY -I/usr/include -Isrc -Iinclude -c src/lib/stage_loader.c -o src/lib/stage_loader.lib.o
+Putting child 0xa000253c0 (src/lib/stage_loader.lib.o) PID 1487 on the chain.
+Live child 0xa000253c0 (src/lib/stage_loader.lib.o) PID 1487
+Reaping losing child 0xa000253c0 PID 1487
+make: *** [Makefile:597: src/lib/stage_loader.lib.o] Error 1
+Removing child 0xa000253c0 PID 1487 from chain.

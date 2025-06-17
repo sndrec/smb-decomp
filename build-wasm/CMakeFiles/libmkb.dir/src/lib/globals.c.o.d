@@ -1,0 +1,31 @@
+CMakeFiles/libmkb.dir/src/lib/globals.c.o: \
+  A:\programs\git\smb-decomp\src\lib\globals.c \
+  A:\programs\git\smb-decomp\src\mode.h \
+  A:\programs\git\smb-decomp\include\dolphin\types.h \
+  A:\programs\git\smb-decomp\src\window.h \
+  A:\programs\git\smb-decomp\src\info.h \
+  A:\programs\git\smb-decomp\include\dolphin\mtx.h \
+  A:\programs\git\smb-decomp\src\recplay.h \
+  A:\programs\git\smb-decomp\src\global.h \
+  A:\programs\git\smb-decomp\src\types.h \
+  A:\programs\git\smb-decomp\include\dolphin\gx\GXStruct.h \
+  A:\programs\git\smb-decomp\include\dolphin\vitypes.h \
+  A:\programs\git\smb-decomp\include\dolphin\gx\GXEnum.h \
+  A:\programs\git\smb-decomp\include\dolphin\gx\GXFifo.h \
+  A:\programs\git\smb-decomp\src\functions.h \
+  A:\programs\git\smb-decomp\include\dolphin\dvd.h \
+  A:\programs\git\smb-decomp\src\variables.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSAlloc.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSFont.h \
+  A:\programs\git\smb-decomp\src\ball.h \
+  A:\programs\git\smb-decomp\src\camera.h \
+  A:\programs\git\smb-decomp\src\adv.h \
+  A:\programs\git\smb-decomp\include\stddef.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\stddef.h \
+  A:\programs\git\emsdk\upstream\emscripten\cache\sysroot\include\stddef.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_header_macro.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_ptrdiff_t.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_size_t.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_wchar_t.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_null.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_offsetof.h

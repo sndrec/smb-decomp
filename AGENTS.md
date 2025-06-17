@@ -12,3 +12,16 @@ This repository is dedicated to building **libmkb**, a standalone C/C++ library 
 - **Full completeness** (e.g. menus, graphics, character animation) is not a concern. Focus on physics, camera, and controls.
 
 Code should be structured into self-contained modules with minimal dependencies so that `libmkb` can be embedded easily. Codex agents should follow these principles when decompiling, refactoring, or adding functionality.
+
+## Testing
+
+Always run `npm test` before submitting a pull request. The test suite consists
+of several Node-based smoke tests:
+
+* `tests/webdemo.js` executes `webdemo/main.js` using mocked browser globals to
+  ensure the script loads without errors.
+* `tests/build_wasm.js` invokes `tools/build_wasm.sh` when `emcc` is available
+  and verifies that `libmkb.wasm` is produced.
+* `tests/webdemo_sim.js` runs the real WebAssembly build. It warms up the
+  simulation for 500 frames before applying random controller input and then
+  checks that the ball and camera positions change.

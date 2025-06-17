@@ -1,0 +1,20 @@
+--- Process 35080 created
+--- Process 35080 loaded C:\Windows\System32\ntdll.dll at 00007fff20730000
+--- Process 35080 loaded C:\Windows\System32\kernel32.dll at 00007fff1ea90000
+--- Process 35080 loaded C:\Windows\System32\KernelBase.dll at 00007fff1de70000
+--- Process 35080 loaded C:\Windows\System32\apphelp.dll at 00007fff1aca0000
+--- Process 35080 loaded C:\Windows\System32\msvcrt.dll at 00007fff1fff0000
+--- Process 35080 thread 52684 created
+--- Process 35080 thread 6068 created
+--- Process 35080 thread 48508 created
+--- Process 35080 loaded C:\msys64\mingw64\bin\libgcc_s_seh-1.dll at 00007ffee8bc0000
+--- Process 35080 loaded C:\msys64\mingw64\bin\libwinpthread-1.dll at 00007ffee4b90000
+--- Process 35080 loaded C:\Windows\System32\cryptbase.dll at 00007fff1d5c0000
+--- Process 35080 loaded C:\Windows\System32\bcryptprimitives.dll at 00007fff1e1f0000
+--- Process 35080 loaded C:\Windows\System32\sechost.dll at 00007fff1f130000
+--- Process 35080 loaded C:\Windows\System32\rpcrt4.dll at 00007fff1e900000
+--- Process 35080 loaded C:\Windows\System32\bcrypt.dll at 00007fff1e170000
+--- Process 35080 thread 48508 exited with status 0x0
+--- Process 35080 thread 52684 exited with status 0x0
+--- Process 35080 thread 6068 exited with status 0x0
+--- Process 35080 exited with status 0x1
