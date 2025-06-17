@@ -78,8 +78,13 @@ function animate() {
 
 async function onModuleLoaded() {
   lib = Module;
-  ballPtr = lib._malloc(BALL_SIZE);
-  cameraPtr = lib._malloc(CAMERA_SIZE);
+  const malloc = lib._malloc || (lib.cwrap && lib.cwrap('malloc', 'number', ['number']));
+  if (!malloc) {
+    console.error('malloc not available in Module');
+    return;
+  }
+  ballPtr = malloc(BALL_SIZE);
+  cameraPtr = malloc(CAMERA_SIZE);
 
   const resp = await fetch('STAGE002.lz');
   const buf = new Uint8Array(await resp.arrayBuffer());
