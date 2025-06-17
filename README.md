@@ -67,11 +67,12 @@ int main(void) {
 
 ### Building libmkb for WebAssembly
 
-The library can also be compiled with [Emscripten](https://emscripten.org/) to produce a WebAssembly build. Configure the project using `emcmake cmake` and then build the target:
+The library can also be compiled with [Emscripten](https://emscripten.org/) to produce a WebAssembly build. Configure the project using `emcmake cmake` and then build the target. Once the static library is created, link it with `emcc` to generate `libmkb.js` and `libmkb.wasm`:
 
 ```bash
 emcmake cmake -B build .
 cmake --build build --target libmkb
+emcc build/libmkb.a -s EXPORT_ALL=1 -s MODULARIZE=1 -o libmkb.js
 ```
 
 Alternatively you can invoke `emcc` directly on the source files if you prefer a custom build system.
