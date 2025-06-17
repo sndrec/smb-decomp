@@ -16,7 +16,7 @@ endif
 COMPILER ?= mwcc
 
 # default recipe
-default: all
+default: libmkb
 
 #-------------------------------------------------------------------------------
 # Tools
@@ -510,8 +510,7 @@ ALL_RELS += mkbe.option.rel
 .SUFFIXES:
 MAKEFLAGS += -r
 
-all: $(DOL) $(ALL_RELS) libmkb.a
-	$(QUIET) $(SHA1SUM) -c supermonkeyball.sha1
+all: libmkb.a
 
 # static module (.dol file)
 %.dol: %.elf $(ELF2DOL)
@@ -589,7 +588,7 @@ LIBMKB_SRCS := src/lib/stage_loader.c src/lib/ball_sim.c src/lib/camera_sim.c \
                src/lzs_decompress.c \
                src/ball.c src/camera.c src/event.c src/info.c src/recplay.c \
                src/recplay_cmpr.c src/adv.c src/window.c src/effect.c src/sound.c \
-               src/lib/host_load.c src/lib/host_os.c src/lib/globals.c
+               src/lib/host_load.c src/lib/host_os.c src/lib/global_state.c
 LIBMKB_OBJS := $(LIBMKB_SRCS:.c=.lib.o)
 
 libmkb.a: $(LIBMKB_OBJS)
