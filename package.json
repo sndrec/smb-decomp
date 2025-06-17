@@ -4,7 +4,7 @@
   "description": "This repo contains a WIP disassembly/decompilation of the program code of Super Monkey Ball NTSC-U version (GMBE8P).",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/webdemo.js && node tests/build_wasm.js"
+    "test": "node tests/webdemo.js && node tests/webdemo_sim.js && node tests/build_wasm.js"
   },
   "keywords": [],
   "author": "",
