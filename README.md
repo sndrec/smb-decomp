@@ -1,30 +1,14 @@
-# Super Monkey Ball Decompilation
+# libmkb - Super Monkey Ball Simulation Library
 
-This repo contains a WIP disassembly/decompilation of the program code of Super Monkey Ball NTSC-U version (GMBE8P).
+This project extracts and refines the gameplay logic of **Super Monkey Ball** into a portable C/C++ library. It no longer attempts to build the original GameCube executable; all effort is directed at maintaining `libmkb` as a clean simulation library.
 
-It builds the following file:
+## Building
 
-supermonkeyball.dol: `sha1: 424e8ce10135686de0709a147e6a3a5a3fda02f1`
+### Requirements
 
-## Build Instructions
-
-### Required Tools
-
-* [devkitPro](https://devkitpro.org/wiki/Getting_Started)
-* CodeWarrior for GameCube compiler (version 1.0, 1.1, or 1.2.5)
-* gcc
+* gcc or clang
 * make
-* wine (only on non-Windows systems)
-
-### Steps
-
-* Create a directory called `mwcc_compiler/<VERSION>` where `<VERSION>` is the version of CodeWarrior for GameCube you have (1.0, 1.1, or 1.2.5).
-* Place the following CodeWarrior compiler executables in the aforementioned directory:
-  - mwcceppc.exe
-  - mwldeppc.exe
-  - lmgr326b.dll
-* Run `make` from the repository root directory. If you are using a version of CodeWarrior besides 1.1, you must run `make COMPILER_VERSION=<VERSION>` (where `<VERSION>` is your CodeWarrior version).
-
+* [Emscripten](https://emscripten.org/) (optional for WebAssembly builds)
 ### Building libmkb
 
 Running `make libmkb.a` will compile the standalone simulation library `libmkb.a` using the host compiler. This library contains the stage loading, ball, camera, world, stage object, item and animation simulation code and can be linked into custom frontends. The full list of available functions is documented in [include/libmkb.h](include/libmkb.h).

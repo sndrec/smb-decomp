@@ -1,6 +1,6 @@
 # Codex Agent Instructions
 
-This repository aims to build **libmkb**, a standalone C/C++ library that can simulate the physics, camera, and control logic of **Super Monkey Ball**. These are the guiding principles for all future contributions:
+This repository is dedicated to building **libmkb**, a standalone C/C++ library that simulates the physics, camera, and control logic of **Super Monkey Ball**. We no longer attempt to compile the original GameCube executable or preserve its exact structure. All code should move toward a clean, portable library focused solely on gameplay simulation. These are the guiding principles for all future contributions:
 
 ## Goals
 - **Readability**: produce clear, well-documented code that faithfully reflects the original game's logic so that it can be easily understood.
@@ -8,7 +8,7 @@ This repository aims to build **libmkb**, a standalone C/C++ library that can si
 - **Embeddability**: the core logic should compile as a reusable C++ library for use in custom frontends. Compiling libmkb for the browser via WebAssembly with three.js for graphics is the endgoal for an initial frontend.
 
 ## Non-Goals
-- **Perfect matching** of the original binary is not required if it harms readability or embeddability.
+- **Perfect matching** of the original binary is not required and we no longer maintain the ability to produce the original `*.dol` file.
 - **Full completeness** (e.g. menus, graphics, character animation) is not a concern. Focus on physics, camera, and controls.
 
-Codex agents should follow these principles when decompiling, refactoring, or adding functionality.
+Code should be structured into self-contained modules with minimal dependencies so that `libmkb` can be embedded easily. Codex agents should follow these principles when decompiling, refactoring, or adding functionality.
