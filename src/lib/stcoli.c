@@ -13,7 +13,7 @@
 #include "stobj.h"
 #include "window.h"
 
-#include "../data/common.nlobj.h"
+#include "../../data/common.nlobj.h"
 
 void collide_ball_with_stage(struct PhysicsBall *ball, struct Stage *stage)
 {
