@@ -1,5 +1,6 @@
 #include "camera_sim.h"
-#include "camera.h"
+
+extern void (*cameraFuncs[])(struct Camera *, struct Ball *);
 
 void camera_sim_init(struct Camera *camera, struct Ball *ball)
 {

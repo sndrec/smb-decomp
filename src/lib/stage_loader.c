@@ -1,6 +1,9 @@
-#include <dolphin.h>
+#include "dolphin.h"
 #include <stdio.h>
-#include <stdlib.h>
+#include <stddef.h>
+
+void *malloc(size_t);
+void free(void *);
 
 #include "global.h"
 #include "load.h"

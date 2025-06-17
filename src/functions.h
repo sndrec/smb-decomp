@@ -2,6 +2,7 @@
 #define _SRC_FUNCTIONS_H_
 
 #include "types.h"
+#include <dolphin/dvd.h>
 
 // ? main();
 void initialize(void);
