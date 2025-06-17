@@ -72,7 +72,7 @@ The library can also be compiled with [Emscripten](https://emscripten.org/) to p
 ```bash
 emcmake cmake -B build .
 cmake --build build --target libmkb
-emcc build/libmkb.a -s EXPORT_ALL=1 -s MODULARIZE=1 -o libmkb.js
+emcc build/libmkb.a -s EXPORT_ALL=1 -s MODULARIZE=1 -o webdemo/libmkb.js
 ```
 
 Alternatively you can invoke `emcc` directly on the source files if you prefer a custom build system.
@@ -80,8 +80,10 @@ Alternatively you can invoke `emcc` directly on the source files if you prefer a
 ### Web Frontend Demo
 
 A simple three.js based demo is provided in the `webdemo` directory. After
-building `libmkb.js` and `libmkb.wasm` with Emscripten, you can serve the folder
-with any static file server:
+building `libmkb.js` and `libmkb.wasm` with Emscripten copy both files into the
+`webdemo` folder. The demo script will automatically instantiate the
+WebAssembly module when the page loads. You can then serve the directory with
+any static file server:
 
 ```bash
 cd webdemo
