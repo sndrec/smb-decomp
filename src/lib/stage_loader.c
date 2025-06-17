@@ -33,8 +33,10 @@ void load_stage_collision_file(const char *path)
 
     if (file_read(&file, lbl_8020AE00, 32, 0) < 0)
         OSPanic("stage_loader.c", __LINE__, "cannot Read");
-    compSize = OSRoundUp32B(__lwbrx(lbl_8020AE00, 0));
-    uncompSize = OSRoundUp32B(__lwbrx(lbl_8020AE00, 4));
+    // Stage data provided with the web demo stores its header in little-endian
+    // order. Convert the values before allocating buffers.
+    compSize = OSRoundUp32B(read_u32_le(lbl_8020AE00, 0));
+    uncompSize = OSRoundUp32B(read_u32_le(lbl_8020AE00, 4));
 
     uncompData = malloc(uncompSize);
     if (uncompData == NULL)

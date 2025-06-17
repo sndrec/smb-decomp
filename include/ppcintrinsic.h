@@ -32,6 +32,18 @@ static inline unsigned int __lwbrx(void *ptr, unsigned int offset)
            (unsigned int)p[2] << 8 | p[3];
 }
 
+// Utility for reading little-endian 32-bit words. Some of the data files in
+// the WebAssembly build (like the stage collision data) are stored in
+// little-endian format even though the original game ran on a big-endian CPU.
+// The GameCube intrinsics library only provided a big-endian load, so we add a
+// simple helper for the opposite case.
+static inline unsigned int read_u32_le(void *ptr, unsigned int offset)
+{
+    unsigned char *p = (unsigned char *)ptr + offset;
+    return (unsigned int)p[0] | (unsigned int)p[1] << 8 |
+           (unsigned int)p[2] << 16 | (unsigned int)p[3] << 24;
+}
+
 static inline float __frsqrte(float n)
 {
     return 1.0f / sqrtf(n);
