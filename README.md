@@ -75,3 +75,17 @@ cmake --build build --target libmkb
 ```
 
 Alternatively you can invoke `emcc` directly on the source files if you prefer a custom build system.
+
+### Web Frontend Demo
+
+A simple three.js based demo is provided in the `webdemo` directory. After
+building `libmkb.js` and `libmkb.wasm` with Emscripten, you can serve the folder
+with any static file server:
+
+```bash
+cd webdemo
+python3 -m http.server
+```
+
+Navigate to <http://localhost:8000> to see the simulation running in your
+browser.
