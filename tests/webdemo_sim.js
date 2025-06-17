@@ -19,15 +19,14 @@ const path = require('path');
   // Load stage data if available
   try {
     const buf = fs.readFileSync(path.join(__dirname, '../webdemo/STAGE002.lz'));
-    // The stage file in the repo has a little-endian LZ header, but the
-    // original loader expects big-endian. Swap the byte order of the first
-    // two 32-bit values so the WebAssembly code interprets the sizes correctly.
-    const swapped = Buffer.from(buf); // make a writable copy
+    // The WebAssembly build expects big-endian header values. The stage file
+    // shipped with the repo stores them in little-endian, so swap the first two
+    // 32-bit words before passing it to the module.
+    const swapped = Buffer.from(buf);
     const srcSize = buf.readUInt32LE(0);
     const dstSize = buf.readUInt32LE(4);
     swapped.writeUInt32BE(srcSize, 0);
     swapped.writeUInt32BE(dstSize, 4);
-
     Module.FS_createDataFile('/', 'STAGE002.lz', swapped, true, true);
     Module._load_stage_collision(2);
   } catch (err) {

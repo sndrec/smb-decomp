@@ -18,12 +18,8 @@ int lzs_decompress(u8 *src, void *dest)
     u32 srcSize;
     u32 destSize;
 
-    // Stage collision data shipped with the repo uses little-endian headers
-    // even though the original console was big-endian. Use the helper that
-    // reads a little-endian 32-bit value so the sizes come out correctly on
-    // all platforms.
-    srcSize = read_u32_le(src, 0);
-    destSize = read_u32_le(src, 4);
+    srcSize = __lwbrx(src, 0);
+    destSize = __lwbrx(src, 4);
     if (srcSize == 0 || destSize == 0)
         return 0;
 
