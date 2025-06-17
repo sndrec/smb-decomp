@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <string.h>
 #include "ppcintrinsic.h"
 
 #include "global.h"
@@ -20,39 +21,54 @@ struct Stage *decodedStageLzPtr;
 void load_stage_collision_file(const char *path)
 {
     struct File file;
-    u8 unused[8];
-    u32 compSize;
-    u32 uncompSize;
-    void *compData;
-    void *uncompData;
     struct StageAnimGroup *coll;
     int i;
+    void *data;
+    u32 size;
 
     if (!file_open(path, &file))
         OSPanic("stage_loader.c", __LINE__, "cannot Open");
 
-    if (file_read(&file, lbl_8020AE00, 32, 0) < 0)
-        OSPanic("stage_loader.c", __LINE__, "cannot Read");
-    compSize = OSRoundUp32B(__lwbrx(lbl_8020AE00, 0));
-    uncompSize = OSRoundUp32B(__lwbrx(lbl_8020AE00, 4));
+    if (strlen(path) >= 9 && strcmp(path + strlen(path) - 9, ".stagedef") == 0)
+    {
+        size = OSRoundUp32B(file_size(&file));
+        data = malloc(size);
+        if (data == NULL)
+            OSPanic("stage_loader.c", __LINE__, "cannot malloc");
+        if (file_read(&file, data, size, 0) < 0)
+            OSPanic("stage_loader.c", __LINE__, "cannot Read");
+        if (file_close(&file) != 1)
+            OSPanic("stage_loader.c", __LINE__, "cannot Close");
+    }
+    else
+    {
+        u32 compSize;
+        u32 uncompSize;
+        void *compData;
 
-    uncompData = malloc(uncompSize);
-    if (uncompData == NULL)
-        OSPanic("stage_loader.c", __LINE__, "cannot malloc");
-    compData = malloc(compSize);
-    if (compData == NULL)
-        OSPanic("stage_loader.c", __LINE__, "cannot malloc");
+        if (file_read(&file, lbl_8020AE00, 32, 0) < 0)
+            OSPanic("stage_loader.c", __LINE__, "cannot Read");
+        compSize = OSRoundUp32B(__lwbrx(lbl_8020AE00, 0));
+        uncompSize = OSRoundUp32B(__lwbrx(lbl_8020AE00, 4));
 
-    if (file_read(&file, compData, compSize, 0) < 0)
-        OSPanic("stage_loader.c", __LINE__, "cannot Read");
-    if (file_close(&file) != 1)
-        OSPanic("stage_loader.c", __LINE__, "cannot Close");
+        data = malloc(uncompSize);
+        if (data == NULL)
+            OSPanic("stage_loader.c", __LINE__, "cannot malloc");
+        compData = malloc(compSize);
+        if (compData == NULL)
+            OSPanic("stage_loader.c", __LINE__, "cannot malloc");
 
-    lzs_decompress(compData, uncompData);
-    free(compData);
+        if (file_read(&file, compData, compSize, 0) < 0)
+            OSPanic("stage_loader.c", __LINE__, "cannot Read");
+        if (file_close(&file) != 1)
+            OSPanic("stage_loader.c", __LINE__, "cannot Close");
 
-    decodedStageLzPtr = uncompData;
-    if (uncompData == NULL)
+        lzs_decompress(compData, data);
+        free(compData);
+    }
+
+    decodedStageLzPtr = data;
+    if (data == NULL)
         OSPanic("stage_loader.c", __LINE__, "cannot open stcoli\n");
     decodedStageLzPtr->animGroups = OFFSET_TO_PTR(decodedStageLzPtr, decodedStageLzPtr->animGroups);
 
@@ -258,7 +274,7 @@ void load_stage_collision_file(const char *path)
 void load_stage_collision(int stageId)
 {
     char filename[32];
-    sprintf(filename, "STAGE%03d.lz", stageId);
+    sprintf(filename, "STAGE%03d.stagedef", stageId);
     load_stage_collision_file(filename);
 }
 

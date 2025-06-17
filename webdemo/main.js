@@ -86,9 +86,9 @@ async function onModuleLoaded() {
   ballPtr = malloc(BALL_SIZE);
   cameraPtr = malloc(CAMERA_SIZE);
 
-  const resp = await fetch('STAGE002.lz');
+  const resp = await fetch('STAGE002.stagedef');
   const buf = new Uint8Array(await resp.arrayBuffer());
-  lib.FS_createDataFile('/', 'STAGE002.lz', buf, true, true);
+  lib.FS_createDataFile('/', 'STAGE002.stagedef', buf, true, true);
 
   lib._load_stage_collision(2);
   lib._world_sim_init();

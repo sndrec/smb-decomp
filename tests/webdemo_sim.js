@@ -5,7 +5,11 @@ const path = require('path');
   const createMKBModule = require('../webdemo/libmkb.js');
   let Module;
   try {
-    Module = await createMKBModule();
+    // Node's fetch does not handle file:// URLs reliably; disable streaming
+    global.fetch = undefined;
+    Module = await createMKBModule({
+      locateFile: (file) => path.resolve(__dirname, '../webdemo', file)
+    });
   } catch (err) {
     console.error('Failed to initialise WebAssembly module:', err.message);
     process.exit(1);
@@ -18,16 +22,8 @@ const path = require('path');
 
   // Load stage data if available
   try {
-    const buf = fs.readFileSync(path.join(__dirname, '../webdemo/STAGE002.lz'));
-    // The WebAssembly build expects big-endian header values. The stage file
-    // shipped with the repo stores them in little-endian, so swap the first two
-    // 32-bit words before passing it to the module.
-    const swapped = Buffer.from(buf);
-    const srcSize = buf.readUInt32LE(0);
-    const dstSize = buf.readUInt32LE(4);
-    swapped.writeUInt32BE(srcSize, 0);
-    swapped.writeUInt32BE(dstSize, 4);
-    Module.FS_createDataFile('/', 'STAGE002.lz', swapped, true, true);
+    const buf = fs.readFileSync(path.join(__dirname, '../webdemo/STAGE002.stagedef'));
+    Module.FS_createDataFile('/', 'STAGE002.stagedef', buf, true, true);
     Module._load_stage_collision(2);
   } catch (err) {
     console.error('Failed to load stage data:', err.message);
