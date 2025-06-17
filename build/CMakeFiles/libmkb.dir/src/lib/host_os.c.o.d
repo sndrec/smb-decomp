@@ -1,0 +1,28 @@
+CMakeFiles/libmkb.dir/src/lib/host_os.c.o: \
+  A:\programs\git\smb-decomp\src\lib\host_os.c \
+  A:\programs\git\smb-decomp\include\stdarg.h \
+  A:\programs\git\smb-decomp\include\stdio.h \
+  A:\programs\git\smb-decomp\include\stdlib.h \
+  A:\programs\git\smb-decomp\include\stddef.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\stddef.h \
+  A:\programs\git\emsdk\upstream\emscripten\cache\sysroot\include\stddef.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_header_macro.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_ptrdiff_t.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_size_t.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_wchar_t.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_null.h \
+  A:\programs\git\emsdk\upstream\lib\clang\21\include\__stddef_offsetof.h \
+  A:\programs\git\smb-decomp\include\wchar.h \
+  A:\programs\git\smb-decomp\include\dolphin\os.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSAlloc.h \
+  A:\programs\git\smb-decomp\include\dolphin\types.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSCache.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSContext.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSInterrupt.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSModule.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSThread.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSMutex.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSFont.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSReset.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSResetSW.h \
+  A:\programs\git\smb-decomp\include\dolphin\OSError.h

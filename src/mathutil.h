@@ -3,6 +3,7 @@
 
 #include <dolphin/types.h>
 #include <dolphin/mtx.h>
+#include <stdint.h>
 
 #define PI 3.14159265358979323846f
 
@@ -42,7 +43,8 @@ struct MathutilData
     #define OFFSET_constOneZero 0x1AE
 };
 
-#define LC_CACHE_BASE 0xE0000000
+extern struct MathutilData *mathutilData;
+#define LC_CACHE_BASE ((uintptr_t)mathutilData)
 
 void mathutil_init(void);
 float func_8000716C(double a);
