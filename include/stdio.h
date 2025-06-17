@@ -30,5 +30,8 @@ int printf(const char *, ...);
 int sprintf(char *s, const char *format, ...);
 int vprintf(const char *format, va_list arg);
 int vsprintf(char *s, const char *format, va_list arg);
+int fprintf(FILE *stream, const char *format, ...);
+int vfprintf(FILE *stream, const char *format, va_list arg);
+extern FILE *stderr;
 
 #endif

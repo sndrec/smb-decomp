@@ -24,3 +24,31 @@ supermonkeyball.dol: `sha1: 424e8ce10135686de0709a147e6a3a5a3fda02f1`
   - mwldeppc.exe
   - lmgr326b.dll
 * Run `make` from the repository root directory. If you are using a version of CodeWarrior besides 1.1, you must run `make COMPILER_VERSION=<VERSION>` (where `<VERSION>` is your CodeWarrior version).
+
+### Building libmkb
+
+Running `make libmkb.a` will compile the standalone simulation library `libmkb.a` using the host compiler. This library contains the stage loading, ball, and camera simulation code and can be linked into custom frontends.
+
+Example usage:
+
+```c
+#include <libmkb.h>
+
+int main(void) {
+    struct Ball ball;
+    struct Camera camera;
+
+    load_stage_collision(1);       // Load STAGE001
+    ball_sim_init(&ball);
+    camera_sim_init(&camera, &ball);
+
+    while (1) {
+        ball_sim_step(&ball);
+        camera_sim_step(&camera, &ball);
+        // render here
+    }
+
+    free_stage_collision();
+    return 0;
+}
+```

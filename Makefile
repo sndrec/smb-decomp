@@ -36,6 +36,7 @@ SHA1SUM := sha1sum
 ELF2DOL := tools/elf2dol$(EXE)
 ELF2REL := tools/elf2rel$(EXE)
 LZSS    := tools/lzss$(EXE)
+AR      := ar
 
 # Game include directories
 INCLUDE_DIRS := src data
@@ -69,7 +70,7 @@ endif
 DOL_LDFLAGS := -nodefaults -fp hard
 REL_LDFLAGS := -nodefaults -fp hard -r1 -m _prolog -g
 
-HOSTCFLAGS   := -Wall -O3 -s
+HOSTCFLAGS   := -Wall -O3 -s -DLIBMKB_HOST
 
 CC_CHECK     := $(GCC) $(GCC_CFLAGS) -fsyntax-only $(GCC_CPPFLAGS)
 
@@ -132,8 +133,11 @@ SOURCES := \
 	src/mot_joint.c \
 	src/motload_3.c \
 	src/motload_4.c \
-	src/ball.c \
-	src/stcoli.c \
+       src/ball.c \
+       src/lib/ball_sim.c \
+       src/lib/camera_sim.c \
+       src/lib/stage_loader.c \
+       src/stcoli.c \
 	src/world.c \
 	src/interpolate_keyframes.c \
 	src/stage.c \
@@ -506,7 +510,7 @@ ALL_RELS += mkbe.option.rel
 .SUFFIXES:
 MAKEFLAGS += -r
 
-all: $(DOL) $(ALL_RELS)
+all: $(DOL) $(ALL_RELS) libmkb.a
 	$(QUIET) $(SHA1SUM) -c supermonkeyball.sha1
 
 # static module (.dol file)
@@ -572,10 +576,23 @@ src/unk_anim_data.c.o: src/unk_anim_data.c
 	$(OBJDUMP) -Drz $< > $@
 
 clean:
-	$(RM) $(DOL) $(ELF) $(MAP) $(ALL_RELS) $(ELF2DOL) $(ELF2REL)
+	$(RM) $(DOL) $(ELF) $(MAP) $(ALL_RELS) libmkb.a $(ELF2DOL) $(ELF2REL)
 	find . -name '*.o' -exec rm {} +
 	find . -name '*.dep' -exec rm {} +
 	find . -name '*.dump' -exec rm {} +
+
+LIBMKB_SRCS := src/lib/stage_loader.c src/lib/ball_sim.c src/lib/camera_sim.c \
+               src/lib/host_load.c src/lib/host_os.c
+LIBMKB_OBJS := $(LIBMKB_SRCS:.c=.lib.o)
+
+libmkb.a: $(LIBMKB_OBJS)
+	$(AR) rcs $@ $^
+
+%.lib.o: %.c
+	$(HOSTCC) $(HOSTCFLAGS) -I/usr/include -Isrc -Iinclude -c $< -o $@
+
+.PHONY: libmkb
+libmkb: libmkb.a
 
 #-------------------------------------------------------------------------------
 # Test Recipes
