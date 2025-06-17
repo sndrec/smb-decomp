@@ -22,8 +22,8 @@ void u_menu_input_notdebug(void);
 void submode_dummy_func(void);
 
 void u_reset_gamedata(void);
-void u_store_gamedata();
-void u_load_gamedata();
+void u_store_gamedata(struct MemcardContents *data);
+void u_load_gamedata(struct MemcardContents *data);
 
 void mode_sel_func(void);
 void func_800123DC(void);
@@ -68,7 +68,7 @@ void u_mot_joint_start_anim(struct ApeAnimationThing *);
 void mot_joint_800355FC(struct ApeAnimationThing *);
 
 void u_update_skel_anim(struct ApeAnimationThing *);
-void u_joint_tree_calc_some_matrix();
+void u_joint_tree_calc_some_matrix(struct AnimJoint *jointArr, struct AnimJoint *joint);
 // ? u_joint_tree_calc_some_other_matrix();
 // ? calc_some_rotation_mtx_from_vec();
 // ? func_80035E7C();
@@ -88,7 +88,7 @@ void u_apply_func_to_nl_model_vertices(struct NlModel *model, void (*b)(struct N
 void u_apply_func_to_nl_disp_list_type_b(struct NlDispList *dl, void *end, void (*func)(struct NlVtxTypeB *));
 void u_apply_func_to_nl_disp_list_type_a(struct NlDispList *dl, void *end, void (*func)(struct NlVtxTypeA *));
 void func_80048084(struct NlModel *arg0, struct NlModel *arg1, float *arg2);
-void func_80048420();
+void func_80048420(struct NlModel *arg0, struct NlModel *arg1, float *arg2);
 
 // ? func_80081D34();
 // ? func_80081D64();

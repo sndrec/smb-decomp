@@ -34,7 +34,7 @@ struct RenderEffectFuncs
 void ev_rend_efc_init(void);
 void ev_rend_efc_main(void);
 void ev_rend_efc_dest(void);
-void rend_efc_draw();
+void rend_efc_draw(int enableFlags);
 void rend_efc_enable(int index, int type, struct RenderEffect *params);
 void rend_efc_blur_init(struct RenderEffect *);
 void rend_efc_blur_destroy(struct RenderEffect *);

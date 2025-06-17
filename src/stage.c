@@ -81,9 +81,9 @@ char *goalModelNames[] =
     "GOAL_R",
 };
 
-void u_bonus_wave_warp_callback_1();
-void u_bonus_wave_warp_callback_2();
-u32 bonus_wave_raycast_down();
+void u_bonus_wave_warp_callback_1(struct NlVtxTypeB *vtxp);
+void u_bonus_wave_warp_callback_2(struct NlVtxTypeA *vtxp);
+u32 bonus_wave_raycast_down(Point3d *rayOrigin, Point3d *outHitPos, Vec *outHitNormal);
 
 void ev_stage_init(void)
 {
@@ -1610,8 +1610,8 @@ struct
 } lbl_8020ADE4;
 FORCE_BSS_ORDER(lbl_8020ADE4)
 
-extern void u_some_stage_vtx_callback_1();
-extern void u_some_stage_vtx_callback_2();
+extern void u_some_stage_vtx_callback_1(Point3d *vtx);
+extern void u_some_stage_vtx_callback_2(Point3d *vtx);
 
 float func_80046884(struct NlModel *model)
 {
