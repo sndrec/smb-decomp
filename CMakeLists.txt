@@ -17,8 +17,19 @@ set(LIBMKB_SOURCES
     src/item_coin.c
     src/obj_collision.c
     src/lzs_decompress.c
+    src/ball.c
+    src/camera.c
+    src/event.c
+    src/info.c
+    src/recplay.c
+    src/recplay_cmpr.c
+    src/adv.c
+    src/window.c
+    src/effect.c
+    src/sound.c
     src/lib/host_load.c
     src/lib/host_os.c
+    src/lib/globals.c
 )
 
 add_library(libmkb STATIC ${LIBMKB_SOURCES})
