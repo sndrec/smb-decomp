@@ -32,6 +32,7 @@ static inline unsigned int __lwbrx(void *ptr, unsigned int offset)
            (unsigned int)p[2] << 8 | p[3];
 }
 
+
 static inline float __frsqrte(float n)
 {
     return 1.0f / sqrtf(n);
