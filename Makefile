@@ -70,7 +70,7 @@ endif
 DOL_LDFLAGS := -nodefaults -fp hard
 REL_LDFLAGS := -nodefaults -fp hard -r1 -m _prolog -g
 
-HOSTCFLAGS   := -Wall -O3 -s
+HOSTCFLAGS   := -Wall -O3 -s -DLIBMKB_HOST
 
 CC_CHECK     := $(GCC) $(GCC_CFLAGS) -fsyntax-only $(GCC_CPPFLAGS)
 
@@ -581,14 +581,15 @@ clean:
 	find . -name '*.dep' -exec rm {} +
 	find . -name '*.dump' -exec rm {} +
 
-LIBMKB_SRCS := src/lib/stage_loader.c src/lib/ball_sim.c src/lib/camera_sim.c
+LIBMKB_SRCS := src/lib/stage_loader.c src/lib/ball_sim.c src/lib/camera_sim.c \
+               src/lib/host_load.c src/lib/host_os.c
 LIBMKB_OBJS := $(LIBMKB_SRCS:.c=.lib.o)
 
 libmkb.a: $(LIBMKB_OBJS)
 	$(AR) rcs $@ $^
 
 %.lib.o: %.c
-	$(HOSTCC) $(HOSTCFLAGS) -Isrc -Iinclude -c $< -o $@
+	$(HOSTCC) $(HOSTCFLAGS) -I/usr/include -Isrc -Iinclude -c $< -o $@
 
 .PHONY: libmkb
 libmkb: libmkb.a

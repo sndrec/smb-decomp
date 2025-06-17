@@ -1,9 +1,8 @@
 #include "dolphin.h"
 #include <stdio.h>
 #include <stddef.h>
-
-void *malloc(size_t);
-void free(void *);
+#include <stdlib.h>
+#include "ppcintrinsic.h"
 
 #include "global.h"
 #include "load.h"

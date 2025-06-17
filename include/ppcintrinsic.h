@@ -4,7 +4,11 @@
 // Implement MetroWerks PowerPC intrinsics for other compilers
 
 #ifndef __MWERKS__
-#include <math.h>
+#ifdef __GNUC__
+# include_next <math.h>
+#else
+# include <math.h>
+#endif
 
 static inline unsigned int __cntlzw(unsigned int n)
 {
