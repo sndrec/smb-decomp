@@ -76,7 +76,7 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-Module.onRuntimeInitialized = async () => {
+async function onModuleLoaded() {
   lib = Module;
   ballPtr = lib._malloc(BALL_SIZE);
   cameraPtr = lib._malloc(CAMERA_SIZE);
@@ -95,4 +95,13 @@ Module.onRuntimeInitialized = async () => {
 
   initThree();
   animate();
-};
+}
+
+// When using Emscripten with MODULARIZE=1, libmkb.js exports a factory
+// function instead of a ready-to-use Module object. Detect that case and
+// instantiate the module so onModuleLoaded runs once the runtime is ready.
+if (typeof Module === 'function') {
+  Module().then(m => { Module = m; onModuleLoaded(); });
+} else {
+  Module.onRuntimeInitialized = onModuleLoaded;
+}
