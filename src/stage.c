@@ -1610,8 +1610,8 @@ struct
 } lbl_8020ADE4;
 FORCE_BSS_ORDER(lbl_8020ADE4)
 
-extern void u_some_stage_vtx_callback_1(Point3d *vtx);
-extern void u_some_stage_vtx_callback_2(Point3d *vtx);
+static void u_some_stage_vtx_callback_1(struct NlVtxTypeB *vtx);
+static void u_some_stage_vtx_callback_2(struct NlVtxTypeA *vtx);
 
 float func_80046884(struct NlModel *model)
 {
@@ -1623,7 +1623,7 @@ float func_80046884(struct NlModel *model)
     return lbl_8020ADE4.unk10;
 }
 
-void u_some_stage_vtx_callback_1(Point3d *vtx)
+static void u_some_stage_vtx_callback_1(struct NlVtxTypeB *vtx)
 {
     Vec spC;
     float f1;
@@ -1638,7 +1638,7 @@ void u_some_stage_vtx_callback_1(Point3d *vtx)
     lbl_8020ADE4.unk10 = mathutil_sqrt(f1);
 }
 
-void u_some_stage_vtx_callback_2(Point3d *vtx) // duplicate of u_some_stage_vtx_callback_1
+static void u_some_stage_vtx_callback_2(struct NlVtxTypeA *vtx) // duplicate of u_some_stage_vtx_callback_1
 {
     Vec spC;
     float f1;
@@ -1725,7 +1725,7 @@ void stage_draw(void)
     struct AnimGroupInfo *animGrp;
     struct StageAnimGroup *r27;
     int i;
-    int (*r25)();
+    int (*r25)(struct NlModel *, struct NlModel *);
     struct Struct80092F90 sp7C;
     Mtx sp4C;
     u8 dummy[8];

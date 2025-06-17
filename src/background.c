@@ -216,7 +216,7 @@ void (*bgInteractFuncs[])(int) =
     NULL,
 };
 
-int (*lbl_801B96CC[])() =
+int (*lbl_801B96CC[])(struct NlModel *, struct NlModel *) =
 {
     NULL,
     NULL,
