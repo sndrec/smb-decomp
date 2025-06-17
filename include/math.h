@@ -23,6 +23,14 @@ double copysign(double x, double y);
 
 double floor(double x);
 
+#ifdef LIBMKB_HOST
+double sqrt(double x);
+static inline double __frsqrte(double n)
+{
+    return 1.0 / sqrt(n);
+}
+#endif
+
 #ifdef __MWERKS__
 #pragma cplusplus on
 #endif
