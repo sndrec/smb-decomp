@@ -70,7 +70,7 @@ endif
 DOL_LDFLAGS := -nodefaults -fp hard
 REL_LDFLAGS := -nodefaults -fp hard -r1 -m _prolog -g
 
-HOSTCFLAGS   := -Wall -O3 -s -DLIBMKB_HOST
+HOSTCFLAGS   := -Wall -O3 -s -DLIBMKB_HOST -DNONMATCHING
 
 CC_CHECK     := $(GCC) $(GCC_CFLAGS) -fsyntax-only $(GCC_CPPFLAGS)
 
@@ -582,8 +582,11 @@ clean:
 	find . -name '*.dump' -exec rm {} +
 
 LIBMKB_SRCS := src/lib/stage_loader.c src/lib/ball_sim.c src/lib/camera_sim.c \
-               src/lib/world_sim.c src/lib/stage_anim.c \
-               src/world.c src/stage.c src/lzs_decompress.c \
+               src/lib/world_sim.c src/lib/stage_anim.c src/lib/stobj_sim.c \
+               src/lib/item_sim.c \
+               src/world.c src/stage.c src/stobj.c src/stobj_goal.c \
+               src/item.c src/item_coin.c src/obj_collision.c \
+               src/lzs_decompress.c \
                src/lib/host_load.c src/lib/host_os.c
 LIBMKB_OBJS := $(LIBMKB_SRCS:.c=.lib.o)
 

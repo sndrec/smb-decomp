@@ -34,7 +34,7 @@ extern inline float sqrtf(float x)
     volatile float y;
     if (x > 0.0f)
     {
-#ifdef __MWERKS__
+#if defined(__MWERKS__) || defined(C_ONLY)
         double guess = __frsqrte((double)x);   // returns an approximation to
 #else
         double guess;

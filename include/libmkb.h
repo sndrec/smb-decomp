@@ -24,6 +24,14 @@ void world_sim_init(void);
 void world_sim_step(void);
 void world_sim_destroy(void);
 
+void stobj_sim_init(void);
+void stobj_sim_step(void);
+void stobj_sim_destroy(void);
+
+void item_sim_init(void);
+void item_sim_step(void);
+void item_sim_destroy(void);
+
 void stage_anim_init(void);
 void stage_anim_step(void);
 void stage_anim_destroy(void);
