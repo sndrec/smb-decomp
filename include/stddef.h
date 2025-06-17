@@ -1,14 +1,12 @@
-#ifndef _STDDEF_H_
-#define _STDDEF_H_
-
-#define offsetof(type, member)	((size_t) &(((type *) 0)->member))
+#ifndef LIBMKB_STDDEF_H
+#define LIBMKB_STDDEF_H
 
 #ifdef LIBMKB_HOST
-typedef unsigned long size_t;
+# include_next <stddef.h>
 #else
+# define offsetof(type, member)  ((size_t) &(((type *) 0)->member))
 typedef unsigned int size_t;
+# define NULL 0L
 #endif
-
-#define NULL 0L
 
 #endif
