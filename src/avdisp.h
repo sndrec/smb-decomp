@@ -222,7 +222,7 @@ void avdisp_set_bound_sphere_scale(float);
 void avdisp_set_ambient(float, float, float);
 void avdisp_draw_model_culled_sort_translucent(struct GMAModel *);
 void avdisp_draw_model_culled_sort_none(struct GMAModel *);
-void avdisp_draw_model_culled_sort_all();
+void avdisp_draw_model_culled_sort_all(struct GMAModel *model);
 void avdisp_set_alpha(float alpha);
 void avdisp_set_light_mask(u32 lightMask);
 void avdisp_set_inf_light_dir(Vec *a);

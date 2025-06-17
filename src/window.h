@@ -64,7 +64,7 @@ void u_set_window_text(int, const char *);
 void u_clear_buffers_2_and_5(void);
 // ? clear_buffer_region();
 int window_printf_2(const char *, ...);
-void u_debug_print();
+void u_debug_print(char *str);
 int u_printf_if_debug(int, char *, ...);
 
 #endif

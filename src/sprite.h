@@ -317,7 +317,7 @@ void set_text_add_color(u32 color);
 void func_80071B1C(float);
 void set_text_scale(float scaleX, float scaleY);
 void set_text_opacity(float opacity);
-void func_80071B50();
+void func_80071B50(int flags);
 void set_text_pos(float x, float y);
 void sprite_putc(char chr);
 void sprite_puts(char *str);

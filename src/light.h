@@ -100,7 +100,7 @@ extern char *s_lightIdNames[];
 extern char *s_lightGroupNames[];
 extern s8 lbl_802F1C6C[8];
 
-void light_init();
+void light_init(int stageId);
 void light_main();
 BOOL add_light_to_pool(struct Light *a);
 void load_light_group_uncached(int);

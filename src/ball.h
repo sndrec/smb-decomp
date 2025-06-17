@@ -186,7 +186,7 @@ void check_ball_teeter(struct Ape *a);
 // ? func_80037098();
 void u_choose_ape_anim(struct Ape *a, float b);
 void func_8003765C(struct Ape *a);
-void func_80037718();
+void func_80037718(struct Ape *unused);
 void func_80037B1C(struct Ball *);
 void ball_set_ape_flags_80037B20(void);
 void ev_ball_init(void);

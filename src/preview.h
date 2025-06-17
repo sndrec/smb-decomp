@@ -26,7 +26,7 @@ void preview_create(struct Preview *preview, char *filename, int index, u32 widt
 void start_preview_image_read(struct Preview *preview, int index);
 void preview_sync(struct Preview *preview);
 void preview_main(struct Preview *preview);
-void preview_free();
+void preview_free(struct Preview *preview);
 void preview_draw(struct Preview *preview, u32 color0, u32 color1, float x, float y, float z, float width, float height);
 
 #endif
