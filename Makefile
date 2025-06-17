@@ -16,7 +16,7 @@ endif
 COMPILER ?= mwcc
 
 # default recipe
-default: all
+default: libmkb
 
 #-------------------------------------------------------------------------------
 # Tools
@@ -95,19 +95,19 @@ SOURCES := \
 	src/mathutil.c \
 	src/mode.c \
 	src/pause_menu.c \
-	src/event.c \
+    src/lib/event.c \
 	src/polydisp.c \
 	src/adv.c \
 	src/code_5.c \
 	src/sel.c \
 	src/game.c \
-	src/camera.c \
+    src/lib/camera.c \
 	src/frustum.c \
 	src/light.c \
 	src/gxsync.c \
 	src/info.c \
 	src/code_7.c \
-	src/input.c \
+    src/lib/input.c \
 	src/bitmap.c \
 	src/bmp_list_com.c \
 	src/bmp_list_adv.c \
@@ -133,14 +133,14 @@ SOURCES := \
 	src/mot_joint.c \
 	src/motload_3.c \
 	src/motload_4.c \
-       src/ball.c \
+       src/lib/ball.c \
        src/lib/ball_sim.c \
        src/lib/camera_sim.c \
        src/lib/stage_loader.c \
        src/stcoli.c \
-	src/world.c \
+    src/lib/world.c \
 	src/interpolate_keyframes.c \
-	src/stage.c \
+    src/lib/stage.c \
 	src/code_8.c \
 	src/recplay.c \
 	src/recplay_cmpr.c \
@@ -168,12 +168,12 @@ SOURCES := \
 	src/bg_pilot.c \
 	src/bg_end.c \
 	src/course.c \
-	src/item.c \
-	src/item_coin.c \
+    src/lib/item.c \
+    src/lib/item_coin.c \
 	src/item_pilot.c \
-	src/obj_collision.c \
-	src/stobj.c \
-	src/stobj_goal.c \
+    src/lib/obj_collision.c \
+    src/lib/stobj.c \
+    src/lib/stobj_goal.c \
 	src/sprite.c \
 	src/textbox.c \
 	src/hud.c \
@@ -188,7 +188,7 @@ SOURCES := \
 	src/spline.c \
 	src/thread.c \
 	src/mt_effect.c \
-	src/lzs_decompress.c \
+    src/lib/lzs_decompress.c \
 	src/avdisp.c \
 	src/load.c \
 	src/shadow.c \
@@ -383,10 +383,8 @@ SOURCES := \
 	libraries/TRK_MINNOW_DOLPHIN/asm/main_TRK.s \
 	libraries/TRK_MINNOW_DOLPHIN/asm/dolphin_trk_glue.s \
 	libraries/TRK_MINNOW_DOLPHIN/asm/targcont.s \
-	libraries/amcExi2/AmcExi.c \
-	libraries/amcExi2/AmcExi2Comm.c \
-	libraries/odemustubs/asm/odemustubs.s \
-	libraries/amcnotstub/amcnotstub.c
+        libraries/amcExi2/AmcExi.c \
+        libraries/amcExi2/AmcExi2Comm.c
 O_FILES := $(addsuffix .o,$(SOURCES))
 ALL_O_FILES := $(O_FILES)
 $(ELF): $(O_FILES)
@@ -510,8 +508,7 @@ ALL_RELS += mkbe.option.rel
 .SUFFIXES:
 MAKEFLAGS += -r
 
-all: $(DOL) $(ALL_RELS) libmkb.a
-	$(QUIET) $(SHA1SUM) -c supermonkeyball.sha1
+all: libmkb.a
 
 # static module (.dol file)
 %.dol: %.elf $(ELF2DOL)
@@ -584,12 +581,12 @@ clean:
 LIBMKB_SRCS := src/lib/stage_loader.c src/lib/ball_sim.c src/lib/camera_sim.c \
                src/lib/world_sim.c src/lib/stage_anim.c src/lib/stobj_sim.c \
                src/lib/item_sim.c \
-               src/world.c src/stage.c src/stobj.c src/stobj_goal.c \
-               src/item.c src/item_coin.c src/obj_collision.c \
-               src/lzs_decompress.c \
-               src/ball.c src/camera.c src/event.c src/info.c src/recplay.c \
+               src/lib/world.c src/lib/stage.c src/lib/stobj.c src/lib/stobj_goal.c \
+               src/lib/item.c src/lib/item_coin.c src/lib/obj_collision.c \
+               src/lib/lzs_decompress.c \
+               src/lib/ball.c src/lib/camera.c src/lib/event.c src/info.c src/recplay.c \
                src/recplay_cmpr.c src/adv.c src/window.c src/effect.c src/sound.c \
-               src/lib/host_load.c src/lib/host_os.c src/lib/globals.c
+               src/lib/host_load.c src/lib/host_os.c src/lib/global_state.c
 LIBMKB_OBJS := $(LIBMKB_SRCS:.c=.lib.o)
 
 libmkb.a: $(LIBMKB_OBJS)
