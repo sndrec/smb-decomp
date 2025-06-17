@@ -582,7 +582,8 @@ clean:
 	find . -name '*.dump' -exec rm {} +
 
 LIBMKB_SRCS := src/lib/stage_loader.c src/lib/ball_sim.c src/lib/camera_sim.c \
-               src/lib/world_sim.c src/world.c \
+               src/lib/world_sim.c src/lib/stage_anim.c \
+               src/world.c src/stage.c src/lzs_decompress.c \
                src/lib/host_load.c src/lib/host_os.c
 LIBMKB_OBJS := $(LIBMKB_SRCS:.c=.lib.o)
 

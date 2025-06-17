@@ -17,10 +17,9 @@ struct Stage *decodedStageLzPtr;
 #undef OFFSET_TO_PTR
 #define OFFSET_TO_PTR(base, offset) (void *)((u32)(offset) + (u32)(base))
 
-void load_stage_collision(int stageId)
+void load_stage_collision_file(const char *path)
 {
     struct File file;
-    char filename[32];
     u8 unused[8];
     u32 compSize;
     u32 uncompSize;
@@ -29,9 +28,7 @@ void load_stage_collision(int stageId)
     struct StageAnimGroup *coll;
     int i;
 
-    sprintf(filename, "STAGE%03d.lz", stageId);
-
-    if (!file_open(filename, &file))
+    if (!file_open(path, &file))
         OSPanic("stage_loader.c", __LINE__, "cannot Open");
 
     if (file_read(&file, lbl_8020AE00, 32, 0) < 0)
@@ -256,6 +253,13 @@ void load_stage_collision(int stageId)
         decodedStageLzPtr->unk90 = OFFSET_TO_PTR(decodedStageLzPtr, decodedStageLzPtr->unk90);
     if (decodedStageLzPtr->unk7C < 1)
         decodedStageLzPtr->unk7C = 1;
+}
+
+void load_stage_collision(int stageId)
+{
+    char filename[32];
+    sprintf(filename, "STAGE%03d.lz", stageId);
+    load_stage_collision_file(filename);
 }
 
 void free_stage_collision(void)

@@ -11,6 +11,7 @@ extern "C" {
 #endif
 
 void load_stage_collision(int stageId);
+void load_stage_collision_file(const char *path);
 void free_stage_collision(void);
 
 void ball_sim_init(struct Ball *ball);
@@ -22,6 +23,10 @@ void camera_sim_step(struct Camera *camera, struct Ball *ball);
 void world_sim_init(void);
 void world_sim_step(void);
 void world_sim_destroy(void);
+
+void stage_anim_init(void);
+void stage_anim_step(void);
+void stage_anim_destroy(void);
 
 #ifdef __cplusplus
 }
