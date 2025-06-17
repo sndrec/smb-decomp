@@ -604,8 +604,6 @@ int get_stage_background_2(int stageId);
 void compute_stage_bounding_sphere(void);
 void func_800463E8(Vec *, float *);
 float func_80046884(struct NlModel *);
-void load_stagedef(int stageId);
-void free_stagedef(void);
 void adjust_stage_anim_ptrs(struct StageAnimGroupAnim **, struct Stage *);
 void func_800473C0(struct StageBgAnim **, struct Stage *);
 void adjust_stage_flipbook_anims_ptrs(struct StageFlipbookAnims **, struct Stage *);

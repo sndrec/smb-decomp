@@ -132,8 +132,11 @@ SOURCES := \
 	src/mot_joint.c \
 	src/motload_3.c \
 	src/motload_4.c \
-	src/ball.c \
-	src/stcoli.c \
+       src/ball.c \
+       src/lib/ball_sim.c \
+       src/lib/camera_sim.c \
+       src/lib/stage_loader.c \
+       src/stcoli.c \
 	src/world.c \
 	src/interpolate_keyframes.c \
 	src/stage.c \
