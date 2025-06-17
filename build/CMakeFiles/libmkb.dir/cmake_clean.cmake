@@ -1,0 +1,43 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/libmkb.dir/src/item.c.o"
+  "CMakeFiles/libmkb.dir/src/item.c.o.d"
+  "CMakeFiles/libmkb.dir/src/item_coin.c.o"
+  "CMakeFiles/libmkb.dir/src/item_coin.c.o.d"
+  "CMakeFiles/libmkb.dir/src/lib/ball_sim.c.o"
+  "CMakeFiles/libmkb.dir/src/lib/ball_sim.c.o.d"
+  "CMakeFiles/libmkb.dir/src/lib/camera_sim.c.o"
+  "CMakeFiles/libmkb.dir/src/lib/camera_sim.c.o.d"
+  "CMakeFiles/libmkb.dir/src/lib/host_load.c.o"
+  "CMakeFiles/libmkb.dir/src/lib/host_load.c.o.d"
+  "CMakeFiles/libmkb.dir/src/lib/host_os.c.o"
+  "CMakeFiles/libmkb.dir/src/lib/host_os.c.o.d"
+  "CMakeFiles/libmkb.dir/src/lib/item_sim.c.o"
+  "CMakeFiles/libmkb.dir/src/lib/item_sim.c.o.d"
+  "CMakeFiles/libmkb.dir/src/lib/stage_anim.c.o"
+  "CMakeFiles/libmkb.dir/src/lib/stage_anim.c.o.d"
+  "CMakeFiles/libmkb.dir/src/lib/stage_loader.c.o"
+  "CMakeFiles/libmkb.dir/src/lib/stage_loader.c.o.d"
+  "CMakeFiles/libmkb.dir/src/lib/stobj_sim.c.o"
+  "CMakeFiles/libmkb.dir/src/lib/stobj_sim.c.o.d"
+  "CMakeFiles/libmkb.dir/src/lib/world_sim.c.o"
+  "CMakeFiles/libmkb.dir/src/lib/world_sim.c.o.d"
+  "CMakeFiles/libmkb.dir/src/lzs_decompress.c.o"
+  "CMakeFiles/libmkb.dir/src/lzs_decompress.c.o.d"
+  "CMakeFiles/libmkb.dir/src/obj_collision.c.o"
+  "CMakeFiles/libmkb.dir/src/obj_collision.c.o.d"
+  "CMakeFiles/libmkb.dir/src/stage.c.o"
+  "CMakeFiles/libmkb.dir/src/stage.c.o.d"
+  "CMakeFiles/libmkb.dir/src/stobj.c.o"
+  "CMakeFiles/libmkb.dir/src/stobj.c.o.d"
+  "CMakeFiles/libmkb.dir/src/stobj_goal.c.o"
+  "CMakeFiles/libmkb.dir/src/stobj_goal.c.o.d"
+  "CMakeFiles/libmkb.dir/src/world.c.o"
+  "CMakeFiles/libmkb.dir/src/world.c.o.d"
+  "libmkb.a"
+  "libmkb.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C)
+  include(CMakeFiles/libmkb.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

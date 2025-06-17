@@ -11,7 +11,7 @@ This project extracts and refines the gameplay logic of **Super Monkey Ball** in
 * [Emscripten](https://emscripten.org/) (optional for WebAssembly builds)
 ### Building libmkb
 
-Running `make libmkb.a` will compile the standalone simulation library `libmkb.a` using the host compiler. This library contains the stage loading, ball, camera, world, stage object, item and animation simulation code and can be linked into custom frontends. The full list of available functions is documented in [include/libmkb.h](include/libmkb.h).
+Running `make` (or explicitly `make libmkb.a`) will compile the standalone simulation library `libmkb.a` using the host compiler. This library contains the stage loading, ball, camera, world, stage object, item and animation simulation code and can be linked into custom frontends. The full list of available functions is documented in [include/libmkb.h](include/libmkb.h).
 
 Example usage:
 

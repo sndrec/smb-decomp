@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"A:/programs/git/smb-decomp/build-wasm/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
