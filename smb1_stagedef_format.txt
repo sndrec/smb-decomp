@@ -1,0 +1,241 @@
+SMB1 StageDef Format (.lz.raw)
+General Notes
+All offsets are relative to file start (byte 0).
+
+Aim for 4-byte alignment except in the collision-grid triangle lists.
+
+Object names must be stored; include a 4 zero-byte pad after level-model names.
+
+Normal levels have one start position; minigames may have multiple.
+
+Reflective objects: planar, no textures.
+
+Write objects in roughly this order (other orders may break references):
+
+File Header
+
+Start Positions
+
+Fallout Y
+
+Goals, Bumpers, Jamabars, Bananas
+
+Collision Headers
+
+Collision Triangles
+
+Collision-Grid Triangle Lists
+
+Collision-Grid Pointers
+
+Level Models
+
+Reflective Models
+
+Background Models
+
+Object Name Offsets + ASCII
+
+File Header
+Total size: 0xA0 (160)
+
+Offset	Length	Type	Description
+0x00	0x08	–	Fixed values 0x00000000, 0x00000064
+0x08	0x04	uint32	Count of collision headers (can be 0)
+0x0C	0x04	file-offset	→ collision-header list (null if none)
+0x10	0x04	uint32	Header size (always 0xA0), also offset to start-position data
+0x14	0x04	float	Fallout-plane Y offset; (offset–0xA0)/0x14 = number of start positions
+0x18	0x04	uint32	Number of goals
+0x1C	0x04	file-offset	→ goal list
+0x20	0x04	uint32	Duplicate goal count (purpose unknown)
+0x24	0x04	–	Unknown / null
+0x28	0x04	uint32	Number of bumpers
+0x2C	0x04	file-offset	→ bumper list
+0x30	0x04	uint32	Number of jamabars
+0x34	0x04	file-offset	→ jamabar list
+0x38	0x04	uint32	Number of bananas
+0x3C	0x04	file-offset	→ banana list
+0x40	0x10	–	Unknown / null (16 bytes)
+0x50	0x04	uint32	Unknown count
+0x54	0x04	file-offset	→ unknown list
+0x58	0x04	uint32	Number of level models
+0x5C	0x04	file-offset	→ level-model list
+0x60	0x08	–	Unknown / null (8 bytes)
+0x68	0x04	uint32	Number of background models
+0x6C	0x04	file-offset	→ background-model list
+0x70	0x04	uint32	Unknown count
+0x74	0x04	file-offset	→ unknown list
+0x78	0x08	–	Unknown (levels always have 0x00000000, 0x00000001)
+0x80	0x04	uint32	Number of reflective models
+0x84	0x04	file-offset	→ reflective-model list
+0x88	0x18	–	Unknown / null (24 bytes)
+
+Start Position
+Size: 0x14 (20)
+
+Offset	Length	Type	Description
+0x00	0x04	float	X pos
+0x04	0x04	float	Y pos
+0x08	0x04	float	Z pos
+0x0C	0x02	int16	X rot
+0x0E	0x02	int16	Y rot
+0x10	0x02	int16	Z rot
+0x12	0x02	–	Reserved (null)
+
+Goal
+Size: 0x14 (20)
+
+Offset	Length	Type	Description
+0x00	0x04	float	X pos
+0x04	0x04	float	Y pos
+0x08	0x04	float	Z pos
+0x0C	0x02	int16	X rot
+0x0E	0x02	int16	Y rot
+0x10	0x02	int16	Z rot
+0x12	0x02	int16	Type (0x4200=blue, 0x4700=green, 0x5200=red)
+
+Bumper / Jamabar
+Both have Size: 0x20 (32) and share the same layout:
+
+Offset	Length	Type	Description
+0x00	0x04	float	X pos
+0x04	0x04	float	Y pos
+0x08	0x04	float	Z pos
+0x0C	0x02	int16	X rot
+0x0E	0x02	int16	Y rot
+0x10	0x02	int16	Z rot
+0x12	0x02	–	Reserved (null)
+0x14	0x04	float	X scale
+0x18	0x04	float	Y scale
+0x1C	0x04	float	Z scale
+
+Banana
+Size: 0x10 (16)
+
+Offset	Length	Type	Description
+0x00	0x04	float	X pos
+0x04	0x04	float	Y pos
+0x08	0x04	float	Z pos
+0x0C	0x04	uint32	Type (0 = single, 1 = bunch)
+
+Collision Header
+Size: 0xC4 (196)
+
+Offset	Length	Type	Description
+0x00	0x04	float	null
+0x04	0x04	float	null
+0x08	0x04	float	null
+0x0C	0x02	int16	null
+0x0E	0x02	int16	null
+0x10	0x02	int16	null
+0x12	0x02	int16	null
+0x14	0x04	file-offset	→ animation header (null if none)
+0x18	0x04	file-offset	→ model reference (→ name pointer)
+0x1C	0x04	file-offset	→ triangle list
+0x20	0x04	file-offset	→ collision-grid pointers
+0x24	0x04	float	Collision-grid start X
+0x28	0x04	float	Collision-grid start Z
+0x2C	0x04	float	Collision-grid step X
+0x30	0x04	float	Collision-grid step Z
+0x34	0x04	uint32	Always 0x10
+0x38	0x04	uint32	Always 0x10
+0x3C	0x88	–	Copy of File Header (from 0x18), excluding background models
+
+Level Model
+Size: 0x0C (12)
+
+Offset	Length	Type	Description
+0x00	0x04	uint32	Always 0x00000001
+0x04	0x04	file-offset	→ model-name pointer
+0x08	0x04	–	Reserved (null)
+
+Background Model
+Size: 0x38 (56)
+
+Offset	Length	Type	Description
+0x00	0x04	uint32	Always 0x0000001F
+0x04	0x04	file-offset	→ model-name pointer
+0x08	0x04	–	Reserved (null)
+0x0C	0x04	float	X pos
+0x10	0x04	float	Y pos
+0x14	0x04	float	Z pos
+0x18	0x02	int16	X rot
+0x1A	0x02	int16	Y rot
+0x1C	0x02	int16	Z rot
+0x1E	0x02	–	Reserved (null)
+0x20	0x04	float	X scale
+0x24	0x04	float	Y scale
+0x28	0x04	float	Z scale
+0x2C	0x0C	–	Unknown / null
+
+Reflective Model
+Size: 0x08 (8)
+
+Offset	Length	Type	Description
+0x00	0x04	file-offset	→ model-name pointer
+0x04	0x04	–	Reserved (null)
+
+Collision Triangle
+Size: 0x40 (64)
+
+Offset	Length	Type	Description
+0x00	0x04	float	Vertex1 X
+0x04	0x04	float	Vertex1 Y
+0x08	0x04	float	Vertex1 Z
+0x0C	0x04	float	Normal X
+0x10	0x04	float	Normal Y
+0x14	0x04	float	Normal Z
+0x18	0x02	int16	Rot from XY (X)
+0x1A	0x02	int16	Rot from XY (Y)
+0x1C	0x02	int16	Rot from XY (Z)
+0x1E	0x02	–	Reserved (null)
+0x20	0x04	float	DX2–X1
+0x24	0x04	float	DY2–Y1
+0x28	0x04	float	DX3–X1
+0x2C	0x04	float	DY3–Y1
+0x30	0x04	float	Tangent X
+0x34	0x04	float	Tangent Y
+0x38	0x04	float	Bitangent X
+0x3C	0x04	float	Bitangent Y
+
+Collision-Grid Triangle List
+Entry size: 0x04 (4)
+
+Offset	Length	Type	Description
+0x00	0x02	uint16	Triangle index
+0x02	0x02	uint16	0xFFFF terminator
+
+Collision-Grid Triangle-List Pointer
+Size: 0x04 (4)
+
+Offset	Length	Type	Description
+0x00	0x04	file-offset	→ triangle-list
+
+Animation Header
+Size: 0x48 (72)
+
+Offset	Length	Type	Description
+0x00	0x04	uint32	Frames for X-rot
+0x04	0x04	file-offset	→ X-rotation frames
+0x08	0x04	uint32	Frames for Y-rot
+0x0C	0x04	file-offset	→ Y-rotation frames
+0x10	0x04	uint32	Frames for Z-rot
+0x14	0x04	file-offset	→ Z-rotation frames
+0x18	0x04	uint32	Frames for X-trans
+0x1C	0x04	file-offset	→ X-translation frames
+0x20	0x04	uint32	Frames for Y-trans
+0x24	0x04	file-offset	→ Y-translation frames
+0x28	0x04	uint32	Frames for Z-trans
+0x2C	0x04	file-offset	→ Z-translation frames
+0x30	0x18	–	Reserved (null)
+
+Animation Frame
+Size: 0x14 (20)
+
+Offset	Length	Type	Description
+0x00	0x04	uint32	Always 0x00000002
+0x04	0x04	float	Time (0→100 percent)
+0x08	0x04	float	Rotation (degrees) or translation (units)
+0x0C	0x04	–	Reserved (null)
+0x10	0x04	–	Reserved (null)
+
