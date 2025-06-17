@@ -4,6 +4,7 @@
 #include "stage.h"
 #include "ball.h"
 #include "camera.h"
+#include "world.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -17,6 +18,10 @@ void ball_sim_step(struct Ball *ball);
 
 void camera_sim_init(struct Camera *camera, struct Ball *ball);
 void camera_sim_step(struct Camera *camera, struct Ball *ball);
+
+void world_sim_init(void);
+void world_sim_step(void);
+void world_sim_destroy(void);
 
 #ifdef __cplusplus
 }

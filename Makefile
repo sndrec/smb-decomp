@@ -582,6 +582,7 @@ clean:
 	find . -name '*.dump' -exec rm {} +
 
 LIBMKB_SRCS := src/lib/stage_loader.c src/lib/ball_sim.c src/lib/camera_sim.c \
+               src/lib/world_sim.c src/world.c \
                src/lib/host_load.c src/lib/host_os.c
 LIBMKB_OBJS := $(LIBMKB_SRCS:.c=.lib.o)
 
@@ -589,7 +590,7 @@ libmkb.a: $(LIBMKB_OBJS)
 	$(AR) rcs $@ $^
 
 %.lib.o: %.c
-	$(HOSTCC) $(HOSTCFLAGS) -I/usr/include -Isrc -Iinclude -c $< -o $@
+	$(HOSTCC) $(HOSTCFLAGS) -DC_ONLY -I/usr/include -Isrc -Iinclude -c $< -o $@
 
 .PHONY: libmkb
 libmkb: libmkb.a
