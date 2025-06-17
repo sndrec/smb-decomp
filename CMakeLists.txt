@@ -15,6 +15,8 @@ set(LIBMKB_SOURCES
     src/stobj_goal.c
     src/item.c
     src/item_coin.c
+    src/pool.c
+    src/background.c
     src/obj_collision.c
     src/lzs_decompress.c
     src/ball.c

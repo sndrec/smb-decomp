@@ -35,7 +35,7 @@ static inline double __frsqrte(double n)
 #pragma cplusplus on
 #endif
 
-extern inline float sqrtf(float x)
+static inline float sqrtf(float x)
 {
     static const double _half = .5;
     static const double _three = 3.0;
