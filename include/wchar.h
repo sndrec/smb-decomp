@@ -1,10 +1,12 @@
-#ifndef _WCHAR_H_
-#define _WCHAR_H_
+#ifndef LIBMKB_WCHAR_H
+#define LIBMKB_WCHAR_H
 
-#include <stdio.h>
-
+#ifdef LIBMKB_HOST
+# include <wchar.h>
+#else
+# include <stdio.h>
 typedef unsigned short wchar_t;
-
 int fwide(FILE *stream, int mode);
+#endif
 
 #endif
