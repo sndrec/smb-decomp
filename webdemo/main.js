@@ -1,7 +1,8 @@
 // Basic three.js scene that steps the libmkb simulation.
 // libmkb.js and libmkb.wasm must be built with Emscripten.
 
-let Module = Module || {};
+// Reuse the Module object created by Emscripten if available
+var Module = typeof Module !== 'undefined' ? Module : {};
 
 // Keep track of WASD key state for simple tilt control
 const keys = { w: false, a: false, s: false, d: false };

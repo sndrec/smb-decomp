@@ -1,0 +1,13 @@
+{
+  "name": "smb-decomp",
+  "version": "1.0.0",
+  "description": "This repo contains a WIP disassembly/decompilation of the program code of Super Monkey Ball NTSC-U version (GMBE8P).",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests/webdemo.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
